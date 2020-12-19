@@ -1,0 +1,56 @@
+body {
+    box-sizing: border-box;
+    background-color: #444444;
+}
+
+.container {
+    display: grid;
+    padding: 3px;
+    grid-template-columns: repeat(2, 48vw);
+    grid-template-rows:  repeat(2, 48vh);
+    grid-gap: 5px;
+    align-content: center;
+    justify-content: center;
+    min-width: 500px;
+    min-height: 500px;
+}
+
+.clock {
+    background-color: violet;
+}
+
+.calculator {
+    background-color: teal;
+}
+
+.weather {
+    background-color: tomato;
+}
+
+.notes {
+    background-color: green;
+}
+
+#notesHeader {
+    background-color: khaki;
+    color: #444444;
+    height: 5vh;
+}
+
+#textBox {
+    height: 97%;
+    width: 99%;
+    background-color: #444444;
+    color: khaki;
+    font-size: larger;
+    overflow: hidden;
+    resize: none;
+}
+
+#noteButton {
+    padding-bottom: 15px;
+    width: 100px;
+    height: 25px;
+    background-color: #444444;
+    color: khaki;
+}
