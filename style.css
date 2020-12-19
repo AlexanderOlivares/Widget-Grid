@@ -28,29 +28,60 @@ body {
 }
 
 .notes {
-    background-color: green;
+    background-color: #444444;
 }
 
+/* notes header and view notes divs below */
 #notesHeader {
+    display: flex;
+    padding-left: 10px;
+    justify-content: left;
+    gap: 3px;
     background-color: khaki;
     color: #444444;
     height: 5vh;
 }
 
-#textBox {
-    height: 97%;
+#notesAddNote {
+    height: 25px;
+    width: 25px;
+    align-self: center;
+}
+
+#notesTextBox {
+    height: 100%;
     width: 99%;
     background-color: #444444;
     color: khaki;
     font-size: larger;
     overflow: hidden;
     resize: none;
+    display: visible;
 }
 
-#noteButton {
+#notesViewNotesButton {
+    width: 100px;
+    height: 25px;
+    padding-bottom: 15px;
+    background-color: khaki;
+}
+
+#notesPostNoteButton {
     padding-bottom: 15px;
     width: 100px;
     height: 25px;
+    background-color: khaki;
+    color: #444444;
+}
+
+#notesNotesList {
+    display: none;
+    display: ;
+    height: 81%;
+    width: 99%;
     background-color: #444444;
     color: khaki;
+    font-size: larger;
+    overflow: hidden;
 }
+

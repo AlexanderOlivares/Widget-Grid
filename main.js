@@ -44,10 +44,40 @@ notes.addEventListener('click', ()=> {
 })
 
 
-let textBox = document.getElementById('textBox');
-let noteButon = document.getElementById('noteButton');
-let note1 = document.getElementById('note1');
+// *** notes section below *** 
+let notesAddNote = document.getElementById('notesAddNote');
+let notesTextBox = document.getElementById('notesTextBox');
+let notesPostNoteButton = document.getElementById('notesPostNoteButton');
+let notesViewNotesButton = document.getElementById('notesViewNotesButton');
+let notesNotesList = document.getElementById('notesNotesList');
+let noteCount = 1;
 
-noteButon.addEventListener('click', ()=> {
-    note1.innerHTML = textBox.value;
+
+// get the key for local storaget be a preview of the note
+let notesNotePreview = notesTextBox.value;
+console.log(notesNotePreview);
+
+notesPostNoteButton.addEventListener('click', ()=> {
+    if (notesTextBox.value !== ''){
+        localStorage.setItem('key', notesTextBox.value);
+        noteCount++;
+    }
+    return;
+});
+
+notesAddNote.addEventListener('click', ()=> {
+    if (notesTextBox.value == ''){
+        return;
+    } else {
+        localStorage.setItem(`note ${noteCount}`, notesTextBox.value);
+        noteCount++;
+    }
+    notesTextBox.value = '';
 })
+
+notesViewNotesButton.addEventListener('click', ()=> {
+   notesTextBox.style.display = 'none';
+   notesNotesList.style.display = 'block'; 
+
+});
+    
