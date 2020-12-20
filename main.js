@@ -50,34 +50,74 @@ let notesTextBox = document.getElementById('notesTextBox');
 let notesPostNoteButton = document.getElementById('notesPostNoteButton');
 let notesViewNotesButton = document.getElementById('notesViewNotesButton');
 let notesNotesList = document.getElementById('notesNotesList');
-let noteCount = 1;
+let notesClearNotesButton = document.getElementById('notesClearNotesButton');
 
+// Assigns the local storage key to be first 3 words of the note 
+const notesNotePreviewFunc = () => {
+    return notesTextBox.value.split(' ').slice(0, 3).join(' ');
+}
 
-// get the key for local storaget be a preview of the note
-let notesNotePreview = notesTextBox.value;
-console.log(notesNotePreview);
-
+// adds note to notesNotesList from botom button
 notesPostNoteButton.addEventListener('click', ()=> {
     if (notesTextBox.value !== ''){
-        localStorage.setItem('key', notesTextBox.value);
-        noteCount++;
+        localStorage.setItem(notesNotePreviewFunc(), notesTextBox.value);
     }
     return;
 });
 
+// hit the plus sign at the top to generate a fresh note
 notesAddNote.addEventListener('click', ()=> {
+    if (notesNotesList.style.display === 'block'){
+        notesClearNotesButton.style.display = 'none';
+        notesNotesList.style.display = 'none';
+        notesTextBox.style.display = 'block';
+    }
     if (notesTextBox.value == ''){
         return;
     } else {
-        localStorage.setItem(`note ${noteCount}`, notesTextBox.value);
-        noteCount++;
+        localStorage.setItem(notesNotePreviewFunc(), notesTextBox.value);
     }
     notesTextBox.value = '';
 })
 
-notesViewNotesButton.addEventListener('click', ()=> {
-   notesTextBox.style.display = 'none';
-   notesNotesList.style.display = 'block'; 
+// function adds notes to notesNotesList div 
+const notesViewNotesFunc = () => {
+    let a = Object.values(localStorage);
+    return a.map(e=> e + '</br></br>').join(' ');
+}
 
+//shows you list of saved notes
+notesViewNotesButton.addEventListener('click', ()=> {
+    notesClearNotesButton.style.display = 'inline';
+    if (notesTextBox.style.display !== 'none'){
+        notesTextBox.style.display = 'none';
+        notesNotesList.style.display = 'block'; 
+        notesNotesList.innerHTML = notesViewNotesFunc();
+    } else {
+        notesTextBox.style.display = 'block';
+        notesTextBox.value = '';
+        notesClearNotesButton.style.display = 'none';
+        notesNotesList.style.display = 'none'; 
+    }
 });
-    
+
+// will clear out all saved notes 
+notesClearNotesButton.addEventListener('click', ()=> {
+    let deleteAllNotes = confirm('this will delete all notes');
+    if (deleteAllNotes){
+        localStorage.clear();
+        notesNotesList.style.display = 'none';
+        notesTextBox.style.display = 'block';
+        notesTextBox.value = '';
+        notesClearNotesButton.style.display = 'none';
+    }
+})
+
+
+
+
+
+
+
+
+
