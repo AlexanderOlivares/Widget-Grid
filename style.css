@@ -24,7 +24,8 @@ body {
 }
 
 .weather {
-    background-color: tomato;
+    background-color: #444444;
+    color: whitesmoke;
 }
 
 .notes {
@@ -98,3 +99,52 @@ body {
     overflow: scroll;
 }
 
+/* Weather section below */ 
+#weather {
+    display: grid;
+    grid-template-columns: repeat(1 fr);
+    grid-template-rows: repeat(2 1fr);
+}
+
+
+#weatherMain {
+    display: grid;
+    grid-template-columns: repeat(4 1fr);
+    grid-template-rows: repeat(8 1fr);
+}
+
+#weatherRefreshButton {
+    grid-area: 1 / 1 / 1 / 2;
+}
+
+#weatherEnterCity {
+    grid-area: 1 / 2 / 1 / 4;
+}
+
+#weatherGoButton {
+    grid-area: 1 / 4 / 1 / 5;
+}
+
+#weatherCurrentTemp {
+    grid-area: 2 / 1 / 5 / 3;
+}
+
+#weatherCurrentIcon {
+    grid-area: 2 / 3 / 5 / 5;
+}
+
+#weatherCurrentDescription {
+    grid-area: 5 / 1 / 6 / 3;
+}
+
+#weatherFeelsLike {
+    grid-area: 6 / 1 / 7 / 3;
+}
+
+#weatherWind {
+    grid-area: 7 / 1 / 8 / 3;
+}
+
+#weatherHumidity {
+    grid-area: 8 / 1 / 9 / 3;
+}
