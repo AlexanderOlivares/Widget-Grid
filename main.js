@@ -139,9 +139,12 @@ fetch('https://api.openweathermap.org/data/2.5/onecall?lat=30.382580&lon=-97.710
         weatherCurrentTemp.innerHTML = Math.round(temp * 9 / 5 - 459.67) + '\u00B0';
         weatherCurrentIcon.innerHTML =  `<img src="http://openweathermap.org/img/wn/${icon}@2x.png">`
         weatherCurrentDescription.innerHTML = description;
+        if (description.includes('clear')){
+            weather.style.backgroundImage = "url('pics/clearsky_hud.jpg')";
+        }
         weatherFeelsLike.innerHTML = `feels like ${Math.round(feelsLike * 9 / 5 - 459.67)}\u00b0`;
-        weatherWind.innerHTML = `wind ${Math.round(wind)}mph`
-        weatherHumididty.innerHTML = `humidity ${humidity}%`
+        weatherWind.innerHTML = `wind ${Math.round(wind)}mph`;
+        weatherHumididty.innerHTML = `humidity ${humidity}%`;
     })
     .catch(errror=> console.error('problem occured'))
 }
