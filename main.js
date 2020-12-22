@@ -140,7 +140,7 @@ fetch('https://api.openweathermap.org/data/2.5/onecall?lat=30.382580&lon=-97.710
         weatherCurrentIcon.innerHTML =  `<img src="http://openweathermap.org/img/wn/${icon}@2x.png">`
         weatherCurrentDescription.innerHTML = description;
         weatherFeelsLike.innerHTML = `feels like ${Math.round(feelsLike * 9 / 5 - 459.67)}\u00b0`;
-        weatherWind.innerHTML = `${Math.round(wind)}mph`
+        weatherWind.innerHTML = `wind ${Math.round(wind)}mph`
         weatherHumididty.innerHTML = `humidity ${humidity}%`
     })
     .catch(errror=> console.error('problem occured'))
