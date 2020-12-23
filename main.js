@@ -114,7 +114,7 @@ notesClearNotesButton.addEventListener('click', ()=> {
 })
 
 
-// ****************** weather section below ************************8
+// ****************** weather section below ************************
 let weatherRefreshButton = document.getElementById('weatherRefreshButton');
 let weatherEnterCity = document.getElementById('weatherEnterCity');
 let weatherGoButton = document.getElementById('weatherGoButton');
@@ -126,31 +126,57 @@ let weatherWind = document.getElementById('weatherWind');
 let weatherHumididty = document.getElementById('weatherHumidity');
 
 const weatherGetCurrents = () => {
-fetch('https://api.openweathermap.org/data/2.5/onecall?lat=30.382580&lon=-97.710243&appid=89487f45423ccbfbdd6e1ea526f5177f')
+fetch('https://api.openweathermap.org/data/2.5/onecall?lat=30.382580&lon=-97.710243&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f')
     .then(response=> response.json())
     .then(data=> {
+        console.log(data);
+        
         let temp = data.current.temp;
         let icon = data.current.weather[0]['icon'];
         let description = data.current.weather[0]['description'];
         let feelsLike = data.current.feels_like;
         let wind = data.current.wind_speed;
         let humidity = data.current.humidity;
-        console.log(data);
-        weatherCurrentTemp.innerHTML = Math.round(temp * 9 / 5 - 459.67) + '\u00B0';
+
+        weatherCurrentTemp.innerHTML = `${Math.round(temp)}\u00b0`;
         weatherCurrentIcon.innerHTML =  `<img src="http://openweathermap.org/img/wn/${icon}@2x.png">`
         weatherCurrentDescription.innerHTML = description;
+
+        // ADD OTHER BACKGROUND OPTIONS BELOW
         if (description.includes('clear')){
             weather.style.backgroundImage = "url('pics/clearsky_hud.jpg')";
+        } else if (description.includes('cloud')){
+            weather.style.backgroundImage= "url('pics/clouds_hud.jpg')";
+            weather.style.color = "whitesmoke";
+        } else if (description.includes('rain')){
+            weather.style.backgroundImage = "url('pics/rain_hud.jpg')";
+            weather.style.color = "whitesmoke";
+        } else if (description.includes('storm')){
+            weather.style.backgroundImage = "url('pics/storm.jpg')";
+            weather.style.color = "whitesmoke";
         }
-        weatherFeelsLike.innerHTML = `feels like ${Math.round(feelsLike * 9 / 5 - 459.67)}\u00b0`;
+        
+        
+        weatherFeelsLike.innerHTML = `feels like ${Math.round(feelsLike)}\u00b0`;
         weatherWind.innerHTML = `wind ${Math.round(wind)}mph`;
         weatherHumididty.innerHTML = `humidity ${humidity}%`;
+
+        let timestamp = data.hourly[0]['dt'];
+        let date = new Date(timestamp * 1000);
+        let pm = false;
+        let currentHour = date.getUTCHours()-6;
+        if (currentHour > 12){
+            currentHour -= 12;
+            pm = true;
+        }
+        weatherHourOne.innerHTML = pm === true ? `${currentHour + 1}pm` : `${currentHour + 1}am`;
+        weatherHourTwo.innerHTML = pm === true ? `${currentHour + 2}pm` : `${currentHour + 2}am`;
+        weatherHourThree.innerHTML = pm === true ? `${currentHour + 3}pm` : `${currentHour + 3}am`;
     })
     .catch(errror=> console.error('problem occured'))
 }
 
 weatherGetCurrents();
-
 
 
 
