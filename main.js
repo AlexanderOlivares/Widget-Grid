@@ -113,7 +113,6 @@ notesClearNotesButton.addEventListener('click', ()=> {
     }
 })
 
-
 // ****************** weather section below ************************
 let weatherRefreshButton = document.getElementById('weatherRefreshButton');
 let weatherEnterCity = document.getElementById('weatherEnterCity');
@@ -164,7 +163,7 @@ fetch('https://api.openweathermap.org/data/2.5/onecall?lat=30.382580&lon=-97.710
         let timestamp = data.hourly[0]['dt'];
         let date = new Date(timestamp * 1000);
         let pm = false;
-        let currentHour = date.getUTCHours()-6;
+        let currentHour = date.getHours();
         if (currentHour > 12){
             currentHour -= 12;
             pm = true;
@@ -172,6 +171,24 @@ fetch('https://api.openweathermap.org/data/2.5/onecall?lat=30.382580&lon=-97.710
         weatherHourOne.innerHTML = pm === true ? `${currentHour + 1}pm` : `${currentHour + 1}am`;
         weatherHourTwo.innerHTML = pm === true ? `${currentHour + 2}pm` : `${currentHour + 2}am`;
         weatherHourThree.innerHTML = pm === true ? `${currentHour + 3}pm` : `${currentHour + 3}am`;
+
+        let hour1Icon = data.hourly[0].weather[0]['icon'];
+        weatherIconOne.innerHTML = `<img src="http://openweathermap.org/img/wn/${hour1Icon}.png">`; 
+
+        let hour2Icon = data.hourly[1].weather[0]['icon'];
+        weatherIconTwo.innerHTML =  `<img src="http://openweathermap.org/img/wn/${hour2Icon}.png">`; 
+        
+        let hour3Icon =  data.hourly[2].weather[0]['icon'];
+        weatherIconThree.innerHTML = `<img src="http://openweathermap.org/img/wn/${hour3Icon}.png">`; 
+
+       let hour1Temp = Math.round(data.hourly[0]['temp']);
+       weatherTempOne.innerHTML = `${hour1Temp}\u00b0`;
+
+       let hour2Temp = Math.round(data.hourly[1]['temp']);
+       weatherTempTwo.innerHTML = `${hour2Temp}\u00b0`;
+       
+       let hour3Temp = Math.round(data.hourly[2]['temp']);
+       weatherTempThree.innerHTML = `${hour3Temp}\u00b0`;
     })
     .catch(errror=> console.error('problem occured'))
 }
