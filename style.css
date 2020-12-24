@@ -122,6 +122,9 @@ body {
 #weatherRefreshButton {
     grid-area: 1 / 1 / 1 / 2;
     cursor: pointer;
+    background: transparent;
+    color: #444444;
+    padding-top: 3px;
 }
 
 #weatherEnterCity {
@@ -130,15 +133,16 @@ body {
 
 #weatherTextBox {
     border-radius: 5px;
+    border-width: 2px;
     width: 95%;
     background: transparent;
-    color: #444444;
+    color: whitesmoke;
 }
 
 #weatherGoDiv {
     grid-area: 1 / 5 / 1 / 6;
     width: 75%;
-    border-radius: 5px;
+    border: none;
 }
 
 #weatherGoButton {
@@ -146,8 +150,7 @@ body {
     width: 100%;
     color: #444444;
     cursor: pointer;
-    border-radius: 5px;
-    border-width: 2px;
+    border: none;
 }
 
 #weatherCurrentTemp {
@@ -223,14 +226,17 @@ body {
 #weatherTempOne {
     grid-area: 3 / 2 / 3 / 3;
     font-size: 16px;
+    padding-top: 5px;
 }
 
 #weatherTempTwo {
     grid-area: 3 / 3 / 3 / 4;
     font-size: 16px;
+    padding-top: 5px;
 }
 
 #weatherTempThree {
     grid-area: 3 / 4 / 3 / 5;
     font-size: 16px;
+    padding-top: 5px;
 }

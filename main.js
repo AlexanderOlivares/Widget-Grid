@@ -123,8 +123,9 @@ let weatherCurrentDescription = document.getElementById('weatherCurrentDescripti
 let weatherFeelsLike = document.getElementById('weatherFeelsLike');
 let weatherWind = document.getElementById('weatherWind');
 let weatherHumididty = document.getElementById('weatherHumidity');
+let weatherHourOne = document.getElementById('weatherHourOne');
 
-const weatherGetCurrents = () => {
+const weatherGetCurrentsFunc = () => {
 fetch('https://api.openweathermap.org/data/2.5/onecall?lat=30.382580&lon=-97.710243&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f')
     .then(response=> response.json())
     .then(data=> {
@@ -147,14 +148,21 @@ fetch('https://api.openweathermap.org/data/2.5/onecall?lat=30.382580&lon=-97.710
         } else if (description.includes('cloud')){
             weather.style.backgroundImage= "url('pics/clouds_hud.jpg')";
             weather.style.color = "whitesmoke";
-        } else if (description.includes('rain')){
+        } else if (description.includes('rain') || description.includes('drizzle')){
             weather.style.backgroundImage = "url('pics/rain_hud.jpg')";
             weather.style.color = "whitesmoke";
         } else if (description.includes('storm')){
-            weather.style.backgroundImage = "url('pics/storm.jpg')";
+            weather.style.backgroundImage = "url('pics/storm_hud.jpg')";
             weather.style.color = "whitesmoke";
+        } else if (description.includes('snow')){
+            weather.style.backgroundImage = "url('pics/snow_hud.jpg')";
+            weather.style.color = "whitesmoke";
+        } else if (description.includes('mist')){
+            weather.style.backgroundImage = "url('pics/mist_hud.jpg')";
+            weather.style.color = "whitesmoke";
+        } else if (description.includes('fog')){
+            weather.style.backgroundImage = "url('pics/fog_hud.jpeg')";
         }
-        
         
         weatherFeelsLike.innerHTML = `feels like ${Math.round(feelsLike)}\u00b0`;
         weatherWind.innerHTML = `wind ${Math.round(wind)}mph`;
@@ -193,11 +201,32 @@ fetch('https://api.openweathermap.org/data/2.5/onecall?lat=30.382580&lon=-97.710
     .catch(errror=> console.error('problem occured'))
 }
 
-weatherGetCurrents();
+
+weatherRefreshButton.addEventListener('click', ()=> {
+    weatherGetCurrentsFunc();
+})
+
+const weatherTimeRefreshFunc = () => {
+    let now = new Date();
+    let pm = false;
+    let currentHour = now.getHours();
+        if (currentHour > 12){
+            currentHour -= 12;
+            pm = true;
+        }
+    return pm === true ? `${currentHour}pm` : `${currentHour}am`;
+}
 
 
+// ********* running on page load **************
+weatherGetCurrentsFunc();
+let startupTime = weatherTimeRefreshFunc();
 
-
+window.setInterval(()=> {
+    if (startupTime !== weatherTimeRefreshFunc()){
+        weatherGetCurrentsFunc();
+    }
+}, 250000)
 
 
 
