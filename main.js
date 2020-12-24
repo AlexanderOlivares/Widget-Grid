@@ -116,6 +116,7 @@ notesClearNotesButton.addEventListener('click', ()=> {
 // ****************** weather section below ************************
 let weatherRefreshButton = document.getElementById('weatherRefreshButton');
 let weatherEnterCity = document.getElementById('weatherEnterCity');
+let weatherCurrentCity = document.getElementById('weatherCurrentCity');
 let weatherGoButton = document.getElementById('weatherGoButton');
 let weatherCurrentTemp = document.getElementById('weatherCurrentTemp');
 let weatherCurrentIcon = document.getElementById('weatherCurrentIcon');
@@ -124,9 +125,10 @@ let weatherFeelsLike = document.getElementById('weatherFeelsLike');
 let weatherWind = document.getElementById('weatherWind');
 let weatherHumididty = document.getElementById('weatherHumidity');
 let weatherHourOne = document.getElementById('weatherHourOne');
+let weatherTextBox = document.getElementById('weatherTextBox');
 
-const weatherGetCurrentsFunc = () => {
-fetch('https://api.openweathermap.org/data/2.5/onecall?lat=30.382580&lon=-97.710243&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f')
+const weatherGetCurrentsFunc = (lat = 30.382580, lon = -97.710243,) => {
+fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
     .then(response=> response.json())
     .then(data=> {
         console.log(data);
@@ -226,13 +228,37 @@ window.setInterval(()=> {
     if (startupTime !== weatherTimeRefreshFunc()){
         weatherGetCurrentsFunc();
     }
-}, 250000)
+}, 60000)
+
+console.log(weatherCurrentCity.innerHTML);
+
+// populates wx by city using weatherTextBox.value
+weatherGoButton.addEventListener('click', ()=> {
+    let userInput = weatherTextBox.value;
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${userInput}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
+    .then(response=> response.json())
+    .then(data=> {
+        console.log(data);
+        let lat = data.coord['lat'];
+        let long = data.coord['long'];
+        weatherCurrentCity.innerHTML = userInput;
+        weatherGetCurrentsFunc(lat, long);
+        weatherTextBox.value = '';
+    })
+    .catch(error=> {
+        console.error('could not find city');
+        alert(`could not get weather for "${userInput}"`)
+        weatherTextBox.value = '';
+    });
+})
+
+import cities from '/cityList.js'; 
+let cityNames = [];
+//cityNames.push(cities[1][0])
 
 
-
-
-
-
+console.log(Object.values(cities)[0][0]['id']);
+console.log(cityNames);
 
 
 
