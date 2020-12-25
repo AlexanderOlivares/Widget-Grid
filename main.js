@@ -1,3 +1,5 @@
+
+
 let clock = document.getElementById('clock');
 let calculator = document.getElementById('calculator');
 let weather = document.getElementById('weather');
@@ -114,6 +116,8 @@ notesClearNotesButton.addEventListener('click', ()=> {
 })
 
 // ****************** weather section below ************************
+import cities from './cityList.js'; 
+
 let weatherRefreshButton = document.getElementById('weatherRefreshButton');
 let weatherEnterCity = document.getElementById('weatherEnterCity');
 let weatherCurrentCity = document.getElementById('weatherCurrentCity');
@@ -131,7 +135,7 @@ const weatherGetCurrentsFunc = (lat = 30.382580, lon = -97.710243,) => {
 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
     .then(response=> response.json())
     .then(data=> {
-        console.log(data);
+        //console.log(data);
         
         let temp = data.current.temp;
         let icon = data.current.weather[0]['icon'];
@@ -224,105 +228,85 @@ const weatherTimeRefreshFunc = () => {
 weatherGetCurrentsFunc();
 let startupTime = weatherTimeRefreshFunc();
 
+// refreshes the time every minute to check if new hour has hit 
 window.setInterval(()=> {
     if (startupTime !== weatherTimeRefreshFunc()){
         weatherGetCurrentsFunc();
     }
 }, 60000)
+// ***********************************************
 
-console.log(weatherCurrentCity.innerHTML);
+//weatherGoButton.addEventListener('click', ()=> {
+    //let userInput = weatherTextBox.value;
+    //fetch(`https://api.openweathermap.org/data/2.5/weather?q=${userInput}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
+    //.then(response=> response.json())
+    //.then(data=> {
+        ////console.log(data);
+        //let lat = data.coord['lat'];
+        //let long = data.coord['long'];
+        //weatherCurrentCity.innerHTML = userInput;
+        //weatherGetCurrentsFunc(lat, long);
+        //weatherTextBox.value = '';
+    //let arr = Object.values(cities)[0];
+    
+    //})
+    //.catch(error=> {
+        //console.error('could not find city');
+        //alert(`could not get weather for "${userInput}"`)
+        //weatherTextBox.value = '';
+    //});
+//})
 
-// populates wx by city using weatherTextBox.value
+
+
+
+//console.log(Object.values(cities)[i]['name']); inside for loop will get the name 
+
+// takes enter city textbox input and spits out the city id
+const nameMatchFunc = (userInput) => {
+    let cityList = (Object.values(cities)[0]).filter(e=> e['state'] !== '');
+    console.log(cityList);
+    let cityString = '';
+    let id; 
+    let cityMatches = [];
+    if (userInput.split(' ').length === 1){
+        cityString = userInput.split('').map((e,_,a)=> e === a[0] ? e.toUpperCase() : e).join('');
+    } else {
+        cityString = userInput.split('').map((e,i,a)=> e === a[0] ? e.toUpperCase() : 
+            a[i-1] === ' ' ? e.toUpperCase() : e).join('');
+    }
+    console.log(cityString);
+    for (let i=0;i<cityList.length;i++){
+            if (cityString === cityList[i]['name'] && cityList[i]['state'] !== ''){
+                cityMatches.push(cityList[i]['id']);
+            }
+    }
+
+    id = cityMatches[0];
+    weatherCurrentCity.innerHTML = cityString;
+    //console.log(id);
+    return id;
+}
+
+// takes city id and gets the current weather 
+// just plug in the temps and you're gold
 weatherGoButton.addEventListener('click', ()=> {
-    let userInput = weatherTextBox.value;
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${userInput}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
-    .then(response=> response.json())
-    .then(data=> {
-        console.log(data);
-        let lat = data.coord['lat'];
-        let long = data.coord['long'];
-        weatherCurrentCity.innerHTML = userInput;
-        weatherGetCurrentsFunc(lat, long);
-        weatherTextBox.value = '';
-    })
-    .catch(error=> {
-        console.error('could not find city');
-        alert(`could not get weather for "${userInput}"`)
-        weatherTextBox.value = '';
-    });
+    fetch(`https://api.openweathermap.org/data/2.5/weather?id=${nameMatchFunc(weatherTextBox.value)}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
+        .then(response=> response.json())
+        .then(data=> {
+            console.log(data);
+        })
+        .catch(error=> {
+            console.error('could not find city');
+            alert(`could not get weather for "${userInput}"`)
+            weatherTextBox.value = '';
+        })
 })
 
-import cities from '/cityList.js'; 
-let cityNames = [];
-//cityNames.push(cities[1][0])
-
-
-console.log(Object.values(cities)[0][0]['id']);
-console.log(cityNames);
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //30.3871° N, 97.7037° W
-//30.382580 -97.710243
-// f = k × 9/5 - 459.67
-/*
-"id": 4671654,
-        "name": "Austin",
-        "state": "TX",
-        "country": "US",
-        "coord": {
-            "lon": -97.743057,
-            "lat": 30.267151
-*/
-
-//weatherCurrentTemp.innerHTML =
 
 
 
