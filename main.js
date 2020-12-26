@@ -125,17 +125,20 @@ let weatherGoButton = document.getElementById('weatherGoButton');
 let weatherCurrentTemp = document.getElementById('weatherCurrentTemp');
 let weatherCurrentIcon = document.getElementById('weatherCurrentIcon');
 let weatherCurrentDescription = document.getElementById('weatherCurrentDescription');
+let weatherPrecip = document.getElementById('weatherPrecip');
 let weatherFeelsLike = document.getElementById('weatherFeelsLike');
 let weatherWind = document.getElementById('weatherWind');
 let weatherHumididty = document.getElementById('weatherHumidity');
 let weatherHourOne = document.getElementById('weatherHourOne');
 let weatherTextBox = document.getElementById('weatherTextBox');
 
+
+
 const weatherGetCurrentsFunc = (lat = 30.382580, lon = -97.710243,) => {
 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
     .then(response=> response.json())
     .then(data=> {
-        //console.log(data);
+        console.log(data);
         
         let temp = data.current.temp;
         let icon = data.current.weather[0]['icon'];
@@ -143,6 +146,7 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         let feelsLike = data.current.feels_like;
         let wind = data.current.wind_speed;
         let humidity = data.current.humidity;
+        let precipitation = data.minutely[0]['precipitation'];
 
         weatherCurrentTemp.innerHTML = `${Math.round(temp)}\u00b0`;
         weatherCurrentIcon.innerHTML =  `<img src="http://openweathermap.org/img/wn/${icon}@2x.png">`
@@ -171,6 +175,7 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         }
         
         weatherFeelsLike.innerHTML = `feels like ${Math.round(feelsLike)}\u00b0`;
+        weatherPrecip.innerHTML = `precipitation ${precipitation}%`;
         weatherWind.innerHTML = `wind ${Math.round(wind)}mph`;
         weatherHumididty.innerHTML = `humidity ${humidity}%`;
 
@@ -178,10 +183,12 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         let date = new Date(timestamp * 1000);
         let pm = false;
         let currentHour = date.getHours();
+
         if (currentHour > 12){
             currentHour -= 12;
             pm = true;
         }
+
         weatherHourOne.innerHTML = pm === true ? `${currentHour + 1}pm` : `${currentHour + 1}am`;
         weatherHourTwo.innerHTML = pm === true ? `${currentHour + 2}pm` : `${currentHour + 2}am`;
         weatherHourThree.innerHTML = pm === true ? `${currentHour + 3}pm` : `${currentHour + 3}am`;
@@ -195,21 +202,24 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         let hour3Icon =  data.hourly[2].weather[0]['icon'];
         weatherIconThree.innerHTML = `<img src="http://openweathermap.org/img/wn/${hour3Icon}.png">`; 
 
-       let hour1Temp = Math.round(data.hourly[0]['temp']);
-       weatherTempOne.innerHTML = `${hour1Temp}\u00b0`;
+        let hour1Temp = Math.round(data.hourly[0]['temp']);
+        weatherTempOne.innerHTML = `${hour1Temp}\u00b0`;
 
-       let hour2Temp = Math.round(data.hourly[1]['temp']);
-       weatherTempTwo.innerHTML = `${hour2Temp}\u00b0`;
+        let hour2Temp = Math.round(data.hourly[1]['temp']);
+        weatherTempTwo.innerHTML = `${hour2Temp}\u00b0`;
        
-       let hour3Temp = Math.round(data.hourly[2]['temp']);
-       weatherTempThree.innerHTML = `${hour3Temp}\u00b0`;
+        let hour3Temp = Math.round(data.hourly[2]['temp']);
+        weatherTempThree.innerHTML = `${hour3Temp}\u00b0`;
     })
-    .catch(errror=> console.error('problem occured'))
+    .catch(errror=> {
+        alert('could not load weather data');
+        console.error('problem occured');
+    })
 }
 
 
 weatherRefreshButton.addEventListener('click', ()=> {
-    weatherGetCurrentsFunc();
+    getCitySearchCurrentsFunc();
 })
 
 const weatherTimeRefreshFunc = () => {
@@ -228,51 +238,27 @@ const weatherTimeRefreshFunc = () => {
 weatherGetCurrentsFunc();
 let startupTime = weatherTimeRefreshFunc();
 
-// refreshes the time every minute to check if new hour has hit 
+// Need to update for after a new city is searched  
 window.setInterval(()=> {
     if (startupTime !== weatherTimeRefreshFunc()){
-        weatherGetCurrentsFunc();
+        getCitySearchCurrentsFunc();
+        //weatherGetCurrentsFunc();
     }
 }, 60000)
-// ***********************************************
-
-//weatherGoButton.addEventListener('click', ()=> {
-    //let userInput = weatherTextBox.value;
-    //fetch(`https://api.openweathermap.org/data/2.5/weather?q=${userInput}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
-    //.then(response=> response.json())
-    //.then(data=> {
-        ////console.log(data);
-        //let lat = data.coord['lat'];
-        //let long = data.coord['long'];
-        //weatherCurrentCity.innerHTML = userInput;
-        //weatherGetCurrentsFunc(lat, long);
-        //weatherTextBox.value = '';
-    //let arr = Object.values(cities)[0];
-    
-    //})
-    //.catch(error=> {
-        //console.error('could not find city');
-        //alert(`could not get weather for "${userInput}"`)
-        //weatherTextBox.value = '';
-    //});
-//})
-
-
-
+// **********************************************
 
 //console.log(Object.values(cities)[i]['name']); inside for loop will get the name 
 
 // takes enter city textbox input and spits out the city id
 const nameMatchFunc = (userInput) => {
     let cityList = (Object.values(cities)[0]).filter(e=> e['state'] !== '');
-    console.log(cityList);
     let cityString = '';
     let id; 
     let cityMatches = [];
     if (userInput.split(' ').length === 1){
-        cityString = userInput.split('').map((e,_,a)=> e === a[0] ? e.toUpperCase() : e).join('');
+        cityString = userInput.split('').map((e,i,a)=> i === 0 ? e.toUpperCase() : e).join('');
     } else {
-        cityString = userInput.split('').map((e,i,a)=> e === a[0] ? e.toUpperCase() : 
+        cityString = userInput.split('').map((e,i,a)=> i === 0 ? e.toUpperCase() : 
             a[i-1] === ' ' ? e.toUpperCase() : e).join('');
     }
     console.log(cityString);
@@ -281,33 +267,34 @@ const nameMatchFunc = (userInput) => {
                 cityMatches.push(cityList[i]['id']);
             }
     }
-
     id = cityMatches[0];
-    weatherCurrentCity.innerHTML = cityString;
-    //console.log(id);
+    weatherCurrentCity.innerHTML = cityString; //.split('').map(e=> e.toLowerCase()).join('');
     return id;
 }
 
-// takes city id and gets the current weather 
-// just plug in the temps and you're gold
-weatherGoButton.addEventListener('click', ()=> {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?id=${nameMatchFunc(weatherTextBox.value)}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
+
+const getCitySearchCurrentsFunc = () => {
+    let status = weatherTextBox.value;
+    if (status === ''){
+        status = weatherCurrentCity.innerHTML;
+    }
+    fetch(`https://api.openweathermap.org/data/2.5/weather?id=${nameMatchFunc(status)}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
         .then(response=> response.json())
         .then(data=> {
-            console.log(data);
+            //let userInput = weatherTextBox.value;
+            let lat = data.coord['lat'];
+            let lon = data.coord['lon'];
+            weatherGetCurrentsFunc(lat, lon);
+            weatherTextBox.value = '';
         })
         .catch(error=> {
             console.error('could not find city');
-            alert(`could not get weather for "${userInput}"`)
+            alert(`could not get weather for "${weatherTextBox.value}"`)
             weatherTextBox.value = '';
         })
+}
+
+weatherGoButton.addEventListener('click', ()=> {
+    getCitySearchCurrentsFunc();
 })
-
-
-
-
-
-
-
-
 
