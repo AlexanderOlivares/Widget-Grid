@@ -142,7 +142,7 @@ body {
     border-width: 2px;
     width: 95%;
     background: transparent;
-    color: whitesmoke;
+    color: #444444; 
 }
 
 #weatherGoDiv {

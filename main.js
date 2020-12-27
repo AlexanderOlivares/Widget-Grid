@@ -132,14 +132,11 @@ let weatherHumididty = document.getElementById('weatherHumidity');
 let weatherHourOne = document.getElementById('weatherHourOne');
 let weatherTextBox = document.getElementById('weatherTextBox');
 
-
-
-const weatherGetCurrentsFunc = (lat = 30.382580, lon = -97.710243,) => {
+// uses the openweathermap 1call api with coordinates. defaults to austin coords
+const weatherGetCurrentsFunc = (lat = 30.382580, lon = -97.710243) => {
 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
     .then(response=> response.json())
     .then(data=> {
-        console.log(data);
-        
         let temp = data.current.temp;
         let icon = data.current.weather[0]['icon'];
         let description = data.current.weather[0]['description'];
@@ -152,26 +149,49 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         weatherCurrentIcon.innerHTML =  `<img src="http://openweathermap.org/img/wn/${icon}@2x.png">`
         weatherCurrentDescription.innerHTML = description;
 
-        // ADD OTHER BACKGROUND OPTIONS BELOW
+        // injects pictures and font color based on conditions
         if (description.includes('clear')){
             weather.style.backgroundImage = "url('pics/clearsky_hud.jpg')";
+            weather.style.color = '#444444';
+            weatherRefreshButton.style.color = "#444444";
+            weatherTextBox.style.color = "#444444";
+            weatherGoButton.style.color = "#444444";
         } else if (description.includes('cloud')){
             weather.style.backgroundImage= "url('pics/clouds_hud.jpg')";
             weather.style.color = "whitesmoke";
+            weatherRefreshButton.style.color = "whitesmoke";
+            weatherTextBox.style.color = "whitesmoke";
+            weatherGoButton.style.color = "whitesmoke";
         } else if (description.includes('rain') || description.includes('drizzle')){
             weather.style.backgroundImage = "url('pics/rain_hud.jpg')";
             weather.style.color = "whitesmoke";
+            weatherRefreshButton.style.color = "whitesmoke";
+            weatherTextBox.style.color = "whitesmoke";
+            weatherGoButton.style.color = "whitesmoke";
         } else if (description.includes('storm')){
             weather.style.backgroundImage = "url('pics/storm_hud.jpg')";
             weather.style.color = "whitesmoke";
+            weatherRefreshButton.style.color = "whitesmoke";
+            weatherTextBox.style.color = "whitesmoke";
+            weatherGoButton.style.color = "whitesmoke";
         } else if (description.includes('snow')){
             weather.style.backgroundImage = "url('pics/snow_hud.jpg')";
             weather.style.color = "whitesmoke";
+            weatherRefreshButton.style.color = "whitesmoke";
+            weatherTextBox.style.color = "whitesmoke";
+            weatherGoButton.style.color = "whitesmoke";
         } else if (description.includes('mist')){
             weather.style.backgroundImage = "url('pics/mist_hud.jpg')";
             weather.style.color = "whitesmoke";
+            weatherRefreshButton.style.color = "whitesmoke";
+            weatherTextBox.style.color = "whitesmoke";
+            weatherGoButton.style.color = "whitesmoke";
         } else if (description.includes('fog')){
             weather.style.backgroundImage = "url('pics/fog_hud.jpeg')";
+            weather.style.color = '#444444';
+            weatherRefreshButton.style.color = "#444444";
+            weatherTextBox.style.color = "#444444";
+            weatherGoButton.style.color = "#444444";
         }
         
         weatherFeelsLike.innerHTML = `feels like ${Math.round(feelsLike)}\u00b0`;
@@ -179,6 +199,7 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         weatherWind.innerHTML = `wind ${Math.round(wind)}mph`;
         weatherHumididty.innerHTML = `humidity ${humidity}%`;
 
+        // below deals with assigning am/pm and hourly data
         let timestamp = data.hourly[0]['dt'];
         let date = new Date(timestamp * 1000);
         let pm = false;
@@ -213,66 +234,40 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
     })
     .catch(errror=> {
         alert('could not load weather data');
-        console.error('problem occured');
+        console.error('the 1call api to via openweathermap failed. check coords or api key');
     })
 }
 
-
-weatherRefreshButton.addEventListener('click', ()=> {
-    getCitySearchCurrentsFunc();
-})
-
-const weatherTimeRefreshFunc = () => {
-    let now = new Date();
-    let pm = false;
-    let currentHour = now.getHours();
-        if (currentHour > 12){
-            currentHour -= 12;
-            pm = true;
-        }
-    return pm === true ? `${currentHour}pm` : `${currentHour}am`;
-}
-
-
-// ********* running on page load **************
-weatherGetCurrentsFunc();
-let startupTime = weatherTimeRefreshFunc();
-
-// Need to update for after a new city is searched  
-window.setInterval(()=> {
-    if (startupTime !== weatherTimeRefreshFunc()){
-        getCitySearchCurrentsFunc();
-        //weatherGetCurrentsFunc();
-    }
-}, 60000)
-// **********************************************
-
-//console.log(Object.values(cities)[i]['name']); inside for loop will get the name 
-
-// takes enter city textbox input and spits out the city id
+// takes weatherTextBox input and spits out the city 'id' to find a match within citiyList
 const nameMatchFunc = (userInput) => {
     let cityList = (Object.values(cities)[0]).filter(e=> e['state'] !== '');
     let cityString = '';
     let id; 
     let cityMatches = [];
+
     if (userInput.split(' ').length === 1){
         cityString = userInput.split('').map((e,i,a)=> i === 0 ? e.toUpperCase() : e).join('');
     } else {
         cityString = userInput.split('').map((e,i,a)=> i === 0 ? e.toUpperCase() : 
             a[i-1] === ' ' ? e.toUpperCase() : e).join('');
     }
-    console.log(cityString);
     for (let i=0;i<cityList.length;i++){
             if (cityString === cityList[i]['name'] && cityList[i]['state'] !== ''){
                 cityMatches.push(cityList[i]['id']);
             }
     }
+
+    // Uses first match found in cityList. Can give problems with duplicate city names
     id = cityMatches[0];
-    weatherCurrentCity.innerHTML = cityString; //.split('').map(e=> e.toLowerCase()).join('');
+    // assigns the the userInput to the current city div 
+    weatherCurrentCity.innerHTML = cityString;
     return id;
 }
 
-
+// ****** comments below for getCitySearchCurrentsFunc ********
+// used for searches or refreshing after a search
+// plugs in either the weatherTextBox input or uses current city
+// calls nameMatchFunc to get the city id then uses that to get the city's coords to run the weatherGetCurrentsFunc
 const getCitySearchCurrentsFunc = () => {
     let status = weatherTextBox.value;
     if (status === ''){
@@ -281,20 +276,38 @@ const getCitySearchCurrentsFunc = () => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?id=${nameMatchFunc(status)}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
         .then(response=> response.json())
         .then(data=> {
-            //let userInput = weatherTextBox.value;
             let lat = data.coord['lat'];
             let lon = data.coord['lon'];
             weatherGetCurrentsFunc(lat, lon);
             weatherTextBox.value = '';
         })
         .catch(error=> {
-            console.error('could not find city');
+            console.error(`no match for "${weatherTextBox.value}." could not find the city id for gitCitySearchCurrentsFunc`);
             alert(`could not get weather for "${weatherTextBox.value}"`)
             weatherTextBox.value = '';
         })
 }
 
-weatherGoButton.addEventListener('click', ()=> {
+// when refreshed manually
+weatherRefreshButton.addEventListener('click', ()=> {
     getCitySearchCurrentsFunc();
 })
+
+weatherGoButton.addEventListener('click', ()=> {
+    getCitySearchCurrentsFunc();
+});
+
+weatherTextBox.addEventListener('keydown', (e)=> {
+    if (e.keyCode === 13){
+        getCitySearchCurrentsFunc();
+    }
+});
+
+// refreshes current temps every minute
+window.setInterval(()=> {
+    getCitySearchCurrentsFunc();
+}, 60000)
+
+// ********* running on page load **************
+weatherGetCurrentsFunc();
 
