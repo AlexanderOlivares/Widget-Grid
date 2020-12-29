@@ -175,28 +175,29 @@ body {
     grid-area: 4 / 2 / 4 / 5;
     font-size: 24px;
     align-self: flex-start;
+    margin-top: -5px;
 }
 
 #weatherFeelsLike {
-    grid-area: 6 / 3 / 6 / 4;
+    grid-area: 5 / 3 / 5 / 4;
     font-size: 12px;
     align-self: flex-end;
 }
 
 #weatherPrecip {
-    grid-area: 7 /  3 / 7 / 4;
+    grid-area: 6 /  3 / 6 / 4;
     font-size: 12px;
     align-self: flex-end;
 }
 
 #weatherHumidity {
-    grid-area: 8 / 3 / 8 / 4;
+    grid-area: 7 / 3 / 7 / 4;
     font-size: 12px;
     align-self: flex-end;
 }
 
 #weatherWind {
-    grid-area: 9 / 3 / 9 / 4;
+    grid-area: 8 / 3 / 8 / 4;
     font-size: 12px;
     align-self: flex-end;
 } 
@@ -207,6 +208,7 @@ body {
     grid-template-rows: 10% 40% 15%;
     grid-template-columns: 20% 20% 20% 20% 20%;
     justify-items: center;
+    margin-top: -20px;
 }
 
 #weatherHourOne {
@@ -263,7 +265,7 @@ body {
 #clock {
     display: grid;
     grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
-    grid-template-columns: 16% 16% 4% 16% 16% 16% 16%;
+    grid-template-columns: 15% 15% 5% 15% 15% 5% 15% 15%;
     align-content: center;
     justify-items: center;
 }
@@ -293,7 +295,8 @@ body {
 }
 
 #clockDigit4 {
-    grid-area: 2 / 5 / 4 / 6;
+    grid-area: 2 / 5 / 4 / 7;
+    justify-self: end;
 }
 
 .clockDigitSecs {
@@ -305,13 +308,13 @@ body {
 }
 
 #clockDigitSecs1 {
-    grid-area: 2 / 6 / 2 / 7;
+    grid-area: 2 / 7 / 2 / 8;
     justify-self: end;
     padding-right: 5px;
 }
 
 #clockDigitSecs2 {
-    grid-area: 2 / 7 / 2 / 8;
+    grid-area: 2 / 8 / 2 / 9;
     justify-self: start;
     padding-left: 5px;
 }
@@ -324,19 +327,21 @@ body {
     font-family: 'Orbitron', sans-serif;
 }
 #clockAP {
-    grid-area: 3 / 6 / 3 / 6;
+    grid-area: 3 / 7 / 3 / 8;
     justify-self: end;
     padding-right: 5px;
 }
 
 #clockM {
-    grid-area: 3 / 7 / 3 / 8;
+    grid-area: 3 / 8 / 3 / 9;
     justify-self: start;
     padding-left: 5px;
 }
 
 .clockIcons {
-    .
+    background-color: #bc4555;
+    border-radius: 10px;
+    border: 2px solid black;
 }
 
 #clockAlarmIcon {
@@ -346,11 +351,35 @@ body {
 
 #clockTimerIcon { 
     grid-area: 6 / 4 / 6 / 5;
-    justify-self: center;
+    margin-left: 100%;
 }
 
 #clockPomoIcon { 
-    grid-area: 6 / 6 / 6 / 7;
-    justify-self: center;
+    grid-area: 6 / 7 / 6 / 8;
+    justify-self: end;
 }
+
+/* hidden settings divs below */
+
+.clockSettings {
+    display: none;
+}
+
+#clockAlarmSettings {
+    grid-area: 4 / 2 / 4 / 8;
+}
+
+#clockTimerSettings {
+    grid-area: 4 / 2 / 4 / 8;
+}
+
+#clockPomoSettings {
+    grid-area: 4 / 2 / 4 / 8;
+}
+
+
+
+
+
+
 

@@ -345,12 +345,15 @@ window.setInterval(()=>{
         hour -= 12;
         pm = true;
     }
-    
     let hourArr = ('' + hour).split('');
     let minArr = ('' + min).split('');
     let secArr = ('' + sec).split('');
 
-    if (hourArr.length === 1){
+    //console.log(hourArr) 
+    if (hourArr.length === 1 && hour === 0){
+        clockDigit1.innerHTML = '1';
+        clockDigit2.innerHTML = '2';
+    } else if (hourArr.length === 1){
         clockDigit1.innerHTML = '';
         clockDigit2.innerHTML = hourArr[0];
     } else {
@@ -381,7 +384,6 @@ window.setInterval(()=>{
     }
 
     clockM.innerHTML = 'M';
-    //console.log(date.getHours(), date.getMinutes(), date.getSeconds());
 }, 1000);
 
 
