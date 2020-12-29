@@ -5,11 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 <title>HUD</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/e76027fd65.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
-        <div id="clock" class="clock">Clock</div>
+        <div id="clock" class="clock">
+            <div id="clockDigit1" class="clockDigits"></div>
+            <div id="clockDigit2" class="clockDigits"></div>
+            <div id="clockDigitHyphon" class="clockDigits">:</div>
+            <div id="clockDigit3" class="clockDigits"></div>
+            <div id="clockDigit4" class="clockDigits"></div>
+            <div id="clockDigitSecs1" class="clockDigitSecs"></div>
+            <div id="clockDigitSecs2" class="clockDigitSecs"></div>
+            <div id="clockAP" class="clockAmPm"></div>
+            <div id="clockM" class="clockAmPm"></div>
+            <div id="clockAlarmIcon" class="clockIcons">A</div>
+            <div id="clockTimerIcon" class="clockIcons">T</div>
+            <div id="clockPomoIcon" class="clockIcons">P</div>
+        </div>
         <div id="calculator" class="calculator">calculator</div>
         <div id="weather" class="weather">
             <div id="weatherMain">
@@ -21,13 +35,13 @@
                 <div id="weatherGoDiv">
                     <button id="weatherGoButton" placeholder="go"><i class="fas fa-search"></i></i></button>
                 </div>
-                <div id="weatherCurrentTemp">Temp</div>
-                <div id="weatherCurrentIcon">icon</div>
-                <div id="weatherCurrentDescription">descrip</div>
-                <div id="weatherFeelsLike">feels like</div>
-                <div id="weatherPrecip">Precip</div>
-                <div id="weatherWind">wind</div>
-                <div id="weatherHumidity">humid</div>
+                <div id="weatherCurrentTemp"></div>
+                <div id="weatherCurrentIcon"></div>
+                <div id="weatherCurrentDescription"></div>
+                <div id="weatherFeelsLike"></div>
+                <div id="weatherPrecip"></div>
+                <div id="weatherWind"></div>
+                <div id="weatherHumidity"></div>
             </div>        
             <div id="weatherHourly">
                 <div id="weatherHourOne"></div>

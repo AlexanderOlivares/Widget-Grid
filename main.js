@@ -115,11 +115,15 @@ notesClearNotesButton.addEventListener('click', ()=> {
     }
 })
 
+
+
+
+
+
 // ****************** weather section below ************************
 import cities from './cityList.js'; 
 
 let weatherRefreshButton = document.getElementById('weatherRefreshButton');
-let weatherEnterCity = document.getElementById('weatherEnterCity');
 let weatherCurrentCity = document.getElementById('weatherCurrentCity');
 let weatherGoButton = document.getElementById('weatherGoButton');
 let weatherCurrentTemp = document.getElementById('weatherCurrentTemp');
@@ -148,50 +152,43 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         weatherCurrentTemp.innerHTML = `${Math.round(temp)}\u00b0`;
         weatherCurrentIcon.innerHTML =  `<img src="http://openweathermap.org/img/wn/${icon}@2x.png">`
         weatherCurrentDescription.innerHTML = description;
+        
+        const darkText = () => {
+            weather.style.color = "#444444";
+            weatherRefreshButton.style.color = "#444444";
+            weatherTextBox.style.color = "#444444";
+            weatherGoButton.style.color = "#444444";
+        }
+
+        const lightText = () => {
+            weather.style.color = "whitesmoke";
+            weatherRefreshButton.style.color = "whitesmoke";
+            weatherTextBox.style.color = "whitesmoke";
+            weatherGoButton.style.color = "whitesmoke";
+        }
 
         // injects pictures and font color based on conditions
         if (description.includes('clear')){
             weather.style.backgroundImage = "url('pics/clearsky_hud.jpg')";
-            weather.style.color = '#444444';
-            weatherRefreshButton.style.color = "#444444";
-            weatherTextBox.style.color = "#444444";
-            weatherGoButton.style.color = "#444444";
+            darkText();
         } else if (description.includes('cloud')){
             weather.style.backgroundImage= "url('pics/clouds_hud.jpg')";
-            weather.style.color = "whitesmoke";
-            weatherRefreshButton.style.color = "whitesmoke";
-            weatherTextBox.style.color = "whitesmoke";
-            weatherGoButton.style.color = "whitesmoke";
+            lightText();
         } else if (description.includes('rain') || description.includes('drizzle')){
             weather.style.backgroundImage = "url('pics/rain_hud.jpg')";
-            weather.style.color = "whitesmoke";
-            weatherRefreshButton.style.color = "whitesmoke";
-            weatherTextBox.style.color = "whitesmoke";
-            weatherGoButton.style.color = "whitesmoke";
+            lightText();
         } else if (description.includes('storm')){
             weather.style.backgroundImage = "url('pics/storm_hud.jpg')";
-            weather.style.color = "whitesmoke";
-            weatherRefreshButton.style.color = "whitesmoke";
-            weatherTextBox.style.color = "whitesmoke";
-            weatherGoButton.style.color = "whitesmoke";
+            lightText();
         } else if (description.includes('snow')){
             weather.style.backgroundImage = "url('pics/snow_hud.jpg')";
-            weather.style.color = "whitesmoke";
-            weatherRefreshButton.style.color = "whitesmoke";
-            weatherTextBox.style.color = "whitesmoke";
-            weatherGoButton.style.color = "whitesmoke";
+            lightText();
         } else if (description.includes('mist')){
             weather.style.backgroundImage = "url('pics/mist_hud.jpg')";
-            weather.style.color = "whitesmoke";
-            weatherRefreshButton.style.color = "whitesmoke";
-            weatherTextBox.style.color = "whitesmoke";
-            weatherGoButton.style.color = "whitesmoke";
+            lightText();
         } else if (description.includes('fog')){
             weather.style.backgroundImage = "url('pics/fog_hud.jpeg')";
-            weather.style.color = '#444444';
-            weatherRefreshButton.style.color = "#444444";
-            weatherTextBox.style.color = "#444444";
-            weatherGoButton.style.color = "#444444";
+            darkText();
         }
         
         weatherFeelsLike.innerHTML = `feels like ${Math.round(feelsLike)}\u00b0`;
@@ -204,15 +201,30 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         let date = new Date(timestamp * 1000);
         let pm = false;
         let currentHour = date.getHours();
-
+        
         if (currentHour > 12){
             currentHour -= 12;
             pm = true;
         }
-
-        weatherHourOne.innerHTML = pm === true ? `${currentHour + 1}pm` : `${currentHour + 1}am`;
-        weatherHourTwo.innerHTML = pm === true ? `${currentHour + 2}pm` : `${currentHour + 2}am`;
-        weatherHourThree.innerHTML = pm === true ? `${currentHour + 3}pm` : `${currentHour + 3}am`;
+       
+        // handles hourly time stretching into next day
+        if (pm === true && currentHour === 9){
+            weatherHourOne.innerHTML = `${currentHour + 1}pm`;
+            weatherHourTwo.innerHTML = `${currentHour + 2}pm`;
+            weatherHourThree.innerHTML = `${currentHour + 3}am`;
+        } else if (pm === true && currentHour === 10){
+            weatherHourOne.innerHTML = `${currentHour + 1}pm`;
+            weatherHourTwo.innerHTML = `${currentHour + 2}am`;
+            weatherHourThree.innerHTML = `${currentHour - 9}am`;
+        } else if (pm === true && currentHour === 11){
+            weatherHourOne.innerHTML = `${currentHour + 1}am`;
+            weatherHourTwo.innerHTML = `${currentHour - 10}am`;
+            weatherHourThree.innerHTML = `${currentHour - 9}am`;
+        } else { 
+            weatherHourOne.innerHTML = pm === true ? `${currentHour + 1}pm` : `${currentHour + 1}am`;
+            weatherHourTwo.innerHTML = pm === true ? `${currentHour + 2}pm` : `${currentHour + 2}am`;
+            weatherHourThree.innerHTML = pm === true ? `${currentHour + 3}pm` : `${currentHour + 3}am`;
+        }
 
         let hour1Icon = data.hourly[0].weather[0]['icon'];
         weatherIconOne.innerHTML = `<img src="http://openweathermap.org/img/wn/${hour1Icon}.png">`; 
@@ -308,6 +320,75 @@ window.setInterval(()=> {
     getCitySearchCurrentsFunc();
 }, 60000)
 
-// ********* running on page load **************
+// runs on page load to get austin weather
 weatherGetCurrentsFunc();
+
+
+
+
+// ****************** clock section below *********************
+let clockDigit1 = document.getElementById('clockDigit1');
+let clockDigit2 = document.getElementById('clockDigit2');
+let clockDigit3 = document.getElementById('clockDigit3');
+let clockDigit4 = document.getElementById('clockDigit4');
+let clockDigitSeconds1 = document.getElementById('clockDigitSecs1');
+let clockDigitSeconds2 = document.getElementById('clockDigitSecs2');
+
+window.setInterval(()=>{
+    let date = new Date();
+    let hour = date.getHours();
+    let min = date.getMinutes();
+    let sec = date.getSeconds();
+    let pm = false;
+
+    if (hour > 12){
+        hour -= 12;
+        pm = true;
+    }
+    
+    let hourArr = ('' + hour).split('');
+    let minArr = ('' + min).split('');
+    let secArr = ('' + sec).split('');
+
+    if (hourArr.length === 1){
+        clockDigit1.innerHTML = '';
+        clockDigit2.innerHTML = hourArr[0];
+    } else {
+        clockDigit1.innerHTML = hourArr[0];
+        clockDigit2.innerHTML = hourArr[1];
+    }
+
+    if (minArr.length === 1){
+        clockDigit3.innerHTML = '0'; 
+        clockDigit4.innerHTML = minArr[0];
+    } else {
+        clockDigit3.innerHTML = minArr[0];
+        clockDigit4.innerHTML = minArr[1];
+    }
+
+    if (secArr.length === 1){
+        clockDigitSecs1.innerHTML = '0';
+        clockDigitSecs2.innerHTML = secArr[0];
+    } else {
+        clockDigitSecs1.innerHTML = secArr[0];
+        clockDigitSecs2.innerHTML = secArr[1];
+    }
+
+    if (pm === true){
+        clockAP.innerHTML = 'P';
+    } else {
+        clockAP.innerHTML = 'A';
+    }
+
+    clockM.innerHTML = 'M';
+    //console.log(date.getHours(), date.getMinutes(), date.getSeconds());
+}, 1000);
+
+
+
+let alarm = new Audio('sounds/alarm.mp3');
+
+const clockAlarmFunc = () => alarm.play();
+
+
 

@@ -1,6 +1,6 @@
 body {
     box-sizing: border-box;
-    background-color: #444444;
+   background-color: #444444;
 }
 
 .container {
@@ -16,7 +16,7 @@ body {
 }
 
 .clock {
-    background-color: violet;
+    background-color: #444444;
 }
 
 .calculator {
@@ -103,12 +103,13 @@ body {
     overflow: scroll;
 }
 
-/* Weather section below */ 
+/******************** Weather section below **********************/ 
 #weather {
     display: grid;
     grid-template-columns: 1 fr;
     grid-template-rows: repeat(2 1fr);
     font-family: 'Courier New', Courier, monospace; 
+    color: #444444;
 }
 
 
@@ -252,3 +253,104 @@ body {
     font-size: 16px;
     padding-top: 5px;
 }
+
+
+
+
+
+/******************** Clock section below **********************/ 
+
+#clock {
+    display: grid;
+    grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    grid-template-columns: 16% 16% 4% 16% 16% 16% 16%;
+    align-content: center;
+    justify-items: center;
+}
+
+.clockDigits {
+    font-size: 60px;
+    color: #bc4555;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#clockDigit1 {
+    grid-area: 2 / 1 / 4 / 2;
+}
+
+#clockDigit2 {
+    grid-area: 2 / 2 / 4 / 3;
+}
+
+#clockDigitHyphon {
+    grid-area: 2 / 3 / 2 / 4;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#clockDigit3 {
+    grid-area: 2 / 4 / 4 / 5;
+}
+
+#clockDigit4 {
+    grid-area: 2 / 5 / 4 / 6;
+}
+
+.clockDigitSecs {
+    font-size: 25px;
+    justify-self: center;
+    align-self: end;
+    color: #bc4555;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#clockDigitSecs1 {
+    grid-area: 2 / 6 / 2 / 7;
+    justify-self: end;
+    padding-right: 5px;
+}
+
+#clockDigitSecs2 {
+    grid-area: 2 / 7 / 2 / 8;
+    justify-self: start;
+    padding-left: 5px;
+}
+
+.clockAmPm {
+    justify-self: center;
+    font-size: 23px;
+    align-self: start;
+    color: #bc4555;
+    font-family: 'Orbitron', sans-serif;
+}
+#clockAP {
+    grid-area: 3 / 6 / 3 / 6;
+    justify-self: end;
+    padding-right: 5px;
+}
+
+#clockM {
+    grid-area: 3 / 7 / 3 / 8;
+    justify-self: start;
+    padding-left: 5px;
+}
+
+.clockIcons {
+    .
+}
+
+#clockAlarmIcon {
+    grid-area: 6 / 2 / 6 / 3;
+    justify-self: start;
+}
+
+#clockTimerIcon { 
+    grid-area: 6 / 4 / 6 / 5;
+    justify-self: center;
+}
+
+#clockPomoIcon { 
+    grid-area: 6 / 6 / 6 / 7;
+    justify-self: center;
+}
+
