@@ -327,12 +327,32 @@ weatherGetCurrentsFunc();
 
 
 // ****************** clock section below *********************
+
+let alarm = new Audio('sounds/alarm.mp3');
+
+const clockAlarmFunc = () => alarm.play();
+
 let clockDigit1 = document.getElementById('clockDigit1');
 let clockDigit2 = document.getElementById('clockDigit2');
 let clockDigit3 = document.getElementById('clockDigit3');
 let clockDigit4 = document.getElementById('clockDigit4');
 let clockDigitSeconds1 = document.getElementById('clockDigitSecs1');
 let clockDigitSeconds2 = document.getElementById('clockDigitSecs2');
+
+let clockAlarmIcon = document.getElementById('clockAlarmIcon');
+let clockTimerIcon = document.getElementById('clockTimerIcon');
+let clockPomoIcon = document.getElementById('clockPomoIcon');
+
+let clockAlarmSettings = document.getElementById('clockAlarmSettings');
+let clockInputTime = document.getElementById('clockInputTime');
+let clockAlarmSetButton = document.getElementById('clockAlarmSetButton');
+let clockAlarmRecall = document.getElementById('clockAlarmRecall');
+let clockEndAlarm = document.getElementById('clockEndAlarm');
+
+
+let clockTimerSettings = document.getElementById('clockTimerSettings');
+let clockPomoSettings = document.getElementById('clockPomoSettings');
+
 
 window.setInterval(()=>{
     let date = new Date();
@@ -386,11 +406,101 @@ window.setInterval(()=>{
     clockM.innerHTML = 'M';
 }, 1000);
 
+// hide and show icons on main page below 
+const hideSettingsIconsFunc = () => {
+    clockAlarmIcon.style.display = 'none';
+    clockTimerIcon.style.display = 'none';
+    clockPomoIcon.style.display = 'none';
+}
+
+const showSettingsIconsFunc = (div) => {
+    clockAlarmIcon.style.display = 'block';
+    clockTimerIcon.style.display = 'block';
+    clockPomoIcon.style.display = 'block';
+}
+
+// Alarm functionality below 
+const showAlarmSettings = () =>{
+    hideSettingsIconsFunc();
+    clockAlarmHeader.style.display = 'block';
+    clockSetTime.style.display = 'block';
+    clockAlarmSetButton.style.display = 'block';
+} 
+
+const hideAlarmSettings = () =>{
+    clockAlarmHeader.style.display = 'none';
+    clockSetTime.style.display = 'none';
+    clockAlarmSetButton.style.display = 'none';
+    showSettingsIconsFunc();
+}
+
+clockAlarmIcon.addEventListener('click', ()=> {
+    showAlarmSettings();
+})
+
+clockAlarmSetButton.addEventListener('click', ()=> {
+    hideAlarmSettings();
+    clockAlarmRecall.style.display = 'block';
+    let time = clockInputTime.value.split(':');
+    let m = 'am';
+    if (time[0] > 12){
+        time[0] -= 12;
+        m = 'pm';
+    }
+
+    clockAlarmRecall.innerHTML = `${time.join(':')} ${m}`;
+    clockEndAlarm.style.display = 'block';
+    clockAlarmRecall.style.display = 'block';
 
 
-let alarm = new Audio('sounds/alarm.mp3');
+    let a = clockAlarmRecall.innerHTML.split('');
+console.log(a);
 
-const clockAlarmFunc = () => alarm.play();
+})
 
+// issue will be when theres a 2digit hour (10). Also sort out the am/pm. Also need to activate the end alarm button
+clockAlarmSetButton.addEventListener('click', ()=>{
+    let a = clockAlarmRecall.innerHTML.split('');
+    setInterval(() => {
+    if (a[0] === clockDigit2.innerHTML && a[2] === clockDigit3.innerHTML && a[3] === clockDigit4.innerHTML){
+       clockAlarmFunc(); 
+    }
+    }, 1000);
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const showTimerSettings = () =>{
+    hideSettingsIconsFunc();
+    clockTimerSettings.style.display = 'block';
+} 
+
+const showPomoSettings = () =>{
+    hideSettingsIconsFunc();
+    clockPomoSettings.style.display = 'block';
+} 
+
+clockTimerIcon.addEventListener('click', ()=> {
+    showTimerSettings();
+})
+
+clockPomoIcon.addEventListener('click', ()=> {
+    showPomoSettings();
+})
 
 

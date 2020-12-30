@@ -23,9 +23,15 @@
             <div id="clockAlarmIcon" class="clockIcons"><img src="/pics/alarm.png"></div>
             <div id="clockTimerIcon" class="clockIcons"><img src="/pics/timer.png"></div>
             <div id="clockPomoIcon" class="clockIcons"><img src="/pics/pomo.png"></div>
-            <div id="clockAlarmSettings" class="clockSettings"></div>
-            <div id="clockTimerSettings" class="clockSettings"></div>
-            <div id="clockPomoSettings" class="clockSettings"></div>
+            <div id="clockAlarmHeader" class="alarmSettings"><img src="/pics/alarm.png"></div>
+            <div id="clockSetTime" class="alarmSettings">
+                <input type="time" id="clockInputTime"></input>
+            </div>
+            <button id="clockAlarmSetButton" class="alarmSettings">set</button>
+            <div id="clockAlarmRecall" class="clockRecall"></div>
+            <button id="clockEndAlarm">end</button>
+            <div id="clockTimerSettings" class="clockSettings">timer settings</div>
+            <div id="clockPomoSettings" class="clockSettings">pomo sett</div>
         </div>
         <div id="calculator" class="calculator">calculator</div>
         <div id="weather" class="weather">
@@ -36,7 +42,7 @@
                     <input id="weatherTextBox" type="text" placeholder="enter city">
                 </div>
                 <div id="weatherGoDiv">
-                    <button id="weatherGoButton" placeholder="go"><i class="fas fa-search"></i></i></button>
+                    <button id="weatherGoButton" placeholder="go"><i class="fas fa-search"></i></button>
                 </div>
                 <div id="weatherCurrentTemp"></div>
                 <div id="weatherCurrentIcon"></div>

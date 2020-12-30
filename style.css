@@ -54,6 +54,7 @@ body {
 
 /* changed height to vh */
 #notesTextBox {
+    resize: none;
     height: 38vh;
     width: 99%;
     background-color: #444444;
@@ -295,7 +296,7 @@ body {
 }
 
 #clockDigit4 {
-    grid-area: 2 / 5 / 4 / 7;
+    grid-area: 2 / 5 / 4 / 6;
     justify-self: end;
 }
 
@@ -361,20 +362,64 @@ body {
 
 /* hidden settings divs below */
 
-.clockSettings {
+.alarmSettings {
     display: none;
+    color: #bc4555;
 }
 
-#clockAlarmSettings {
-    grid-area: 4 / 2 / 4 / 8;
+#clockAlarmHeader {
+    grid-area: 4 / 4 / 4 / 6;
+    margin-top: -5px;
+}
+
+#clockSetTime {
+    grid-area: 5 / 4 / 5 / 6;
+}
+
+#clockInputTime {
+    font-size: 16px;
+    background: #444444;
+    color: #bc4555;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+#clockAlarmSetButton {
+    grid-area: 6 / 4 / 6 / 6;
+    background-color: #bc4555;
+    border-radius: 10px;
+    font-size: 16px;
+    width: 50%;
+    color: black;
+    border: 2px solid black;
+    margin-top: 10px;
+}
+
+#clockAlarmRecall {
+    grid-area: 8 / 1 / 8 / 3;
+    display: none;
+    color: #bc4555;
+    font-size: 18px;
+}
+
+#clockEndAlarm {
+    grid-area: 8 / 3 / 8 / 5;
+    margin-right: 80px;
+    display: none;
+    height: 50%;
+    background-color: #bc4555;
+    border-radius: 5px;
 }
 
 #clockTimerSettings {
     grid-area: 4 / 2 / 4 / 8;
+    display: none;
 }
 
 #clockPomoSettings {
     grid-area: 4 / 2 / 4 / 8;
+    display: none;
 }
 
 
