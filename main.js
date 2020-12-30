@@ -192,7 +192,7 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         }
         
         weatherFeelsLike.innerHTML = `feels like ${Math.round(feelsLike)}\u00b0`;
-        weatherPrecip.innerHTML = `precipitation ${precipitation}%`;
+        weatherPrecip.innerHTML = `precipitation ${Math.round(precipitation)}%`;
         weatherWind.innerHTML = `wind ${Math.round(wind)}mph`;
         weatherHumididty.innerHTML = `humidity ${humidity}%`;
 
@@ -202,12 +202,15 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         let pm = false;
         let currentHour = date.getHours();
         
+        if (currentHour === 12){
+            pm = true;
+        }
         if (currentHour > 12){
             currentHour -= 12;
             pm = true;
         }
        
-        // handles hourly time stretching into next day
+        // handles hourly time stretching from pm -> am   
         if (pm === true && currentHour === 9){
             weatherHourOne.innerHTML = `${currentHour + 1}pm`;
             weatherHourTwo.innerHTML = `${currentHour + 2}pm`;
@@ -220,7 +223,29 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
             weatherHourOne.innerHTML = `${currentHour + 1}am`;
             weatherHourTwo.innerHTML = `${currentHour - 10}am`;
             weatherHourThree.innerHTML = `${currentHour - 9}am`;
-        } else { 
+        }
+        // handles hourly time stretching from am -> pm   
+        else if (currentHour === 9){
+            weatherHourOne.innerHTML = `${currentHour + 1}am`;
+            weatherHourTwo.innerHTML = `${currentHour + 2}am`;
+            weatherHourThree.innerHTML = `${currentHour + 3}pm`;
+        } else if (currentHour === 10){
+            weatherHourOne.innerHTML = `${currentHour + 1}am`;
+            weatherHourTwo.innerHTML = `${currentHour + 2}pm`;
+            weatherHourThree.innerHTML = `${currentHour - 9}pm`;
+        } else if (currentHour === 11){
+            weatherHourOne.innerHTML = `${currentHour + 1}pm`;
+            weatherHourTwo.innerHTML = `${currentHour - 10}pm`;
+            weatherHourThree.innerHTML = `${currentHour - 9}pm`;
+        }
+        // handles noon hour
+        else if (currentHour === 12){
+            weatherHourOne.innerHTML = `${currentHour - 11}pm`;
+            weatherHourTwo.innerHTML = `${currentHour - 10}pm`;
+            weatherHourThree.innerHTML = `${currentHour - 9}pm`;
+        }
+        //  handles regular hourly time
+        else { 
             weatherHourOne.innerHTML = pm === true ? `${currentHour + 1}pm` : `${currentHour + 1}am`;
             weatherHourTwo.innerHTML = pm === true ? `${currentHour + 2}pm` : `${currentHour + 2}am`;
             weatherHourThree.innerHTML = pm === true ? `${currentHour + 3}pm` : `${currentHour + 3}am`;
@@ -245,7 +270,7 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         weatherTempThree.innerHTML = `${hour3Temp}\u00b0`;
     })
     .catch(errror=> {
-        alert('could not load weather data');
+        //alert('could not load weather data');
         console.error('the 1call api to via openweathermap failed. check coords or api key');
     })
 }
@@ -331,6 +356,7 @@ weatherGetCurrentsFunc();
 let alarm = new Audio('sounds/alarm.mp3');
 
 const clockAlarmFunc = () => alarm.play();
+const stopAlarmFunc = () => alarm.pause();
 
 let clockDigit1 = document.getElementById('clockDigit1');
 let clockDigit2 = document.getElementById('clockDigit2');
@@ -338,6 +364,7 @@ let clockDigit3 = document.getElementById('clockDigit3');
 let clockDigit4 = document.getElementById('clockDigit4');
 let clockDigitSeconds1 = document.getElementById('clockDigitSecs1');
 let clockDigitSeconds2 = document.getElementById('clockDigitSecs2');
+let clockAP = document.getElementById('clockAP');
 
 let clockAlarmIcon = document.getElementById('clockAlarmIcon');
 let clockTimerIcon = document.getElementById('clockTimerIcon');
@@ -361,10 +388,13 @@ window.setInterval(()=>{
     let sec = date.getSeconds();
     let pm = false;
 
-    if (hour > 12){
+    if (hour === 12){
+        pm = true;
+    } else if (hour > 12){
         hour -= 12;
         pm = true;
     }
+    
     let hourArr = ('' + hour).split('');
     let minArr = ('' + min).split('');
     let secArr = ('' + sec).split('');
@@ -398,12 +428,12 @@ window.setInterval(()=>{
     }
 
     if (pm === true){
-        clockAP.innerHTML = 'P';
+        clockAP.innerHTML = 'p';
     } else {
-        clockAP.innerHTML = 'A';
+        clockAP.innerHTML = 'a';
     }
 
-    clockM.innerHTML = 'M';
+    clockM.innerHTML = 'm';
 }, 1000);
 
 // hide and show icons on main page below 
@@ -436,6 +466,7 @@ const hideAlarmSettings = () =>{
 
 clockAlarmIcon.addEventListener('click', ()=> {
     showAlarmSettings();
+    clockAlarmIcon.style.pointerEvents = 'none';
 })
 
 clockAlarmSetButton.addEventListener('click', ()=> {
@@ -443,33 +474,68 @@ clockAlarmSetButton.addEventListener('click', ()=> {
     clockAlarmRecall.style.display = 'block';
     let time = clockInputTime.value.split(':');
     let m = 'am';
-    if (time[0] > 12){
+    
+    if (time[0] === '12'){
+        m = 'pm';
+    } else if (+time[0] > 12){
         time[0] -= 12;
         m = 'pm';
+    } else if (time[0] === '00'){
+        time[0] = '12';
     }
-
+    
     clockAlarmRecall.innerHTML = `${time.join(':')} ${m}`;
-    clockEndAlarm.style.display = 'block';
-    clockAlarmRecall.style.display = 'block';
-
-
-    let a = clockAlarmRecall.innerHTML.split('');
-console.log(a);
-
+   
+    // handles times with  without a zero in front like 9:44 pm 
+    if (clockAlarmRecall.innerHTML.length === 7){
+        clockAlarmRecall.innerHTML = `0${time.join(':')} ${m}`;
+    }
+   
+    //should work with the {1,2} investigate further
+    let regValidateTime = /\d{1,2}:\d{2}\s[apAP]M/i;
+    
+    if (!clockAlarmRecall.innerHTML.match(regValidateTime)){
+        clockAlarmRecall.style.display = 'none';
+        alert('invalid time');
+        console.error('invlaid time');
+    } else {
+        clockEndAlarm.style.display = 'block';
+        clockAlarmRecall.style.display = 'block';
+        clockAlarmIcon.style.backgroundColor = 'yellow';
+    }
 })
 
-// issue will be when theres a 2digit hour (10). Also sort out the am/pm. Also need to activate the end alarm button
+// sets the alarm. setInterveral checks for alarm time to match real time.  
 clockAlarmSetButton.addEventListener('click', ()=>{
     let a = clockAlarmRecall.innerHTML.split('');
+    let count = 0;
+    
     setInterval(() => {
-    if (a[0] === clockDigit2.innerHTML && a[2] === clockDigit3.innerHTML && a[3] === clockDigit4.innerHTML){
-       clockAlarmFunc(); 
+    let alarm = false;
+
+    if (count === 0 && a[0] === '0' && clockDigit1.innerHTML === '' && a[1] === clockDigit2.innerHTML && a[3] === clockDigit3.innerHTML && a[4] === clockDigit4.innerHTML && a[a.length-2] === clockAP.innerHTML){
+        alarm = true;
+    } else if (count === 0 && a[0] === clockDigit1.innerHTML && a[1] === clockDigit2.innerHTML && a[3] === clockDigit3.innerHTML && a[4] === clockDigit4.innerHTML && a[a.length-2] === clockAP.innerHTML){
+        alarm = true;
     }
+    if (alarm === true && count === 0){
+       clockAlarmFunc();
+       count++;
+    }
+
     }, 1000);
 })
 
+// stops / cancels alarm
+clockEndAlarm.addEventListener('click', ()=>{
+    clockAlarmIcon.style.pointerEvents = 'auto';
+    
+    stopAlarmFunc();
 
-
+    clockAlarmRecall.style.display = 'none';
+    clockEndAlarm.style.display = 'none';
+    clockAlarmIcon.style.backgroundColor = '#bc4555'
+})
 
 
 

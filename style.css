@@ -269,6 +269,7 @@ body {
     grid-template-columns: 15% 15% 5% 15% 15% 5% 15% 15%;
     align-content: center;
     justify-items: center;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .clockDigits {
@@ -322,7 +323,8 @@ body {
 
 .clockAmPm {
     justify-self: center;
-    font-size: 23px;
+    font-size: 25px;
+    margin-right: 5px;
     align-self: start;
     color: #bc4555;
     font-family: 'Orbitron', sans-serif;
@@ -346,18 +348,18 @@ body {
 }
 
 #clockAlarmIcon {
-    grid-area: 6 / 2 / 6 / 3;
-    justify-self: start;
+    grid-area: 5 / 2 / 5 / 3;
+    justify-self: center;
 }
 
 #clockTimerIcon { 
-    grid-area: 6 / 4 / 6 / 5;
+    grid-area: 5 / 4 / 5 / 5;
     margin-left: 100%;
 }
 
 #clockPomoIcon { 
-    grid-area: 6 / 7 / 6 / 8;
-    justify-self: end;
+    grid-area: 5 / 7 / 5 / 8;
+    justify-self: center;
 }
 
 /* hidden settings divs below */
@@ -368,12 +370,12 @@ body {
 }
 
 #clockAlarmHeader {
-    grid-area: 4 / 4 / 4 / 6;
+    grid-area: 5 / 4 / 5 / 6;
     margin-top: -5px;
 }
 
 #clockSetTime {
-    grid-area: 5 / 4 / 5 / 6;
+    grid-area: 6 / 4 / 6 / 6;
 }
 
 #clockInputTime {
@@ -386,7 +388,7 @@ body {
 }
 
 #clockAlarmSetButton {
-    grid-area: 6 / 4 / 6 / 6;
+    grid-area: 7 / 4 / 7 / 6;
     background-color: #bc4555;
     border-radius: 10px;
     font-size: 16px;
@@ -397,17 +399,21 @@ body {
 }
 
 #clockAlarmRecall {
-    grid-area: 8 / 1 / 8 / 3;
+    grid-area: 6 / 1 / 6 / 4;
     display: none;
+    align-self: center;
+    margin-left: 30%;
     color: #bc4555;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 #clockEndAlarm {
-    grid-area: 8 / 3 / 8 / 5;
-    margin-right: 80px;
+    grid-area: 7 / 2 / 7 / 3;
+    align-self: center;
+    justify-self: center;
     display: none;
-    height: 50%;
+    height: 75%;
+    width: 75%;
     background-color: #bc4555;
     border-radius: 5px;
 }
