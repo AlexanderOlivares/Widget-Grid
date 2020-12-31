@@ -141,6 +141,7 @@ const weatherGetCurrentsFunc = (lat = 30.382580, lon = -97.710243) => {
 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
     .then(response=> response.json())
     .then(data=> {
+        //console.log(data);
         let temp = data.current.temp;
         let icon = data.current.weather[0]['icon'];
         let description = data.current.weather[0]['description'];
@@ -376,8 +377,16 @@ let clockAlarmSetButton = document.getElementById('clockAlarmSetButton');
 let clockAlarmRecall = document.getElementById('clockAlarmRecall');
 let clockEndAlarm = document.getElementById('clockEndAlarm');
 
+let clockTimerHeader = document.getElementById('clockTimerHeader');
+let clockTimerUp = document.getElementById('clockTimerUp');
+let clockTimerInputUp = document.getElementById('clockTimerInputUp');
+let clockTimerInputDown = document.getElementById('clockTimerInputDown');
+let clockTimerDown = document.getElementById('clockTimerDown');
+let clockTimerStart = document.getElementById('clockTimerStart');
 
-let clockTimerSettings = document.getElementById('clockTimerSettings');
+
+
+
 let clockPomoSettings = document.getElementById('clockPomoSettings');
 
 
@@ -443,7 +452,7 @@ const hideSettingsIconsFunc = () => {
     clockPomoIcon.style.display = 'none';
 }
 
-const showSettingsIconsFunc = (div) => {
+const showSettingsIconsFunc = () => {
     clockAlarmIcon.style.display = 'block';
     clockTimerIcon.style.display = 'block';
     clockPomoIcon.style.display = 'block';
@@ -464,6 +473,7 @@ const hideAlarmSettings = () =>{
     showSettingsIconsFunc();
 }
 
+// disable clicks on the div
 clockAlarmIcon.addEventListener('click', ()=> {
     showAlarmSettings();
     clockAlarmIcon.style.pointerEvents = 'none';
@@ -537,33 +547,100 @@ clockEndAlarm.addEventListener('click', ()=>{
     clockAlarmIcon.style.backgroundColor = '#bc4555'
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//  *********** timer section below ****************
 const showTimerSettings = () =>{
     hideSettingsIconsFunc();
-    clockTimerSettings.style.display = 'block';
+    clockTimerHeader.style.display = 'block';
+    clockTimerUp.style.display = 'block';
+    clockTimerDown.style.display = 'block';
+    clockTimerInputUp.style.display = 'block';
+    clockTimerStart.style.display = 'block';
 } 
+
+const hideTimerSettings = () =>{
+    showSettingsIconsFunc();
+    clockTimerHeader.style.display = 'none';
+    clockTimerUp.style.display = 'none';
+    clockTimerDown.style.display = 'none';
+    clockTimerStart.style.display = 'none';
+}
+
+clockTimerIcon.addEventListener('click', ()=> {
+    showTimerSettings();
+})
+
+clockTimerDown.addEventListener('click', ()=>{
+    clockTimerInputUp.style.display = 'none';
+    clockTimerUp.style.backgroundColor = '#bc4555';
+
+    clockTimerInputDown.style.display = 'block';
+    clockTimerDown.style.backgroundColor = 'yellow';
+})
+
+clockTimerUp.addEventListener('click', ()=>{
+    clockTimerInputUp.style.display = 'block'
+    clockTimerUp.style.backgroundColor = 'yellow';
+
+    clockTimerInputDown.style.display = 'none'
+    clockTimerDown.style.backgroundColor = '#bc4555';
+})
+
+
+const startTheTimer = () => {
+    let hour = 0;
+    let min = 0;
+    let sec = 0;
+    window.setInterval(() => {
+        if (sec === 60){
+            sec = 0;
+            min++;
+        } else if (min === 60){
+            min = 0;
+            hour++;
+        }
+        let o = [hour, min, sec].join(':');
+        clockTimerInputUp.innerHTML = o;
+        sec++;
+    }, 1000);
+    clockTimerIcon.style.backgroundColor = 'yellow';
+}
+
+// need to reenable the icon button after timer is stopped
+clockTimerStart.addEventListener('click', ()=> {
+    startTheTimer();
+    clockTimerIcon.style.pointerEvents = 'none';
+    hideTimerSettings();
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const showPomoSettings = () =>{
     hideSettingsIconsFunc();
     clockPomoSettings.style.display = 'block';
 } 
 
-clockTimerIcon.addEventListener('click', ()=> {
-    showTimerSettings();
-})
 
 clockPomoIcon.addEventListener('click', ()=> {
     showPomoSettings();
