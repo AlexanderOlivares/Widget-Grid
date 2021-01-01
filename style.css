@@ -349,17 +349,18 @@ body {
 
 #clockAlarmIcon {
     grid-area: 5 / 2 / 5 / 3;
-    justify-self: center;
+    align-self: center;
 }
 
 #clockTimerIcon { 
     grid-area: 5 / 4 / 5 / 5;
     margin-left: 100%;
+    align-self: center;
 }
 
 #clockPomoIcon { 
     grid-area: 5 / 7 / 5 / 8;
-    justify-self: center;
+    align-self: center;
 }
 
 /* hidden settings divs below */
@@ -373,7 +374,7 @@ body {
 }
 
 #clockAlarmHeader {
-    grid-area: 5 / 4 / 5 / 6;
+    grid-area: 6 / 4 / 6 / 6;
     margin-top: -5px;
     background-color: transparent;
     border: none;
@@ -381,7 +382,7 @@ body {
 }
 
 #clockSetTime {
-    grid-area: 6 / 4 / 6 / 6;
+    grid-area: 7 / 4 / 7 / 6;
 }
 
 #clockInputTime {
@@ -394,10 +395,9 @@ body {
 }
 
 #clockAlarmSetButton {
-    grid-area: 4 / 4 / 4 / 6;
+    grid-area: 5 / 4 / 5 / 6;
     background-color: #bc4555;
     border-radius: 10px;
-    font-size: 16px;
     width: 50%;
     color: black;
     border: 2px solid black;
@@ -411,18 +411,14 @@ body {
     margin-left: 30%;
     width: 70%;
     text-align: center;
-    font-size: 16px;
 }
 
 #clockEndAlarm {
     grid-area: 6 / 2 / 6 / 3;
-    align-self: center;
-    justify-self: center;
     display: none;
     height: 75%;
     width: 75%;
-    background-color: #bc4555;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 /* timer settings below */
@@ -433,6 +429,7 @@ body {
     font-size: 18px;
     align-self: center;
     justify-self: center;
+    padding: 2px;
 }
 
 #clockTimerHeader {
@@ -451,22 +448,12 @@ body {
 
 #clockTimerInputUp {
     grid-area: 4 / 4 / 4 / 6;
-    width: 85%;
     display: none;
     text-align: center;
-    font-size: 16px;
-}
-
-#clockTimerInputDown {
-    grid-area: 5 / 4 / 5 / 6;
-    display: none;
-}
-
-#clockTimerDown {
-    grid-area: 5 / 6 / 7 / 7;
-    display: none;
-    padding: 5px;
-    background-color: #bc4555;
+    font-size: 18px;
+    width: 70%;
+    height: 20%;
+    padding-bottom: 10px;
 }
 
 #clockTimerStart {
@@ -476,7 +463,43 @@ body {
     padding: 5px;
 }
 
+#clockTimerReset {
+    grid-area: 7 / 4 / 7 / 6;
+    display: none;
+    height: 75%;
+    width: 75%;
+}
 
+#clockTimerStop {
+    grid-area: 6 / 5 / 6 / 6;
+    display: none;
+    height: 75%;
+    width: 75%;
+}
+
+#clockTimerEnd {
+    grid-area: 6 / 4 / 6 / 5;
+    display: none;
+    height: 75%;
+    width: 75%;
+}
+
+#clockTimerInputDown {
+    grid-area: 4 / 4 / 4 / 6;
+    display: none;
+    text-align: center;
+    font-size: 18px;
+    width: 70%;
+    height: 20%;
+    padding-bottom: 10px;
+}
+
+#clockTimerDown {
+    grid-area: 5 / 6 / 7 / 7;
+    display: none;
+    padding: 5px;
+    background-color: #bc4555;
+}
 
 
 

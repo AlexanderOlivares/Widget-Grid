@@ -137,6 +137,8 @@ let weatherHourOne = document.getElementById('weatherHourOne');
 let weatherTextBox = document.getElementById('weatherTextBox');
 
 // uses the openweathermap 1call api with coordinates. defaults to austin coords
+
+/*
 const weatherGetCurrentsFunc = (lat = 30.382580, lon = -97.710243) => {
 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
     .then(response=> response.json())
@@ -276,6 +278,7 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
     })
 }
 
+
 // takes weatherTextBox input and spits out the city 'id' to find a match within citiyList
 const nameMatchFunc = (userInput) => {
     let cityList = (Object.values(cities)[0]).filter(e=> e['state'] !== '');
@@ -349,7 +352,7 @@ window.setInterval(()=> {
 // runs on page load to get austin weather
 weatherGetCurrentsFunc();
 
-
+*/
 
 
 // ****************** clock section below *********************
@@ -371,7 +374,7 @@ let clockAlarmIcon = document.getElementById('clockAlarmIcon');
 let clockTimerIcon = document.getElementById('clockTimerIcon');
 let clockPomoIcon = document.getElementById('clockPomoIcon');
 
-let clockAlarmSettings = document.getElementById('clockAlarmSettings');
+//let clockAlarmSettings = document.getElementById('clockAlarmSettings');
 let clockInputTime = document.getElementById('clockInputTime');
 let clockAlarmSetButton = document.getElementById('clockAlarmSetButton');
 let clockAlarmRecall = document.getElementById('clockAlarmRecall');
@@ -381,13 +384,21 @@ let clockTimerHeader = document.getElementById('clockTimerHeader');
 let clockTimerUp = document.getElementById('clockTimerUp');
 let clockTimerInputUp = document.getElementById('clockTimerInputUp');
 let clockTimerInputDown = document.getElementById('clockTimerInputDown');
-let clockTimerDown = document.getElementById('clockTimerDown');
 let clockTimerStart = document.getElementById('clockTimerStart');
+let clockTimerResest = document.getElementById('clockTimerReset');
+let clockTimerStop = document.getElementById('clockTimerStop');
+let clockTimerEnd = document.getElementById('clockTimerEnd');
 
 
 
+let clockTimerDown = document.getElementById('clockTimerDown');
 
 let clockPomoSettings = document.getElementById('clockPomoSettings');
+
+
+let alarmActive = false;
+let timerActive = false;
+let pomoActive = false;
 
 
 window.setInterval(()=>{
@@ -517,6 +528,9 @@ clockAlarmSetButton.addEventListener('click', ()=> {
 
 // sets the alarm. setInterveral checks for alarm time to match real time.  
 clockAlarmSetButton.addEventListener('click', ()=>{
+    alarmActive = true;
+
+
     let a = clockAlarmRecall.innerHTML.split('');
     let count = 0;
     
@@ -538,6 +552,7 @@ clockAlarmSetButton.addEventListener('click', ()=>{
 
 // stops / cancels alarm
 clockEndAlarm.addEventListener('click', ()=>{
+    alarmActive = false;
     clockAlarmIcon.style.pointerEvents = 'auto';
     
     stopAlarmFunc();
@@ -567,14 +582,7 @@ const hideTimerSettings = () =>{
 
 clockTimerIcon.addEventListener('click', ()=> {
     showTimerSettings();
-})
-
-clockTimerDown.addEventListener('click', ()=>{
-    clockTimerInputUp.style.display = 'none';
-    clockTimerUp.style.backgroundColor = '#bc4555';
-
-    clockTimerInputDown.style.display = 'block';
-    clockTimerDown.style.backgroundColor = 'yellow';
+    clockEndAlarm.style.display = 'none';
 })
 
 clockTimerUp.addEventListener('click', ()=>{
@@ -585,31 +593,79 @@ clockTimerUp.addEventListener('click', ()=>{
     clockTimerDown.style.backgroundColor = '#bc4555';
 })
 
-
-const startTheTimer = () => {
+let startTheTimer;
+function timerStartFunc(){
     let hour = 0;
     let min = 0;
     let sec = 0;
-    window.setInterval(() => {
-        if (sec === 60){
-            sec = 0;
-            min++;
-        } else if (min === 60){
-            min = 0;
-            hour++;
+    
+    startTheTimer = setInterval(() => {
+        if (timerActive) {    
+            if (sec === 60){
+                sec = 0;
+                min++;
+            } else if (min === 60){
+                min = 0;
+                hour++;
+            }
+            console.log(('' + sec).length);
+
+            if (hour === 0){
+                hour = '0' + hour;
+            } else if (min === 0) {
+                min = '0' + min;
+            } else if (('' + sec).length == 1){
+                sec = `0${sec}`;
+            }
+            // FIGURE OUT WHY THERES NO 00 TO START ON THE TIMER;
+            let o = [hour, min, sec].join(':');
+            clockTimerInputUp.innerHTML = o;
+            sec++;
         }
-        let o = [hour, min, sec].join(':');
-        clockTimerInputUp.innerHTML = o;
-        sec++;
     }, 1000);
-    clockTimerIcon.style.backgroundColor = 'yellow';
+}        
+
+const timerUpRecall = () => {
+    clockTimerResest.style.display = 'block';
+    clockTimerStop.style.display = 'block';
+    clockTimerEnd.style.display = 'block';
 }
 
-// need to reenable the icon button after timer is stopped
+const timerUpRecallEnd = () => {
+    clockTimerResest.style.display = 'none';
+    clockTimerStop.style.display = 'none';
+    clockTimerEnd.style.display = 'none';
+}
+
+// need to display pomo if it is actvie !!!!!!!!!!!!!!!!!!!!!!!!!!! 
 clockTimerStart.addEventListener('click', ()=> {
-    startTheTimer();
-    clockTimerIcon.style.pointerEvents = 'none';
+    timerActive = true;
+    timerStartFunc();
+
     hideTimerSettings();
+    timerUpRecall();
+
+    clockTimerIcon.style.pointerEvents = 'none';
+    clockTimerIcon.style.backgroundColor = 'yellow';
+    
+    if (alarmActive === true){
+        clockEndAlarm.style.display = 'block';
+    }
+})
+
+
+clockTimerEnd.addEventListener('click', ()=> {
+    clearInterval(startTheTimer);
+
+    timerActive = false;
+
+    timerUpRecallEnd();
+    
+    clockTimerInputUp.innerHTML = 0;
+    clockTimerInputUp.style.display = 'none';
+    clockTimerIcon.style.pointerEvents = 'auto';
+    clockTimerIcon.style.backgroundColor = '#bc4555';
+
 })
 
 
@@ -627,8 +683,13 @@ clockTimerStart.addEventListener('click', ()=> {
 
 
 
+clockTimerDown.addEventListener('click', ()=>{
+    clockTimerInputUp.style.display = 'none';
+    clockTimerUp.style.backgroundColor = '#bc4555';
 
-
+    clockTimerInputDown.style.display = 'block';
+    clockTimerDown.style.backgroundColor = 'yellow';
+})
 
 
 
