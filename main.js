@@ -385,7 +385,7 @@ let clockTimerUp = document.getElementById('clockTimerUp');
 let clockTimerInputUp = document.getElementById('clockTimerInputUp');
 let clockTimerInputDown = document.getElementById('clockTimerInputDown');
 let clockTimerStart = document.getElementById('clockTimerStart');
-let clockTimerResest = document.getElementById('clockTimerReset');
+let clockTimerRestart = document.getElementById('clockTimerRestart');
 let clockTimerStop = document.getElementById('clockTimerStop');
 let clockTimerEnd = document.getElementById('clockTimerEnd');
 
@@ -484,9 +484,10 @@ const hideAlarmSettings = () =>{
     showSettingsIconsFunc();
 }
 
-// disable clicks on the div
+// hides timer recall buttons so you can set the alarm. disable clicks on the div
 clockAlarmIcon.addEventListener('click', ()=> {
     showAlarmSettings();
+    timerUpRecallEnd();
     clockAlarmIcon.style.pointerEvents = 'none';
 })
 
@@ -519,6 +520,7 @@ clockAlarmSetButton.addEventListener('click', ()=> {
         clockAlarmRecall.style.display = 'none';
         alert('invalid time');
         console.error('invlaid time');
+        clockAlarmIcon.style.pointerEvents = 'auto';
     } else {
         clockEndAlarm.style.display = 'block';
         clockAlarmRecall.style.display = 'block';
@@ -527,14 +529,17 @@ clockAlarmSetButton.addEventListener('click', ()=> {
 })
 
 // sets the alarm. setInterveral checks for alarm time to match real time.  
+let setTheAlarm;
 clockAlarmSetButton.addEventListener('click', ()=>{
     alarmActive = true;
-
-
+    if (timerActive){
+        timerUpRecall();
+    }
+   
     let a = clockAlarmRecall.innerHTML.split('');
     let count = 0;
-    
-    setInterval(() => {
+   
+    setTheAlarm = setInterval(() => {
     let alarm = false;
 
     if (count === 0 && a[0] === '0' && clockDigit1.innerHTML === '' && a[1] === clockDigit2.innerHTML && a[3] === clockDigit3.innerHTML && a[4] === clockDigit4.innerHTML && a[a.length-2] === clockAP.innerHTML){
@@ -554,7 +559,8 @@ clockAlarmSetButton.addEventListener('click', ()=>{
 clockEndAlarm.addEventListener('click', ()=>{
     alarmActive = false;
     clockAlarmIcon.style.pointerEvents = 'auto';
-    
+   
+    clearInterval(setTheAlarm);
     stopAlarmFunc();
 
     clockAlarmRecall.style.display = 'none';
@@ -594,13 +600,10 @@ clockTimerUp.addEventListener('click', ()=>{
 })
 
 let startTheTimer;
-function timerStartFunc(){
-    let hour = 0;
-    let min = 0;
-    let sec = 0;
-    
-    startTheTimer = setInterval(() => {
-        if (timerActive) {    
+let timeElapsed;
+function timerStartFunc(hour = 0, min = 0, sec = 1){
+    if (timerActive){
+        startTheTimer = setInterval(() => {
             if (sec === 60){
                 sec = 0;
                 min++;
@@ -608,31 +611,33 @@ function timerStartFunc(){
                 min = 0;
                 hour++;
             }
-            console.log(('' + sec).length);
 
-            if (hour === 0){
+            if (('' + hour).length === 1){
                 hour = '0' + hour;
-            } else if (min === 0) {
+            }
+            if (('' + min).length === 1) {
                 min = '0' + min;
-            } else if (('' + sec).length == 1){
+            }
+            if (('' + sec).length === 1){
                 sec = `0${sec}`;
             }
-            // FIGURE OUT WHY THERES NO 00 TO START ON THE TIMER;
-            let o = [hour, min, sec].join(':');
-            clockTimerInputUp.innerHTML = o;
+            timeElapsed = [hour, min, sec].join(':');
+            clockTimerInputUp.innerHTML = timeElapsed;
             sec++;
-        }
-    }, 1000);
+        }, 1000);
+    } else {
+        clearInterval(startTheTimer);
+    }
 }        
 
 const timerUpRecall = () => {
-    clockTimerResest.style.display = 'block';
+    clockTimerRestart.style.display = 'block';
     clockTimerStop.style.display = 'block';
     clockTimerEnd.style.display = 'block';
 }
 
 const timerUpRecallEnd = () => {
-    clockTimerResest.style.display = 'none';
+    clockTimerRestart.style.display = 'none';
     clockTimerStop.style.display = 'none';
     clockTimerEnd.style.display = 'none';
 }
@@ -661,14 +666,49 @@ clockTimerEnd.addEventListener('click', ()=> {
 
     timerUpRecallEnd();
     
-    clockTimerInputUp.innerHTML = 0;
+    clockTimerInputUp.innerHTML = '00:00:00';
     clockTimerInputUp.style.display = 'none';
     clockTimerIcon.style.pointerEvents = 'auto';
     clockTimerIcon.style.backgroundColor = '#bc4555';
-
 })
 
+// toggles between stop/start. if timerWasReset it will start over from 0. 
+clockTimerStop.addEventListener('click', ()=> {
+    let a = timeElapsed.split(':')
+    if (timerActive){
+        clockTimerStop.innerHTML = 'stop';
+    } else {
+        clockTimerStop.innerHTML = 'start';
+    }
 
+    if (timerWasReset && !timerActive){
+        timerActive = true;
+        timerStartFunc(0, 0, 1);
+        timerWasReset = false;
+        clockTimerStop.innerHTML = 'stop';
+    } else if (timerActive){
+        timerActive = false;
+        timerStartFunc();
+        clockTimerStop.innerHTML = 'start';
+    } else {
+        timerActive = true;
+        timerStartFunc(a[0], a[1], `${+a[2] + 1}`);
+        clockTimerStop.innerHTML = 'stop';
+    }
+})
+
+let timerWasReset = false;
+clockTimerRestart.addEventListener('click', ()=> {
+
+
+
+    timerWasReset = true;
+    timerActive = false;
+    clearInterval(startTheTimer);
+    clockTimerInputUp.innerHTML = '00:00:00';
+    clockTimerStop.innerHTML = 'start';
+    clockTimerRestart.style.pointerEvents = 'auto';
+})
 
 
 
