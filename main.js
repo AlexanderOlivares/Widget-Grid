@@ -385,7 +385,7 @@ let clockTimerUp = document.getElementById('clockTimerUp');
 let clockTimerInputUp = document.getElementById('clockTimerInputUp');
 let clockTimerInputDown = document.getElementById('clockTimerInputDown');
 let clockTimerStart = document.getElementById('clockTimerStart');
-let clockTimerRestart = document.getElementById('clockTimerRestart');
+let clockTimerReset = document.getElementById('clockTimerReset');
 let clockTimerStop = document.getElementById('clockTimerStop');
 let clockTimerEnd = document.getElementById('clockTimerEnd');
 
@@ -568,7 +568,7 @@ clockEndAlarm.addEventListener('click', ()=>{
     clockAlarmIcon.style.backgroundColor = '#bc4555'
 })
 
-//  *********** timer section below ****************
+//  *********** timer UP section below ****************
 const showTimerSettings = () =>{
     hideSettingsIconsFunc();
     clockTimerHeader.style.display = 'block';
@@ -631,19 +631,26 @@ function timerStartFunc(hour = 0, min = 0, sec = 1){
 }        
 
 const timerUpRecall = () => {
-    clockTimerRestart.style.display = 'block';
+    clockTimerReset.style.display = 'block';
     clockTimerStop.style.display = 'block';
     clockTimerEnd.style.display = 'block';
 }
 
 const timerUpRecallEnd = () => {
-    clockTimerRestart.style.display = 'none';
+    clockTimerReset.style.display = 'none';
     clockTimerStop.style.display = 'none';
     clockTimerEnd.style.display = 'none';
 }
 
-// need to display pomo if it is actvie !!!!!!!!!!!!!!!!!!!!!!!!!!! 
+// need to reveal the pomo recall if it is actvie !!!!!!!!!!!!!!!!!!!!!!!!!!! 
 clockTimerStart.addEventListener('click', ()=> {
+    if (timerDownActive === true){
+    // RUN THE COUNTDOWN CODE HERE FOOL
+    console.log([timerDownHour.value, timerDownMin.value, timerDownSec.value]);
+    }
+
+
+
     timerActive = true;
     timerStartFunc();
 
@@ -698,7 +705,7 @@ clockTimerStop.addEventListener('click', ()=> {
 })
 
 let timerWasReset = false;
-clockTimerRestart.addEventListener('click', ()=> {
+clockTimerReset.addEventListener('click', ()=> {
 
 
 
@@ -707,23 +714,25 @@ clockTimerRestart.addEventListener('click', ()=> {
     clearInterval(startTheTimer);
     clockTimerInputUp.innerHTML = '00:00:00';
     clockTimerStop.innerHTML = 'start';
-    clockTimerRestart.style.pointerEvents = 'auto';
+    clockTimerReset.style.pointerEvents = 'auto';
 })
 
 
+//  *********** timer DOWN section below ****************
+
+let timerDownHour = document.getElementById('timerDownHour');
+let timerDownMin = document.getElementById('timerDownMin');
+let timerDownSec = document.getElementById('timerDownSec');
+
+let timerDownActive = false;
 
 
-
-
-
-
-
-
-
-
+//NEED TO WRITE THE COUNTDOWN FUNCITON HERE 
 
 
 clockTimerDown.addEventListener('click', ()=>{
+    timerDownActive = true;
+
     clockTimerInputUp.style.display = 'none';
     clockTimerUp.style.backgroundColor = '#bc4555';
 

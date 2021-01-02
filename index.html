@@ -23,21 +23,31 @@
             <div id="clockAlarmIcon" class="clockIcons"><img src="pics/alarm.png"></div>
             <div id="clockTimerIcon" class="clockIcons"><img src="pics/timer.png"></div>
             <div id="clockPomoIcon" class="clockIcons"><img src="pics/pomo.png"></div>
+            
             <div id="clockAlarmHeader" class="alarmSettings"><img src="pics/alarm.png"></div>
             <div id="clockSetTime" class="alarmSettings">
                 <input type="time" id="clockInputTime"></input>
             </div>
-            <button id="clockAlarmSetButton" class="alarmSettings">set</button>
-            <div id="clockAlarmRecall" class="alarmSettings"></div>
+            <button id="clockAlarmSetButton">set</button>
+            <div id="clockAlarmRecall"></div>
             <button id="clockEndAlarm" class="alarmSettings">end</button>
 
             <div id="clockTimerHeader" class="timerSettings"><img src="pics/timer.png"></div>
             <div id="clockTimerUp" class="timerSettings"><img src="pics/upArrow.png"></div>
-            <div id="clockTimerInputUp" class="timerSettings">00:00:00</div>
-            <div id="clockTimerInputDown" class="timerSettings">enter time</div>
+            <div id="clockTimerInputUp">00:00:00</div>
+            
+            
+            <div id="clockTimerInputDown" class="timerDownSettings">
+                <input id="timerDownHour" class="timerDownSettings" type="number" max="60" min="0" placeholder="00">
+                <input id="timerDownMin" class="timerDownSettings" type="number" max="60" min="0" placeholder="00">
+                <input id="timerDownSec" class="timerDownSettings" type="number" max="60" min="0" placeholder="00">
+            </div>
             <div id="clockTimerDown" class="timerSettings"><img src="pics/downArrow.png"></div>
+            
+            
+            
             <button id="clockTimerStart" class="timerSettings">start</button>
-            <button id="clockTimerRestart" class="timerSettings">restart</button>
+            <button id="clockTimerReset" class="timerSettings">reset</button>
             <button id="clockTimerStop" class="timerSettings">stop</button>
             <button id="clockTimerEnd" class="timerSettings">end</button>
 

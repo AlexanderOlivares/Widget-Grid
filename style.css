@@ -273,27 +273,30 @@ body {
 }
 
 .clockDigits {
-    font-size: 60px;
+    font-size: 75px;
     color: #bc4555;
     font-family: 'Orbitron', sans-serif;
 }
 
 #clockDigit1 {
     grid-area: 2 / 1 / 4 / 2;
+    justify-self: end;
 }
 
 #clockDigit2 {
     grid-area: 2 / 2 / 4 / 3;
+    justify-self: end;
 }
 
 #clockDigitHyphon {
     grid-area: 2 / 3 / 2 / 4;
     padding-left: 10px;
-    padding-right: 10px;
+    justify-self: end;
 }
 
 #clockDigit3 {
     grid-area: 2 / 4 / 4 / 5;
+    justify-self: end;
 }
 
 #clockDigit4 {
@@ -345,6 +348,7 @@ body {
     background-color: #bc4555;
     border-radius: 10px;
     border: 2px solid black;
+    cursor: pointer;
 }
 
 #clockAlarmIcon {
@@ -367,6 +371,7 @@ body {
 
 .alarmSettings {
     display: none;
+    font-family: 'Orbitron', sans-serif;
     background-color: #bc4555;
     border: 2px solid black;
     border-radius: 10px;
@@ -394,16 +399,22 @@ body {
     border-radius: 5px;
     width: 100%;
     height: 100%;
+    cursor: pointer;
 }
 
 #clockAlarmSetButton {
     grid-area: 5 / 4 / 5 / 6;
     background-color: #bc4555;
+    display: none;
     border-radius: 10px;
     width: 50%;
+    height: 50%;
+    font-size:  16px;
+    font-family: 'Orbitron';
     color: black;
     border: 2px solid black;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 #clockAlarmRecall {
@@ -413,6 +424,9 @@ body {
     width: 70%;
     height: 44%;
     text-align: center;
+    align-self: center;
+    color: #bc4555;
+    font-weight: 900;
 }
 
 #clockEndAlarm {
@@ -422,10 +436,12 @@ body {
     width: 75%;
     border-radius: 10px;
     align-self: center;
+    cursor: pointer;
 }
 
 /* timer settings below */
 .timerSettings {
+    font-family: 'Orbitron', sans-serif;
     background-color: #bc4555;
     border: 2px solid black;
     border-radius: 10px;
@@ -446,16 +462,17 @@ body {
     display: none;
     padding: 5px;
     background-color: yellow;
+    cursor: pointer;
 }
 
 #clockTimerInputUp {
     grid-area: 4 / 4 / 4 / 6;
     display: none;
     text-align: center;
-    font-size: 12px;
-    width: 80%;
-    height: 20%;
-    padding-bottom: 10px;
+    font-size: 16px;
+    align-self: center;
+    color: #bc4555;
+    font-weight: 900;
 }
 
 #clockTimerStart {
@@ -463,13 +480,15 @@ body {
     grid-area: 7 / 4 / 7 / 6;
     width: 75%;
     padding: 5px;
+    cursor: pointer;
 }
 
-#clockTimerRestart {
+#clockTimerReset {
     grid-area: 7 / 4 / 7 / 6;
     display: none;
     height: 75%;
     width: 75%;
+    cursor: pointer;
 }
 
 #clockTimerStop {
@@ -477,6 +496,7 @@ body {
     display: none;
     height: 75%;
     width: 75%;
+    cursor: pointer;
 }
 
 #clockTimerEnd {
@@ -484,15 +504,18 @@ body {
     display: none;
     height: 75%;
     width: 75%;
+    cursor: pointer;
 }
 
+/* may need to change pad top */
 #clockTimerInputDown {
     grid-area: 4 / 4 / 4 / 6;
     display: none;
     text-align: center;
-    justify-content: center;
-    width: 70%;
-    height: 50%;
+    align-content: center;
+    width: 110%;
+    padding-left: 15%;
+    padding-top: 8%;
 }
 
 #clockTimerDown {
@@ -500,9 +523,17 @@ body {
     display: none;
     padding: 5px;
     background-color: #bc4555;
+    cursor: pointer;
 }
 
-
+.timerDownSettings {
+    width: 25%;
+    background: none;
+    padding-top: 5px;
+    color: #bc4555;
+    border: none;
+    font-size: 18px;
+}
 
 
 
