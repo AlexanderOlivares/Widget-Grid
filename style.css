@@ -273,7 +273,7 @@ body {
 }
 
 .clockDigits {
-    font-size: 75px;
+    font-size: 65px;
     color: #bc4555;
     font-family: 'Orbitron', sans-serif;
 }
@@ -511,6 +511,16 @@ body {
 #clockTimerInputDown {
     grid-area: 4 / 4 / 4 / 6;
     display: none;
+    text-align: center;
+    align-content: center;
+    width: 110%;
+    padding-left: 15%;
+    padding-top: 8%;
+}
+
+#clockTimerDownRecall {
+    grid-area: 4 / 4 / 4 / 6;
+    display: block;
     text-align: center;
     align-content: center;
     width: 110%;
