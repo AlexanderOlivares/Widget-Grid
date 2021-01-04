@@ -575,6 +575,9 @@ clockEndAlarm.addEventListener('click', ()=>{
 let timerDownHour = document.getElementById('timerDownHour');
 let timerDownMin = document.getElementById('timerDownMin');
 let timerDownSec = document.getElementById('timerDownSec');
+let timerDownHour1 = document.getElementById('timerDownHour1');
+let timerDownMin1 = document.getElementById('timerDownMin1');
+let timerDownSec1 = document.getElementById('timerDownSec1');
 let clockTimerDownRecall = document.getElementById('clockTimerDownRecall');
 let timerDownActive = false;
 
@@ -585,7 +588,6 @@ clockTimerIcon.addEventListener('click', ()=> {
         console.log('t up ready')
     }
     if (timerDownReady){
-        //not executing 
         console.log('t down ready')
         hideSettingsIconsFunc();
         clockTimerHeader.style.display = 'block';
@@ -594,8 +596,10 @@ clockTimerIcon.addEventListener('click', ()=> {
         clockTimerStart.style.display = 'block';
     
         clockTimerInputDown.style.display = 'block';
-        clockTimerInputDown.innerHTML = 'here i am';
-        }
+        clockTimerInputDown.innerHTML = `<input id="timerDownHour1" class="timerDownSettings" type="number" max="60" min="0" placeholder="00">
+                <input id="timerDownMin1" class="timerDownSettings" type="number" max="60" min="0" placeholder="00">
+                <input id="timerDownSec1" class="timerDownSettings" type="number" max="60" min="0" placeholder="00">`
+    }
 }) 
 
 const showTimerSettings = () =>{
@@ -635,7 +639,6 @@ clockTimerUp.addEventListener('click', ()=>{
     clockTimerInputUp.style.display = 'block'
     clockTimerUp.style.backgroundColor = 'yellow';
     
-// below may need to be downrecall 
     clockTimerInputDown.style.display = 'none'
     clockTimerDown.style.backgroundColor = '#bc4555';
 })
@@ -675,16 +678,31 @@ clockTimerStart.addEventListener('click', ()=>{
         } else {
             console.log('could not start timer up');
         }
-    } else {
-        ////// timer down code here
-        timerDownActive = true;
-        hideTimerSettings();
-        showTimerButtons();
-        countDownFunc();
+    } 
+    ////// timer down code here
+    if (timerDownReady) {
+        if (!timerDownActive && timerDownWasReset){
+            timerDownActive = true;
+            hideTimerSettings();
+            showTimerButtons();
+            
+            let hour = document.getElementById('timerDownHour1');
+            let min = document.getElementById('timerDownMin1');
+            let sec = document.getElementById('timerDownSec1');
+            countDownFunc(hour.value, min.value, sec.value);
+            clockTimerDownRecall.style.display = 'block';
+        }
+        if (!timerDownActive && !timerDownWasReset){
+            timerDownActive = true;
+            hideTimerSettings();
+            showTimerButtons();
+            countDownFunc();
+        }
     }
 })
 
 // still need to add reset condiions
+let downPauseAfterReset = false;
 clockTimerStop.addEventListener('click', ()=> {
     if (timerUpReady){
         console.log('up code here');
@@ -693,6 +711,10 @@ clockTimerStop.addEventListener('click', ()=> {
             timerActive = false;
             clearInterval(startTheTimer);
             clockTimerStop.innerHTML = 'start'
+        } else if (!timerActive && timerUpWasReset){
+            timerActive = true;
+            timerStartFunc();
+            clockTimerStop.innerHTML = 'stop';
         } else if (!timerActive){
             timerActive = true;
             timerStartFunc(+a[0], +a[1], +(`${+a[2] + 1}`));
@@ -701,11 +723,37 @@ clockTimerStop.addEventListener('click', ()=> {
     }
 
     if (timerDownReady){
-        console.log('down code here');
-        if (!timerDownActive){
+        if (!timerDownActive && timerDownWasReset && downPauseAfterReset){
             let a = timeRemaining.split(':');
             timerDownActive = true;
             countDownFunc(+a[0], +a[1], +a[2] - 1);
+            clockTimerStop.innerHTML = 'stop';
+        } else if (!timerDownActive && timerDownWasReset){
+            console.log('n the right place');
+            let hour = document.getElementById('timerDownHourReset');
+            let min = document.getElementById('timerDownMinReset');
+            let sec = document.getElementById('timerDownSecReset');
+            timerDownActive = true;
+            countDownFunc(+hour.value, +min.value, +sec.value);
+            clockTimerDownRecall.style.display = 'block';
+            clockTimerStop.innerHTML = 'stop';
+        } else if (timerDownActive && timerDownWasReset){
+            console.log('edge case here')
+            timeRemaining = clockTimerDownRecall.innerHTML;
+            clearInterval(startDownTimer);
+            clockTimerDownRecall.innerHTML = timeRemaining;
+            timerDownActive = false
+            clockTimerStop.innerHTML = 'start'
+
+            downPauseAfterReset = true;
+
+            clockTimerReset.style.display = 'none';
+
+        } else if (!timerDownActive && !timerDownWasReset){
+            let a = timeRemaining.split(':');
+            timerDownActive = true;
+            countDownFunc(+a[0], +a[1], +a[2] - 1);
+            console.log('subtracting here?')
             clockTimerStop.innerHTML = 'stop';
         } else if (timerDownActive){
             timeRemaining = clockTimerDownRecall.innerHTML;
@@ -726,12 +774,41 @@ clockTimerEnd.addEventListener('click', ()=> {
         clearInterval(startTheTimer);
         clockTimerInputUp.style.display = 'none';
         clockTimerInputUp.innerHTML = '00:00:00';
+        timerUpWasReset = true;
     }
     if (timerDownReady){
         clearInterval(startDownTimer);
         clockTimerDownRecall.style.display = 'none';
+        timerDownWasReset = true;
     }
 })
+
+// reset and end will have the same functionality
+let timerUpWasReset = false;
+let timerDownWasReset = false;
+
+clockTimerReset.addEventListener('click', ()=>{
+    timerActive = false;
+    timerDownActive = false;
+    if (timerUpReady){
+        clearInterval(startTheTimer);
+        clockTimerInputUp.innerHTML = '00:00:00';
+        clockTimerStop.innerHTML = 'start';
+        timerUpWasReset = true;
+    }
+    if (timerDownReady){
+        clearInterval(startDownTimer);
+        clockTimerStop.innerHTML = 'start';
+        clockTimerDownRecall.style.display = 'none';
+        timerDownWasReset = true;
+
+        clockTimerInputDown.style.display = 'block';
+        clockTimerInputDown.innerHTML = `<input id="timerDownHourReset" class="timerDownSettings" type="number" max="60" min="0" placeholder="00">
+                <input id="timerDownMinReset" class="timerDownSettings" type="number" max="60" min="0" placeholder="00">
+                <input id="timerDownSecReset" class="timerDownSettings" type="number" max="60" min="0" placeholder="00">`
+    }
+})
+
 
 // timer UP func
 let startTheTimer;
@@ -768,7 +845,7 @@ function timerStartFunc(hour = 0, min = 0, sec = 1){
 //  timer DOWN func
 let startDownTimer;
 let timeRemaining;
-function countDownFunc(hour = +(timerDownHour.value), min = +(timerDownMin.value), sec = +(timerDownSec.value -1)){
+function countDownFunc(hour = +(timerDownHour.value), min = +(timerDownMin.value), sec = +(timerDownSec.value)){
     if (timerDownActive){
         hideTimerDownSettings();
         clockTimerInputDown.style.display = 'none';
@@ -786,10 +863,14 @@ function countDownFunc(hour = +(timerDownHour.value), min = +(timerDownMin.value
                     min = `00`;
                     sec = `00`;
                 }
+                console.log([hour, min, sec]);
                 let a = [hour, min, sec].map(e=> ('' + e).length === 0 ? `00` :
                         ('' + e).length === 1 ? `0${e}` : e);
                 console.log(a);
                 clockTimerDownRecall.innerHTML = `${a[0]}:${a[1]}:${a[2]}`;
+                if (clockTimerDownRecall.innerHTML === `00:00:00`){
+                    clearInterval(startDownTimer);
+                }
                 sec--;
             }, 1000);
     } else {
