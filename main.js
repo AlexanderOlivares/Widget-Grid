@@ -521,9 +521,9 @@ clockAlarmSetButton.addEventListener('click', ()=> {
     
     if (!clockAlarmRecall.innerHTML.match(regValidateTime)){
         clockAlarmRecall.style.display = 'none';
+        clockAlarmIcon.style.pointerEvents = 'auto';
         alert('invalid time');
         console.error('invlaid time');
-        clockAlarmIcon.style.pointerEvents = 'auto';
     } else {
         clockEndAlarm.style.display = 'block';
         clockAlarmRecall.style.display = 'block';
@@ -531,12 +531,13 @@ clockAlarmSetButton.addEventListener('click', ()=> {
     }
 })
 
+// POM CODE NEEDS TO BE ADDED HERE IF POMO ACTIVE AND ALARM SETTINGS COVER IT 
 // sets the alarm. setInterveral checks for alarm time to match real time.  
 let setTheAlarm;
 clockAlarmSetButton.addEventListener('click', ()=>{
     alarmActive = true;
-    if (timerActive){
-        timerUpRecall();
+    if (timerActive || timerDownActive){
+        showTimerButtons();
     }
    
     let a = clockAlarmRecall.innerHTML.split('');
@@ -669,6 +670,7 @@ const hideTimerButtons = () => {
 
 clockTimerStart.addEventListener('click', ()=>{
     clockTimerIcon.style.pointerEvents = 'none';
+    clockTimerIcon.style.backgroundColor = 'yellow';
     if (timerUpReady){
         if (!timerActive){
             timerActive = true;
@@ -712,6 +714,7 @@ clockTimerStop.addEventListener('click', ()=> {
             clearInterval(startTheTimer);
             clockTimerStop.innerHTML = 'start'
         } else if (!timerActive && timerUpWasReset){
+            timerUpWasReset = false;
             timerActive = true;
             timerStartFunc();
             clockTimerStop.innerHTML = 'stop';
@@ -767,6 +770,7 @@ clockTimerStop.addEventListener('click', ()=> {
 
 clockTimerEnd.addEventListener('click', ()=> {
     clockTimerIcon.style.pointerEvents = 'auto';
+    clockTimerIcon.style.backgroundColor = '#bc4555';
     hideTimerButtons();
     timerActive = false;
     timerDownActive = false;
@@ -850,7 +854,8 @@ function countDownFunc(hour = +(timerDownHour.value), min = +(timerDownMin.value
         hideTimerDownSettings();
         clockTimerInputDown.style.display = 'none';
             startDownTimer = setInterval(()=>{
-                if (hour > 0 && min === 0 && sec === -1){
+                console.log([hour, min, sec]);
+                if (hour > 0 && min === 0 && sec === -1 || hour === '1' && min == '' && sec === -1){
                     hour--;
                     min = 59;
                     sec = 59;
@@ -863,10 +868,8 @@ function countDownFunc(hour = +(timerDownHour.value), min = +(timerDownMin.value
                     min = `00`;
                     sec = `00`;
                 }
-                console.log([hour, min, sec]);
                 let a = [hour, min, sec].map(e=> ('' + e).length === 0 ? `00` :
                         ('' + e).length === 1 ? `0${e}` : e);
-                console.log(a);
                 clockTimerDownRecall.innerHTML = `${a[0]}:${a[1]}:${a[2]}`;
                 if (clockTimerDownRecall.innerHTML === `00:00:00`){
                     clearInterval(startDownTimer);
