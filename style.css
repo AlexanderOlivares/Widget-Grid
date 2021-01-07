@@ -408,7 +408,7 @@ body {
     display: none;
     border-radius: 10px;
     width: 50%;
-    height: 50%;
+    height: 60%;
     font-size:  16px;
     font-family: 'Orbitron';
     color: black;
@@ -427,6 +427,8 @@ body {
     align-self: center;
     color: #bc4555;
     font-weight: 900;
+    font-size: 16px;
+    padding-bottom: 2px;
 }
 
 #clockEndAlarm {
@@ -445,7 +447,7 @@ body {
     background-color: #bc4555;
     border: 2px solid black;
     border-radius: 10px;
-    font-size: 12px;
+    font-size: 11px;
     align-self: center;
     justify-self: center;
 }
@@ -495,7 +497,7 @@ body {
     grid-area: 6 / 5 / 6 / 6;
     display: none;
     height: 75%;
-    width: 75%;
+    width: 90%;
     cursor: pointer;
 }
 
@@ -503,7 +505,7 @@ body {
     grid-area: 6 / 4 / 6 / 5;
     display: none;
     height: 75%;
-    width: 75%;
+    width: 90%;
     cursor: pointer;
 }
 
@@ -546,27 +548,71 @@ body {
 }
 
 
+/* *********** pomo section below *************** */
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#clockPomoSettings {
-    grid-area: 4 / 2 / 4 / 8;
+.pomoSettingsText {
+    color: #bc4555;
     display: none;
 }
+
+.pomoSettingsButtons {
+    display: none;
+    background-color: #bc4555;
+    color: black;
+}
+
+#clockPomoHeader {
+    grid-area: 6 / 4 / 6 / 6;
+    display: none;
+}
+
+#pomoWorkLabel {
+    grid-area: 5 / 2 / 5 / 3;
+}
+
+#pomoBreakLabel {
+    grid-area: 5 / 7 / 5 / 8;
+}
+
+#pomoWorkInput {
+    grid-area: 7 / 2 / 7 / 3;
+}
+
+#pomoBreakInput {
+    grid-area: 7 / 7 / 7 / 8;
+}
+
+#pomoWorkInc {
+    grid-area: 6 / 2 / 6 / 3;
+}
+
+#pomoBreakInc {
+    grid-area: 6 / 7 / 6 / 8;
+}
+
+#pomoWorkDec {
+    grid-area: 8 / 2 / 8 / 3;
+}
+
+#pomoBreakDec {
+    grid-area: 8 / 7 / 8 / 8;
+}
+
+#pomoStartButton {
+    grid-area: 5 / 4 / 5 / 6;
+    display: none;
+}
+
+
+
+
+
+
+
+
+
 
 
 

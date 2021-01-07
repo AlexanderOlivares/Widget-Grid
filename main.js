@@ -358,9 +358,16 @@ weatherGetCurrentsFunc();
 // ****************** clock section below *********************
 
 let alarm = new Audio('sounds/alarm.mp3');
-
 const clockAlarmFunc = () => alarm.play();
 const stopAlarmFunc = () => alarm.pause();
+
+let timerDownSound = new Audio('sounds/timerDownSound.mp3');
+const startTimerDownAudio = () => timerDownSound.play();
+const stopTimerDownAudio = () => timerDownSound.pause();
+
+let pomoSound = new Audio('sounds/pomoTimerSound.mp3');
+const startPomoAudio = () => pomoSound.play();
+const stopPomoAudio = () => pomoSound.pause();
 
 let clockDigit1 = document.getElementById('clockDigit1');
 let clockDigit2 = document.getElementById('clockDigit2');
@@ -484,14 +491,10 @@ const hideAlarmSettings = () =>{
     showSettingsIconsFunc();
 }
 
-// hides timer recall buttons so you can set the alarm. disable clicks on the div
+// hides timer recall buttons so you can set the alarm. 
 clockAlarmIcon.addEventListener('click', ()=> {
-    if (alarmActive){
-        return;
-    }
     showAlarmSettings();
     hideTimerButtons();
-    clockAlarmIcon.style.pointerEvents = 'none';
 })
 
 clockAlarmSetButton.addEventListener('click', ()=> {
@@ -520,10 +523,9 @@ clockAlarmSetButton.addEventListener('click', ()=> {
     let regValidateTime = /\d{1,2}:\d{2}\s[apAP]M/i;
     
     if (!clockAlarmRecall.innerHTML.match(regValidateTime)){
+        alarmActive = false;
         clockAlarmRecall.style.display = 'none';
-        clockAlarmIcon.style.pointerEvents = 'auto';
         alert('invalid time');
-        console.error('invlaid time');
     } else {
         clockEndAlarm.style.display = 'block';
         clockAlarmRecall.style.display = 'block';
@@ -668,7 +670,12 @@ const hideTimerButtons = () => {
     clockTimerEnd.style.display = 'none';
 }
 
+// will need to display pomo recall buttons if pomoActive
 clockTimerStart.addEventListener('click', ()=>{
+    if (alarmActive){
+        clockEndAlarm.style.display = 'block';
+    }
+
     clockTimerIcon.style.pointerEvents = 'none';
     clockTimerIcon.style.backgroundColor = 'yellow';
     if (timerUpReady){
@@ -863,6 +870,7 @@ function countDownFunc(hour = +(timerDownHour.value), min = +(timerDownMin.value
                     min--;
                     sec = 59;
                 } else if (hour === 0 && min === 0 & sec === 0){
+                    startTimerDownAudio();
                     clearInterval(startDownTimer);
                     hour = `00`;
                     min = `00`;
@@ -873,6 +881,7 @@ function countDownFunc(hour = +(timerDownHour.value), min = +(timerDownMin.value
                 clockTimerDownRecall.innerHTML = `${a[0]}:${a[1]}:${a[2]}`;
                 if (clockTimerDownRecall.innerHTML === `00:00:00`){
                     clearInterval(startDownTimer);
+                    startTimerDownAudio();
                 }
                 sec--;
             }, 1000);
@@ -883,9 +892,9 @@ function countDownFunc(hour = +(timerDownHour.value), min = +(timerDownMin.value
 
 
 
+// *********** pomo settings below *****************
 
-
-
+// need to reveal pomo settings all are display none currently 
 
 
 
