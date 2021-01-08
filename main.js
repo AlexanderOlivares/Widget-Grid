@@ -400,8 +400,6 @@ let clockTimerEnd = document.getElementById('clockTimerEnd');
 
 let clockTimerDown = document.getElementById('clockTimerDown');
 
-let clockPomoSettings = document.getElementById('clockPomoSettings');
-
 
 let alarmActive = false;
 let timerActive = false;
@@ -892,59 +890,112 @@ function countDownFunc(hour = +(timerDownHour.value), min = +(timerDownMin.value
 
 
 
-// *********** pomo settings below *****************
+// *********** pomo settings below *****************************************************
 
 // need to reveal pomo settings all are display none currently 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let clockPomoHeader = document.getElementById('clockPomoHeader');
+let pomoWorkLabel = document.getElementById('pomoWorkLabel');
+let pomoBreakLabel = document.getElementById('pomoBreakLabel');
+let pomoWorkInput = document.getElementById('pomoWorkInput');
+let pomoBreakInput = document.getElementById('pomoBreakInput');
+let pomoWorkInc = document.getElementById('pomoWorkInc');
+let pomoBreakInc = document.getElementById('pomoBreakInc');
+let pomoWorkDec = document.getElementById('pomoWorkDec');
+let pomoBreakDec = document.getElementById('pomoBreakDec');
+let pomoStartButton = document.getElementById('pomoStartButton');
 
 
 
 const showPomoSettings = () =>{
     hideSettingsIconsFunc();
-    clockPomoSettings.style.display = 'block';
+    clockPomoHeader.style.display = 'block';
+    pomoWorkLabel.style.display = 'block';
+    pomoBreakLabel.style.display = 'block';
+    pomoWorkInput.style.display = 'block';
+    pomoBreakInput.style.display = 'block';
+    pomoWorkInc.style.display = 'block';
+    pomoBreakInc.style.display = 'block';
+    pomoWorkDec.style.display = 'block';
+    pomoBreakDec.style.display = 'block';
+    pomoStartButton.style.display = 'block';
 } 
+
 
 
 clockPomoIcon.addEventListener('click', ()=> {
     showPomoSettings();
 })
+
+let workIncs = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
+let workStartIndex = 4;
+pomoWorkInput.innerHTML = workIncs[workStartIndex];
+
+let breakIncs = [5, 10, 15];
+let breakStartIndex = 0;
+pomoBreakInput.innerHTML = breakIncs[breakStartIndex];
+
+pomoWorkInc.addEventListener('click', ()=>{
+    if (workStartIndex <= 10){
+        pomoWorkInput.innerHTML = workIncs[workStartIndex + 1];
+        workStartIndex++;
+    } else {
+        pomoWorkInput.innerHTML = 60; 
+    }
+})
+
+pomoBreakInc.addEventListener('click', ()=>{
+    if (breakStartIndex <= 1){
+        pomoBreakInput.innerHTML = breakIncs[breakStartIndex + 1];
+        breakStartIndex++;
+    } else {
+        pomoBreakInput.innerHTML = breakIncs[breakIncs.length -1];
+    }
+})
+
+pomoWorkDec.addEventListener('click', ()=>{
+    if (workStartIndex >= 1){
+        pomoWorkInput.innerHTML = workIncs[workStartIndex-1];
+        workStartIndex--;
+    } else {
+        pomoWorkInput.innerHTML = 5;
+    }
+})
+
+pomoBreakDec.addEventListener('click', ()=>{
+    if (breakStartIndex >= 1){
+        pomoBreakInput.innerHTML = breakIncs[breakStartIndex-1];
+        breakStartIndex--;
+    } else {
+        pomoBreakInput.innerHTML = 5;
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
