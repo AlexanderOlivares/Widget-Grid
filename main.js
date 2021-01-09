@@ -920,6 +920,20 @@ const showPomoSettings = () =>{
     pomoStartButton.style.display = 'block';
 } 
 
+const hidePomoSettings = () => {
+    showSettingsIconsFunc();
+    clockPomoHeader.style.display = 'none';
+    pomoWorkLabel.style.display = 'none';
+    pomoBreakLabel.style.display = 'none';
+    pomoWorkInput.style.display = 'none';
+    pomoBreakInput.style.display = 'none';
+    pomoWorkInc.style.display = 'none';
+    pomoBreakInc.style.display = 'none';
+    pomoWorkDec.style.display = 'none';
+    pomoBreakDec.style.display = 'none';
+    pomoStartButton.style.display = 'none';
+}
+
 
 
 clockPomoIcon.addEventListener('click', ()=> {
@@ -970,27 +984,15 @@ pomoBreakDec.addEventListener('click', ()=>{
     }
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// if alarm / timer are active display their recalls 
+pomoStartButton.addEventListener('click', ()=> {
+    pomoActive = true;
+    clockPomoIcon.style.backgroundColor = 'yellow';
+    hidePomoSettings();
+    
+    
+    console.log('add stuff here');
+})
 
 
 
