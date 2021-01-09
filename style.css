@@ -347,6 +347,7 @@ body {
     border-radius: 10px;
     border: 2px solid black;
     cursor: pointer;
+    padding-top: 3px;
 }
 
 #clockAlarmIcon {
@@ -640,13 +641,31 @@ body {
 }
 
 #pomoRecall {
-    grid-area: 4 / 7 / 4 / 9;
+    grid-area: 4 / 7 / 4 / 8;
     display: none;
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+    cursor: pointer;
+    color: #bc4555;
+    font-size: 16px;
+    font-weight: 900;
 }
 
 #pomoEndButton {
     grid-area: 6 / 7 / 6 / 8;
     display: none;
+    font-family: 'Orbitron', sans-serif;
+    height: 70%;
+    width: 70%;
+    border-radius: 10px;
+    border: 2px solid black;
+    cursor: pointer;
+    background-color: #bc4555;
+    font-size: 12px;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
 }
 
 

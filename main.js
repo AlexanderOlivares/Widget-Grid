@@ -859,7 +859,6 @@ function countDownFunc(hour = +(timerDownHour.value), min = +(timerDownMin.value
         hideTimerDownSettings();
         clockTimerInputDown.style.display = 'none';
             startDownTimer = setInterval(()=>{
-                console.log([hour, min, sec]);
                 if (hour > 0 && min === 0 && sec === -1 || hour === '1' && min == '' && sec === -1){
                     hour--;
                     min = 59;
@@ -904,6 +903,9 @@ let pomoWorkDec = document.getElementById('pomoWorkDec');
 let pomoBreakDec = document.getElementById('pomoBreakDec');
 let pomoStartButton = document.getElementById('pomoStartButton');
 
+let pomoRecall = document.getElementById('pomoRecall');
+let pomoEndButton = document.getElementById('pomoEndButton');
+
 
 
 const showPomoSettings = () =>{
@@ -938,6 +940,9 @@ const hidePomoSettings = () => {
 
 clockPomoIcon.addEventListener('click', ()=> {
     showPomoSettings();
+    if (timerActive || timerDownActive){
+        hideTimerButtons();
+    }
 })
 
 let workIncs = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
@@ -984,16 +989,39 @@ pomoBreakDec.addEventListener('click', ()=>{
     }
 })
 
+const showPomoRecall = () => {
+    clockPomoIcon.pointerEvents = 'none';
+    pomoRecall.style.display = 'block';
+    pomoEndButton.style.display = 'block';
+}
+
+const hidePomoRecall = () => {
+    pomoRecall.style.display = 'none';
+    pomoEndButton.style.display = 'none';
+}
+
+let startPomoTimer;
 // if alarm / timer are active display their recalls 
 pomoStartButton.addEventListener('click', ()=> {
     pomoActive = true;
+    clockPomoIcon.style.pointerEvents = 'none';
     clockPomoIcon.style.backgroundColor = 'yellow';
     hidePomoSettings();
+    showPomoRecall();
     
-    
-    console.log('add stuff here');
-})
+    if (alarmActive){
+        clockEndAlarm.style.display = 'block';
+    }
+    if (timerActive || timerDownActive){
+        showTimerButtons();
+    }
 
+    if (pomoActive) {
+        startPomoTimer = setInterval(()=>{
+            pomoRecall.innerHTML = pomoWorkInput.innerHTML;
+        }, 1000);
+    }
+})
 
 
 
