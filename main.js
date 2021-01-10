@@ -584,6 +584,7 @@ let timerDownActive = false;
 
 clockTimerIcon.addEventListener('click', ()=> {
     clockEndAlarm.style.display = 'none';
+    pomoEndButton.style.display = 'none';
     if (timerUpReady){
         showTimerSettings();
         console.log('t up ready')
@@ -668,10 +669,12 @@ const hideTimerButtons = () => {
     clockTimerEnd.style.display = 'none';
 }
 
-// will need to display pomo recall buttons if pomoActive
 clockTimerStart.addEventListener('click', ()=>{
     if (alarmActive){
         clockEndAlarm.style.display = 'block';
+    }
+    if (pomoActive || pomoBreakActive){
+        pomoEndButton.style.display = 'block';
     }
 
     clockTimerIcon.style.pointerEvents = 'none';
@@ -1001,6 +1004,8 @@ const hidePomoRecall = () => {
 }
 
 let startPomoTimer;
+let startPomoBreakTimer;
+let pomoBreakActive = false;
 // if alarm / timer are active display their recalls 
 pomoStartButton.addEventListener('click', ()=> {
     pomoActive = true;
@@ -1016,15 +1021,48 @@ pomoStartButton.addEventListener('click', ()=> {
         showTimerButtons();
     }
 
-    if (pomoActive) {
+    pomoRecall.innerHTML = `${+(pomoWorkInput.innerHTML)}:00`;
+        let min = +(pomoWorkInput.innerHTML);
+        let sec = 0;
         startPomoTimer = setInterval(()=>{
-            pomoRecall.innerHTML = pomoWorkInput.innerHTML;
+             if (min === 0 && sec === 0){
+                startPomoAudio();
+                if (pomoActive){
+                    min = +(pomoBreakInput.innerHTML);
+                    pomoActive = false;
+                    pomoBreakActive = true;
+                } else {
+                    min = +(pomoWorkInput.innerHTML);
+                    pomoActive = true;
+                    pomoBreakActive = false;
+                }
+            }           
+            if (sec === 0){
+                min--;
+                sec = 59;
+            }
+            console.log(pomoActive);
+            let a = [min, sec];
+            if (('' + min).length === 1){
+                a[0] = `0${a[0]}`;
+            }
+            if (('' + sec).length === 1){
+                a[1] = `0${a[1]}`;
+            }
+            pomoRecall.innerHTML = `${a[0]}:${a[1]}`;
+
+            sec --;
         }, 1000);
-    }
 })
 
-
-
+pomoEndButton.addEventListener('click', ()=>{
+    clearInterval(startPomoTimer);
+    pomoActive = false;
+    pomoBreakActive = false;
+    hidePomoRecall();
+    clockPomoIcon.style.pointerEvents = 'auto';
+    clockPomoIcon.style.backgroundColor = '#bc4555';
+})
 
 
 
