@@ -139,6 +139,7 @@ let weatherTextBox = document.getElementById('weatherTextBox');
 // uses the openweathermap 1call api with coordinates. defaults to austin coords
 
 /*
+
 const weatherGetCurrentsFunc = (lat = 30.382580, lon = -97.710243) => {
 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
     .then(response=> response.json())
@@ -195,7 +196,7 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         }
         
         weatherFeelsLike.innerHTML = `feels like ${Math.round(feelsLike)}\u00b0`;
-        weatherPrecip.innerHTML = `precipitation ${Math.round(precipitation)}%`;
+        //weatherPrecip.innerHTML = `precipitation ${Math.round(precipitation)}%`;
         weatherWind.innerHTML = `wind ${Math.round(wind)}mph`;
         weatherHumididty.innerHTML = `humidity ${humidity}%`;
 
@@ -344,13 +345,27 @@ weatherTextBox.addEventListener('keydown', (e)=> {
     }
 });
 
-// refreshes current temps every minute
+// refreshes the time every minute to see if a new hour has passed to update the hourly weather; 
 window.setInterval(()=> {
-    getCitySearchCurrentsFunc();
+    let now = new Date().getHours();
+    if (now > 12){
+        now -= 12;
+    }
+    let nextHour;
+    let a = weatherHourOne.innerHTML.split('')
+    if (a.length === 4){
+        nextHour = +[a[0], a[1]].join('');
+    } else {
+        nextHour = +a[0];
+    }
+    if (now === nextHour){
+        getCitySearchCurrentsFunc();
+    }
 }, 60000)
 
 // runs on page load to get austin weather
 weatherGetCurrentsFunc();
+
 
 */
 
@@ -493,6 +508,7 @@ const hideAlarmSettings = () =>{
 clockAlarmIcon.addEventListener('click', ()=> {
     showAlarmSettings();
     hideTimerButtons();
+    pomoEndButton.style.display = 'none';
 })
 
 clockAlarmSetButton.addEventListener('click', ()=> {
@@ -539,7 +555,14 @@ clockAlarmSetButton.addEventListener('click', ()=>{
     if (timerActive || timerDownActive){
         showTimerButtons();
     }
-   
+    if (pomoActive){
+        pomoWorkIcon.style.display = 'block';
+        pomoEndButton.style.display = 'block';
+    }
+    if (pomoBreakActive){
+        pomoBreakIcon.style.display = 'block';
+        pomoEndButton.style.display = 'block';
+    }
     let a = clockAlarmRecall.innerHTML.split('');
     let count = 0;
    
@@ -782,6 +805,7 @@ clockTimerEnd.addEventListener('click', ()=> {
     hideTimerButtons();
     timerActive = false;
     timerDownActive = false;
+    clockTimerInputDown.style.display = 'none';
     if (timerUpReady){
         clearInterval(startTheTimer);
         clockTimerInputUp.style.display = 'none';
@@ -909,6 +933,8 @@ let pomoStartButton = document.getElementById('pomoStartButton');
 let pomoRecall = document.getElementById('pomoRecall');
 let pomoEndButton = document.getElementById('pomoEndButton');
 
+let pomoWorkIcon = document.getElementById('pomoWorkIcon');
+let pomoBreakIcon = document.getElementById('pomoBreakIcon');
 
 
 const showPomoSettings = () =>{
@@ -938,8 +964,6 @@ const hidePomoSettings = () => {
     pomoBreakDec.style.display = 'none';
     pomoStartButton.style.display = 'none';
 }
-
-
 
 clockPomoIcon.addEventListener('click', ()=> {
     showPomoSettings();
@@ -1009,6 +1033,7 @@ let pomoBreakActive = false;
 // if alarm / timer are active display their recalls 
 pomoStartButton.addEventListener('click', ()=> {
     pomoActive = true;
+    pomoWorkIcon.style.display = 'block';
     clockPomoIcon.style.pointerEvents = 'none';
     clockPomoIcon.style.backgroundColor = 'yellow';
     hidePomoSettings();
@@ -1028,10 +1053,14 @@ pomoStartButton.addEventListener('click', ()=> {
              if (min === 0 && sec === 0){
                 startPomoAudio();
                 if (pomoActive){
+                    pomoWorkIcon.style.display = 'none';
+                    pomoBreakIcon.style.display = 'block';
                     min = +(pomoBreakInput.innerHTML);
                     pomoActive = false;
                     pomoBreakActive = true;
                 } else {
+                    pomoBreakIcon.style.display = 'none';
+                    pomoWorkIcon.style.display = 'block';
                     min = +(pomoWorkInput.innerHTML);
                     pomoActive = true;
                     pomoBreakActive = false;
@@ -1060,10 +1089,37 @@ pomoEndButton.addEventListener('click', ()=>{
     pomoActive = false;
     pomoBreakActive = false;
     hidePomoRecall();
+    pomoWorkIcon.style.display = 'none';
+    pomoBreakIcon.style.display = 'none';
     clockPomoIcon.style.pointerEvents = 'auto';
     clockPomoIcon.style.backgroundColor = '#bc4555';
 })
 
 
+// *************** calculator below ***************************
 
-
+let calcMemory = document.getElementById('calcMemory');
+let calcMainInput = document.getElementById('clacMainInput');
+let remainder = document.getElementById('remainder');
+let percentage = document.getElementById('percentage');
+let pi= document.getElementById('pi');
+let clear = document.getElementById('clear');
+let allClear = document.getElementById('allClear');
+let seven = document.getElementById('seven');
+let eight = document.getElementById('eight');
+let nine = document.getElementById('nine');
+let sqrt = document.getElementById('sqrt');
+let pow = document.getElementById('pow');
+let four = document.getElementById('four');
+let five = document.getElementById('five');
+let six = document.getElementById('six');
+let divide = document.getElementById('divide');
+let minus = document.getElementById('minus');
+let one = document.getElementById('one');
+let two = document.getElementById('two');
+let three = document.getElementById('three');
+let times = document.getElementById('times');
+let plus = document.getElementById('plus');
+let zero = document.getElementById('zero');
+let decimal = document.getElementById('decimal');
+let equal = document.getElementById('equal');
