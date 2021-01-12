@@ -1099,9 +1099,9 @@ pomoEndButton.addEventListener('click', ()=>{
 // *************** calculator below ***************************
 
 let calcMemory = document.getElementById('calcMemory');
-let calcMainInput = document.getElementById('clacMainInput');
+let calcMainInput = document.getElementById('calcMainInput');
 let remainder = document.getElementById('remainder');
-let percentage = document.getElementById('percentage');
+let round = document.getElementById('round');
 let pi= document.getElementById('pi');
 let clear = document.getElementById('clear');
 let allClear = document.getElementById('allClear');
@@ -1123,3 +1123,119 @@ let plus = document.getElementById('plus');
 let zero = document.getElementById('zero');
 let decimal = document.getElementById('decimal');
 let equal = document.getElementById('equal');
+
+remainder.addEventListener('click', ()=> {
+    //come back to this one;
+})
+
+round.addEventListener('click', ()=> {
+    //come back to this one;
+})
+
+pi.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += 'π';
+})
+
+allClear.addEventListener('click', ()=> {
+    calcMainInput.innerHTML = 0;
+})
+
+seven.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '7';
+})
+
+eight.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '8';
+})
+
+nine.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '9';
+})
+
+sqrt.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '√';
+})
+
+pow.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '^';
+})
+
+four.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '4';
+})
+
+five.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '5';
+})
+
+six.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '6';
+})
+
+divide.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '÷';
+})
+
+minus.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '-';
+})
+
+one.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '1';
+})
+
+two.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '2';
+})
+
+three.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '3';
+})
+
+times.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += 'x';
+})
+
+plus.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '+';
+})
+
+zero.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '0';
+})
+
+decimal.addEventListener('click', ()=> {
+    calcMainInput.innerHTML += '.';
+})
+
+equal.addEventListener('click', ()=> {
+    let compute = calcMainInput.innerHTML;
+    calcMainInput.innerHTML = eval(compute);
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
