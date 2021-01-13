@@ -1098,6 +1098,7 @@ pomoEndButton.addEventListener('click', ()=>{
 
 // *************** calculator below ***************************
 
+
 let calcMemory = document.getElementById('calcMemory');
 let calcMainInput = document.getElementById('calcMainInput');
 let remainder = document.getElementById('remainder');
@@ -1124,15 +1125,150 @@ let zero = document.getElementById('zero');
 let decimal = document.getElementById('decimal');
 let equal = document.getElementById('equal');
 
+
+
+let lastClickEquals = false;
+calculator.addEventListener('click', (e)=>{
+    if (e.target === equal){
+        lastClickEquals = true;
+        console.log(lastClickEquals)
+    } else {
+        lastClickEquals = false;
+    }
+})
+
+let lastClickPlus = false;
+calculator.addEventListener('click', (e)=>{
+    if (e.target === plus){
+        lastClickPlus = true;
+        plus.style.backgroundColor = 'yellow';
+    } else {
+        lastClickPlus = false;
+        plus.style.backgroundColor = '#bc4555';
+    }
+})
+
+let lastClickMinus = false;
+calculator.addEventListener('click', (e)=>{
+    if (e.target === minus){
+        lastClickMinus = true;
+        minus.style.backgroundColor = 'yellow';
+    } else {
+        lastClickMinus = false;
+        minus.style.backgroundColor = '#bc4555';
+    }
+})
+
+
+let lastClickTimes = false;
+calculator.addEventListener('click', (e)=>{
+    if (e.target === times){
+        lastClickTimes = true;
+        times.style.backgroundColor = 'yellow';
+    } else {
+        lastClickTimes = false;
+        times.style.backgroundColor = '#bc4555';
+    }
+})
+
+let lastClickDivide = false;
+calculator.addEventListener('click', (e)=>{
+    if (e.target === divide){
+        lastClickDivide = true;
+        divide.style.backgroundColor = 'yellow';
+    } else {
+        lastClickDivide = false;
+        divide.style.backgroundColor = '#bc4555';
+    }
+})
+
+let lastClickPow = false;
+calculator.addEventListener('click', (e)=>{
+    if (e.target === pow){
+        lastClickPow = true;
+        pow.style.backgroundColor = 'yellow';
+    } else {
+        lastClickPow = false;
+        pow.style.backgroundColor = '#bc4555';
+    }
+})
+
+let lastClickRemainder = false;
+calculator.addEventListener('click', (e)=>{
+    if (e.target === remainder){
+        lastClickRemainder = true;
+        remainder.style.backgroundColor = 'yellow';
+    } else {
+        lastClickRemainder = false;
+        remainder.style.backgroundColor = '#bc4555';
+    }
+})
+
+let lastClickOperand = false;
+calculator.addEventListener('click', (e)=>{
+    if (e.target === plus || e.target === times || e.target === minus || e.target === divide || e.target === calculator){
+        plus.style.pointerEvents = 'none';
+        times.style.pointerEvents = 'none';
+        minus.style.pointerEvents = 'none';
+        divide.style.pointerEvents = 'none';
+    } else {
+        plus.style.pointerEvents = 'auto';
+        times.style.pointerEvents = 'auto';
+        minus.style.pointerEvents = 'auto';
+        divide.style.pointerEvents = 'auto';
+    }
+})
+
+calculator.addEventListener('click', (e)=>{
+    if (e.target === decimal || calcMainInput.innerHTML.includes('.')){
+        decimal.style.pointerEvents = 'none';
+    } else {
+        decimal.style.pointerEvents = 'auto';
+    }
+})
+
+const refreshOutput = () => calcMainInput.innerHTML === '0' ? calcMainInput.innerHTML = '' : calcMainInput; 
+
+const assignInputChar = (char) => {
+    if (lastClickEquals){
+        calcMainInput.innerHTML = `${char}`;
+    } else {
+        calcMainInput.innerHTML += `${char}`;
+    }
+}
+
+// MAIN COMPUTE FUNCTION HERE
+let eq = calcMainInput.innerHTML;
+const compute = () => {
+    eq = calcMainInput.innerHTML;
+    console.log(eq);
+    if (eq.includes('x')){
+        eq = eq.replace('x', '*');
+    }
+    if (eq.includes('÷')){
+        eq = eq.replace('÷', '/');
+    }
+    if (eq.includes('^')){
+        eq = eq.replace('^', '**');
+    }
+    if (eq.includes('π')){
+        eq = eq.replace('π', 'Math.PI')
+    }
+    calcMainInput.innerHTML = eval(eq);
+}
+
+
 remainder.addEventListener('click', ()=> {
-    //come back to this one;
+    calcMainInput.innerHTML += '%';
 })
 
 round.addEventListener('click', ()=> {
-    //come back to this one;
+    let temp = calcMainInput.innerHTML; 
+    calcMainInput.innerHTML = Math.round(+temp);
 })
 
 pi.addEventListener('click', ()=> {
+    refreshOutput();
     calcMainInput.innerHTML += 'π';
 })
 
@@ -1141,19 +1277,23 @@ allClear.addEventListener('click', ()=> {
 })
 
 seven.addEventListener('click', ()=> {
-    calcMainInput.innerHTML += '7';
+    refreshOutput();
+    assignInputChar('7');
 })
 
 eight.addEventListener('click', ()=> {
-    calcMainInput.innerHTML += '8';
+    refreshOutput();
+    assignInputChar('8');
 })
 
 nine.addEventListener('click', ()=> {
-    calcMainInput.innerHTML += '9';
+    refreshOutput();
+    assignInputChar('9');
 })
 
 sqrt.addEventListener('click', ()=> {
-    calcMainInput.innerHTML += '√';
+    let temp = calcMainInput.innerHTML;
+    calcMainInput.innerHTML = eval(Math.sqrt(+temp));
 })
 
 pow.addEventListener('click', ()=> {
@@ -1161,15 +1301,18 @@ pow.addEventListener('click', ()=> {
 })
 
 four.addEventListener('click', ()=> {
-    calcMainInput.innerHTML += '4';
+    refreshOutput();
+    assignInputChar('4');
 })
 
 five.addEventListener('click', ()=> {
-    calcMainInput.innerHTML += '5';
+    refreshOutput();
+    assignInputChar('5');
 })
 
 six.addEventListener('click', ()=> {
-    calcMainInput.innerHTML += '6';
+    refreshOutput();
+    assignInputChar('6');
 })
 
 divide.addEventListener('click', ()=> {
@@ -1181,15 +1324,18 @@ minus.addEventListener('click', ()=> {
 })
 
 one.addEventListener('click', ()=> {
-    calcMainInput.innerHTML += '1';
+    refreshOutput();
+    assignInputChar('1');
 })
 
 two.addEventListener('click', ()=> {
-    calcMainInput.innerHTML += '2';
+    refreshOutput();
+    assignInputChar('2');
 })
 
 three.addEventListener('click', ()=> {
-    calcMainInput.innerHTML += '3';
+    refreshOutput();
+    assignInputChar('3');
 })
 
 times.addEventListener('click', ()=> {
@@ -1201,18 +1347,18 @@ plus.addEventListener('click', ()=> {
 })
 
 zero.addEventListener('click', ()=> {
-    calcMainInput.innerHTML += '0';
+    refreshOutput();
+    assignInputChar('0');
 })
 
 decimal.addEventListener('click', ()=> {
-    calcMainInput.innerHTML += '.';
+    refreshOutput();
+    assignInputChar('.');
 })
 
 equal.addEventListener('click', ()=> {
-    let compute = calcMainInput.innerHTML;
-    calcMainInput.innerHTML = eval(compute);
+    compute();
 })
-
 
 
 

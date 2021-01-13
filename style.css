@@ -350,6 +350,16 @@ body {
     padding-top: 3px;
 }
 
+.clockIcons:hover {
+    background-color: yellow;
+}
+
+.clockIcons:active {
+    background-color: #bc4555;
+    transform: translateY(2px);
+}
+
+
 #clockAlarmIcon {
     grid-area: 5 / 2 / 5 / 3;
     align-self: center;
@@ -420,6 +430,15 @@ body {
     cursor: pointer;
 }
 
+#clockAlarmSetButton:hover {
+    background-color: yellow;
+}
+
+#clockAlarmSetButton:active {
+    background-color: #bc4555;
+    transform: translateY(2px);
+}
+
 #clockAlarmRecall {
     grid-area: 4 / 1 / 4 / 4;
     display: none;
@@ -443,6 +462,10 @@ body {
     align-self: center;
     cursor: pointer;
     margin-top: 10px;
+}
+
+#clockEndAlarm:hover{
+    background-color: yellow;
 }
 
 /* timer settings below */
@@ -489,12 +512,20 @@ body {
     cursor: pointer;
 }
 
+#clockTimerStart:hover {
+    background-color: yellow;
+}
+
 #clockTimerReset {
     grid-area: 7 / 4 / 7 / 6;
     display: none;
     height: 75%;
     width: 40%;
     cursor: pointer;
+}
+
+#clockTimerReset:hover {
+    background-color: yellow;
 }
 
 #clockTimerStop {
@@ -506,6 +537,10 @@ body {
     margin-top: 10px;
 }
 
+#clockTimerStop:hover {
+    background-color: yellow;
+}
+
 #clockTimerEnd {
     grid-area: 6 / 4 / 6 / 5;
     display: none;
@@ -513,6 +548,10 @@ body {
     width: 75%;
     cursor: pointer;
     margin-top: 10px;
+}
+
+#clockTimerEnd:hover {
+    background-color: yellow;
 }
 
 /* may need to change pad top */
@@ -574,6 +613,9 @@ body {
     padding: 5px;
 }
 
+.pomoSettingsButtons:hover{
+    background-color: yellow;
+}
 
 #clockPomoHeader {
     grid-area: 6 / 4 / 6 / 6;
@@ -643,6 +685,10 @@ body {
     text-align: center;
 }
 
+#pomoStartButton:hover{
+    background-color: yellow;
+}
+
 #pomoRecall {
     grid-area: 4 / 7 / 4 / 8;
     display: none;
@@ -670,6 +716,10 @@ body {
     justify-self: center;
     text-align: center;
     margin-top: 10px;
+}
+
+#pomoEndButton:hover{
+    background-color: yellow;
 }
 
 #pomoWorkIcon {
