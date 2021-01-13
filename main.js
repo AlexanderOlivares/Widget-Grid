@@ -136,10 +136,15 @@ let weatherHumididty = document.getElementById('weatherHumidity');
 let weatherHourOne = document.getElementById('weatherHourOne');
 let weatherTextBox = document.getElementById('weatherTextBox');
 
+let weatherError = false;
+const weatherDisplay404 = () => {
+        weatherEnterCity.style.display = 'none';
+        document.getElementById('weather404Icon').style.display = 'block';
+        document.getElementById('weather404Text').style.display = 'block';
+}
+
+
 // uses the openweathermap 1call api with coordinates. defaults to austin coords
-
-/*
-
 const weatherGetCurrentsFunc = (lat = 30.382580, lon = -97.710243) => {
 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
     .then(response=> response.json())
@@ -156,7 +161,12 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         weatherCurrentTemp.innerHTML = `${Math.round(temp)}\u00b0`;
         weatherCurrentIcon.innerHTML =  `<img src="http://openweathermap.org/img/wn/${icon}@2x.png">`
         weatherCurrentDescription.innerHTML = description;
-        
+      
+        // in case of long description text wont wrap to second line 
+        if (description.split(' ').length > 4){
+            weatherCurrentDescription.style.fontSize = '18px';
+        }
+
         const darkText = () => {
             weather.style.color = "#444444";
             weatherRefreshButton.style.color = "#444444";
@@ -275,6 +285,7 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
     })
     .catch(errror=> {
         //alert('could not load weather data');
+        weatherDisplay404();
         console.error('the 1call api to via openweathermap failed. check coords or api key');
     })
 }
@@ -311,6 +322,7 @@ const nameMatchFunc = (userInput) => {
 // plugs in either the weatherTextBox input or uses current city
 // calls nameMatchFunc to get the city id then uses that to get the city's coords to run the weatherGetCurrentsFunc
 const getCitySearchCurrentsFunc = () => {
+    let previousCity = weatherCurrentCity.innerHTML;
     let status = weatherTextBox.value;
     if (status === ''){
         status = weatherCurrentCity.innerHTML;
@@ -327,6 +339,7 @@ const getCitySearchCurrentsFunc = () => {
             console.error(`no match for "${weatherTextBox.value}." could not find the city id for gitCitySearchCurrentsFunc`);
             alert(`could not get weather for "${weatherTextBox.value}"`)
             weatherTextBox.value = '';
+            weatherCurrentCity.innerHTML = previousCity;
         })
 }
 
@@ -361,13 +374,14 @@ window.setInterval(()=> {
     if (now === nextHour){
         getCitySearchCurrentsFunc();
     }
+    console.log([now, nextHour]);
 }, 60000)
 
 // runs on page load to get austin weather
 weatherGetCurrentsFunc();
 
 
-*/
+
 
 
 // ****************** clock section below *********************
@@ -1207,6 +1221,11 @@ calculator.addEventListener('click', (e)=>{
 let lastClickOperand = false;
 calculator.addEventListener('click', (e)=>{
     if (e.target === plus || e.target === times || e.target === minus || e.target === divide || e.target === calculator){
+        lastClickOperand = true;
+    } else {
+        lastClickOperand = false;
+    }
+    if (lastClickOperand) {
         plus.style.pointerEvents = 'none';
         times.style.pointerEvents = 'none';
         minus.style.pointerEvents = 'none';
@@ -1243,17 +1262,18 @@ const compute = () => {
     eq = calcMainInput.innerHTML;
     console.log(eq);
     if (eq.includes('x')){
-        eq = eq.replace('x', '*');
+        eq = eq.replaceAll('x', '*');
     }
     if (eq.includes('÷')){
-        eq = eq.replace('÷', '/');
+        eq = eq.replaceAll('÷', '/');
     }
     if (eq.includes('^')){
-        eq = eq.replace('^', '**');
+        eq = eq.replaceAll('^', '**');
     }
     if (eq.includes('π')){
-        eq = eq.replace('π', 'Math.PI')
+        eq = eq.replaceAll('π', 'Math.PI')
     }
+    console.log(eq);
     calcMainInput.innerHTML = eval(eq);
 }
 

@@ -1,6 +1,7 @@
 body {
     box-sizing: border-box;
-   background-color: #444444;
+    background-color: #444444;
+    width: auto;
 }
 
 .container {
@@ -11,8 +12,7 @@ body {
     grid-gap: 5px;
     align-content: center;
     justify-content: center;
-    min-width: 500px;
-    min-height: 500px;
+    width: auto;
 }
 
 .clock {
@@ -257,7 +257,23 @@ body {
     padding-top: 5px;
 }
 
+.weather404 {
+    font-size: 18px
+}
 
+#weather404Icon {
+    grid-area: 2 / 3 / 4 / 4;
+    display: none;
+    background-color: #bc4555;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+#weather404Text {
+    grid-area: 5 / 2 / 5 / 5;
+    display: none;
+    color: #bc4555;
+}
 
 
 
@@ -276,6 +292,7 @@ body {
     font-size: 60px;
     color: #bc4555;
     font-family: 'Orbitron', sans-serif;
+    align-self: center;
 }
 
 #clockDigit1 {
@@ -289,9 +306,9 @@ body {
 }
 
 #clockDigitHyphon {
-    grid-area: 2 / 3 / 2 / 4;
-    padding-left: 10px;
-    justify-self: end;
+    grid-area: 2 / 3 / 4 / 4;
+    padding-left: 5px;
+    padding-bottom: 3px;
 }
 
 #clockDigit3 {
@@ -321,7 +338,7 @@ body {
     grid-area: 2 / 7 / 2 / 8;
     justify-self: start;
     margin-left: 10px;
-    padding-left: 20%;
+    padding-left: 10%;
 }
 
 .clockAmPm {
@@ -747,8 +764,8 @@ body {
     font-family: 'orbitron';
     display: grid;
     grid-gap: 3px;
-    grid-template-rows: repeat(6, 55px);
-    grid-template-columns: repeat(5, 55px);
+    grid-template-rows: repeat(6, 45px);
+    grid-template-columns: repeat(5, 45px);
     text-align: center;
     align-content: center;
     justify-content: center;
@@ -758,9 +775,7 @@ body {
 .calcButtons {
     background-color: #bc4555;
     border: 2px solid black;
-    font-size: xx-large;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    font-size: x-large;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -813,6 +828,7 @@ body {
 
 #sqrt{
    grid-area: ; 
+   padding-top: 10%;
 }
 
 #pow{
