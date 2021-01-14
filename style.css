@@ -7,8 +7,8 @@ body {
 .container {
     display: grid;
     padding: 3px;
-    grid-template-columns: repeat(2, 48vw);
-    grid-template-rows:  repeat(2, 48vh);
+    grid-template-columns: repeat(2, 49vw);
+    grid-template-rows:  repeat(2, 49vh);
     grid-gap: 5px;
     align-content: center;
     justify-content: center;
@@ -47,7 +47,8 @@ body {
     width: 25px;
     align-self: center;
     font-size: xx-large;
-    padding-bottom: 25px;
+    font-weight: 900;
+    padding-bottom: 10px;
     padding-left: 5px;
     cursor: pointer;
 }
@@ -137,6 +138,7 @@ body {
 
 #weatherEnterCity {
     grid-area: 1 / 4 / 1 / 5;
+    padding-top: 3px;
 }
 
 #weatherTextBox {
@@ -151,6 +153,7 @@ body {
     grid-area: 1 / 5 / 1 / 6;
     width: 75%;
     border: none;
+    padding-top: 3px;
 }
 
 #weatherGoButton {
@@ -273,6 +276,7 @@ body {
     grid-area: 5 / 2 / 5 / 5;
     display: none;
     color: #bc4555;
+    font-weight: 500;
 }
 
 
@@ -286,6 +290,14 @@ body {
     align-content: center;
     justify-items: center;
     font-family: 'Orbitron', sans-serif;
+}
+
+#date {
+    grid-area: 1 / 2 / 1 / 8;
+    color: #bc4555;
+    font-size: 16px;
+    font-weight: 500;
+    align-self: center;
 }
 
 .clockDigits {
@@ -460,14 +472,11 @@ body {
     grid-area: 4 / 1 / 4 / 4;
     display: none;
     margin-left: 30%;
-    width: 70%;
-    height: 44%;
     text-align: center;
     align-self: center;
     color: #bc4555;
     font-weight: 900;
     font-size: 16px;
-    padding-bottom: 2px;
 }
 
 #clockEndAlarm {
@@ -585,11 +594,12 @@ body {
 #clockTimerDownRecall {
     grid-area: 4 / 4 / 4 / 6;
     display: block;
+    color: #bc4555;
     text-align: center;
-    align-content: center;
+    font-size: 16px;
+    font-weight: 900;
     width: 110%;
-    padding-left: 15%;
-    padding-top: 8%;
+    align-self: center;
 }
 
 #clockTimerDown {
@@ -615,7 +625,7 @@ body {
 
 
 .pomoSettingsText {
-    font-size: 100%;
+    font-size: 120%;
     color: #bc4555;
     text-align: center;
     align-self: center;
@@ -628,6 +638,9 @@ body {
     border-radius: 10px;
     cursor: pointer;
     padding: 5px;
+    padding-bottom: -20px;
+    align-self: center;
+    justify-content: center;
 }
 
 .pomoSettingsButtons:hover{
@@ -662,27 +675,21 @@ body {
 #pomoWorkInc {
     grid-area: 6 / 2 / 6 / 3;
     display: none;
-    padding-top: 3px;
-    margin-top: 5px;
 }
 
 #pomoBreakInc {
     grid-area: 6 / 7 / 6 / 8;
     display: none;
-    padding-top: 3px;
-    margin-top: 5px;
 }
 
 #pomoWorkDec {
     grid-area: 8 / 2 / 8 / 3;
     display: none;
-    margin-bottom: 5px;
 }
 
 #pomoBreakDec {
     grid-area: 8 / 7 / 8 / 8;
     display: none;
-    margin-bottom: 5px;
 }
 
 #pomoStartButton {
@@ -722,8 +729,8 @@ body {
     grid-area: 6 / 7 / 6 / 8;
     display: none;
     font-family: 'Orbitron', sans-serif;
-    height: 70%;
-    width: 70%;
+    height: 75%;
+    width: 75%;
     border-radius: 10px;
     border: 2px solid black;
     cursor: pointer;
@@ -764,7 +771,7 @@ body {
     font-family: 'orbitron';
     display: grid;
     grid-gap: 3px;
-    grid-template-rows: repeat(6, 45px);
+    grid-template-rows: repeat(7, 45px);
     grid-template-columns: repeat(5, 45px);
     text-align: center;
     align-content: center;
@@ -778,6 +785,7 @@ body {
     font-size: x-large;
     border-radius: 10px;
     cursor: pointer;
+    padding-top: 5px;
 }
 
 .calcButtons:hover {
@@ -792,10 +800,14 @@ body {
 #calcMainInput {
     grid-area: 1 / 1 / 3 / 6;
     color: #bc4555;
-    font-size: 50px;
+    font-size: 45px;
     text-align: right;
     padding-top: 8%;
+    padding-right: 5px;
     overflow: hidden;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
 }
 
 #remainder {

@@ -373,6 +373,7 @@ window.setInterval(()=> {
     }
     if (now === nextHour){
         getCitySearchCurrentsFunc();
+        todaysDate();
     }
     console.log([now, nextHour]);
 }, 60000)
@@ -425,15 +426,29 @@ let clockTimerReset = document.getElementById('clockTimerReset');
 let clockTimerStop = document.getElementById('clockTimerStop');
 let clockTimerEnd = document.getElementById('clockTimerEnd');
 
-
-
 let clockTimerDown = document.getElementById('clockTimerDown');
 
+let date = document.getElementById('date');
 
 let alarmActive = false;
 let timerActive = false;
 let pomoActive = false;
 
+
+const todaysDate = () => {
+    let today = new Date();
+    let day = today.getDay();
+    let todaysDate = today.getDate();
+    let month = today.getMonth();
+    let year = today.getFullYear();
+    let dayOfWeek = ['sunday', 'monday','tuesday','wednesday','thursday','friday','saturday'];
+    let monthOfYear = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+    date.innerHTML = `${dayOfWeek[day]},     ${monthOfYear[month]}      ${todaysDate},      ${year}`;
+}
+
+
+// you guessed it. displays the date at top
+todaysDate();
 
 window.setInterval(()=>{
     let date = new Date();

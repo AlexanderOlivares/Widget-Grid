@@ -11,6 +11,7 @@
 <body>
     <div class="container">
         <div id="clock" class="clock">
+            <div id="date"></div>
             <div id="clockDigit1" class="clockDigits"></div>
             <div id="clockDigit2" class="clockDigits"></div>
             <div id="clockDigitHyphon" class="clockDigits">:</div>
@@ -42,7 +43,7 @@
                 <input id="timerDownMin" class="timerDownSettings" type="number" max="60" min="0" placeholder="00">
                 <input id="timerDownSec" class="timerDownSettings" type="number" max="60" min="0" placeholder="00">
             </div>
-            <div id="clockTimerDownRecall" class="timerDownSettings"></div>
+            <div id="clockTimerDownRecall"></div>
             <div id="clockTimerDown" class="timerSettings"><img src="pics/downArrow.png"></div>
             
             <button id="clockTimerStart" class="timerSettings">start</button>
@@ -98,7 +99,7 @@
         
         <div id="weather" class="weather"> 
             <div id="weatherMain">
-                <div id="weatherRefreshButton"><i class="fas fa redo fa-xs"></i></div>
+                <div id="weatherRefreshButton"><i class="fas fa-redo fa-xs"></i></div>
                 <div id="weatherCurrentCity">austin</div> 
                 <div id="weatherEnterCity">
                     <input id="weatherTextBox" type="text" placeholder="enter city">
@@ -113,7 +114,7 @@
                 <div id="weatherWind"></div>
                 <div id="weatherHumidity"></div>
 
-                <div id="weather404Icon" class="weather404"><img src="/pics/weather404Icon.png"></div>
+                <div id="weather404Icon" class="weather404"><img src="pics/weatherErrorIcon.png"></div>
                 <div id="weather404Text" class="weather404">oops something went wrong</div>
             </div>        
             <div id="weatherHourly">
