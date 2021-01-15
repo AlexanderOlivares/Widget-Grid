@@ -10,20 +10,20 @@ function addBorder(tab){
         calculator.style.border = '';
         notes.style.border = '';
         weather.style.border = '';
-        clock.style.border = '2px solid white'
+        clock.style.border = '2px solid #16c79a'
     } else if (tab === calculator){
-        calculator.style.border = '2px solid white';
+        calculator.style.border = '2px solid #16c79a';
         notes.style.border = '';
         weather.style.border = '';
         clock.style.border = '';
         } else if (tab === weather){
             calculator.style.border = '';
             notes.style.border = '';
-            weather.style.border = '2px solid white';
+            weather.style.border = '2px solid #16c79a';
             clock.style.border = ''
             } else if (tab === notes){
                 calculator.style.border = '';
-                notes.style.border = '2px solid white';
+                notes.style.border = '2px solid #16c79a';
                 weather.style.border = '';
                 clock.style.border = ''
             }
@@ -574,7 +574,7 @@ clockAlarmSetButton.addEventListener('click', ()=> {
     } else {
         clockEndAlarm.style.display = 'block';
         clockAlarmRecall.style.display = 'block';
-        clockAlarmIcon.style.backgroundColor = 'yellow';
+        clockAlarmIcon.style.backgroundColor = '#16c79a';
     }
 })
 
@@ -623,7 +623,7 @@ clockEndAlarm.addEventListener('click', ()=>{
 
     clockAlarmRecall.style.display = 'none';
     clockEndAlarm.style.display = 'none';
-    clockAlarmIcon.style.backgroundColor = '#bc4555'
+    clockAlarmIcon.style.backgroundColor = '#11698E'
 })
 
 // refactored timer section below ******************************************************************
@@ -693,10 +693,10 @@ clockTimerUp.addEventListener('click', ()=>{
     timerDownReady = false;
 
     clockTimerInputUp.style.display = 'block'
-    clockTimerUp.style.backgroundColor = 'yellow';
+    clockTimerUp.style.backgroundColor = '#16c79a';
     
     clockTimerInputDown.style.display = 'none'
-    clockTimerDown.style.backgroundColor = '#bc4555';
+    clockTimerDown.style.backgroundColor = '#11698E';
 })
 
 let timerDownReady = false
@@ -705,10 +705,10 @@ clockTimerDown.addEventListener('click', ()=>{
     timerUpReady = false;
 
     clockTimerInputUp.style.display = 'none';
-    clockTimerUp.style.backgroundColor = '#bc4555';
+    clockTimerUp.style.backgroundColor = '#11698E';
 
     clockTimerInputDown.style.display = 'block';
-    clockTimerDown.style.backgroundColor = 'yellow';
+    clockTimerDown.style.backgroundColor = '#16c79a';
 })
 
 const showTimerButtons = () => {
@@ -732,7 +732,7 @@ clockTimerStart.addEventListener('click', ()=>{
     }
 
     clockTimerIcon.style.pointerEvents = 'none';
-    clockTimerIcon.style.backgroundColor = 'yellow';
+    clockTimerIcon.style.backgroundColor = '#16c79a';
     if (timerUpReady){
         if (!timerActive){
             timerActive = true;
@@ -832,7 +832,7 @@ clockTimerStop.addEventListener('click', ()=> {
 
 clockTimerEnd.addEventListener('click', ()=> {
     clockTimerIcon.style.pointerEvents = 'auto';
-    clockTimerIcon.style.backgroundColor = '#bc4555';
+    clockTimerIcon.style.backgroundColor = '#11698E';
     hideTimerButtons();
     timerActive = false;
     timerDownActive = false;
@@ -1066,7 +1066,7 @@ pomoStartButton.addEventListener('click', ()=> {
     pomoActive = true;
     pomoWorkIcon.style.display = 'block';
     clockPomoIcon.style.pointerEvents = 'none';
-    clockPomoIcon.style.backgroundColor = 'yellow';
+    clockPomoIcon.style.backgroundColor = '#16c79a';
     hidePomoSettings();
     showPomoRecall();
     
@@ -1123,7 +1123,7 @@ pomoEndButton.addEventListener('click', ()=>{
     pomoWorkIcon.style.display = 'none';
     pomoBreakIcon.style.display = 'none';
     clockPomoIcon.style.pointerEvents = 'auto';
-    clockPomoIcon.style.backgroundColor = '#bc4555';
+    clockPomoIcon.style.backgroundColor = '#11698E';
 })
 
 
@@ -1172,10 +1172,10 @@ let lastClickPlus = false;
 calculator.addEventListener('click', (e)=>{
     if (e.target === plus){
         lastClickPlus = true;
-        plus.style.backgroundColor = 'yellow';
+        plus.style.backgroundColor = '#16c79a';
     } else {
         lastClickPlus = false;
-        plus.style.backgroundColor = '#bc4555';
+        plus.style.backgroundColor = '#11698E';
     }
 })
 
@@ -1183,10 +1183,10 @@ let lastClickMinus = false;
 calculator.addEventListener('click', (e)=>{
     if (e.target === minus){
         lastClickMinus = true;
-        minus.style.backgroundColor = 'yellow';
+        minus.style.backgroundColor = '#16c79a';
     } else {
         lastClickMinus = false;
-        minus.style.backgroundColor = '#bc4555';
+        minus.style.backgroundColor = '#11698E';
     }
 })
 
@@ -1195,10 +1195,10 @@ let lastClickTimes = false;
 calculator.addEventListener('click', (e)=>{
     if (e.target === times){
         lastClickTimes = true;
-        times.style.backgroundColor = 'yellow';
+        times.style.backgroundColor = '#16c79a';
     } else {
         lastClickTimes = false;
-        times.style.backgroundColor = '#bc4555';
+        times.style.backgroundColor = '#11698E';
     }
 })
 
@@ -1206,10 +1206,10 @@ let lastClickDivide = false;
 calculator.addEventListener('click', (e)=>{
     if (e.target === divide){
         lastClickDivide = true;
-        divide.style.backgroundColor = 'yellow';
+        divide.style.backgroundColor = '#16c79a';
     } else {
         lastClickDivide = false;
-        divide.style.backgroundColor = '#bc4555';
+        divide.style.backgroundColor = '#11698E';
     }
 })
 
@@ -1217,10 +1217,10 @@ let lastClickPow = false;
 calculator.addEventListener('click', (e)=>{
     if (e.target === pow){
         lastClickPow = true;
-        pow.style.backgroundColor = 'yellow';
+        pow.style.backgroundColor = '#16c79a';
     } else {
         lastClickPow = false;
-        pow.style.backgroundColor = '#bc4555';
+        pow.style.backgroundColor = '#11698E';
     }
 })
 
@@ -1228,10 +1228,10 @@ let lastClickRemainder = false;
 calculator.addEventListener('click', (e)=>{
     if (e.target === remainder){
         lastClickRemainder = true;
-        remainder.style.backgroundColor = 'yellow';
+        remainder.style.backgroundColor = '#16c79a';
     } else {
         lastClickRemainder = false;
-        remainder.style.backgroundColor = '#bc4555';
+        remainder.style.backgroundColor = '#11698E';
     }
 })
 

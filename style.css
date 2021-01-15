@@ -29,6 +29,7 @@ body {
 }
 
 /* notes header and view notes divs below */
+
 #notesHeader {
     display: flex;
     padding-left: 10px;
@@ -47,6 +48,7 @@ body {
     padding-bottom: 10px;
     padding-left: 5px;
     cursor: pointer;
+    color: #f8f1f1;
 }
 
 /* changed height to vh */
@@ -55,7 +57,7 @@ body {
     height: 38vh;
     width: 99%;
     background-color: #222831;
-    color: #11698E;
+    color: #f8f1f1;
     font-weight: 500;
     font-size: larger;
     overflow: hidden;
@@ -67,19 +69,17 @@ body {
     width: 100px;
     height: 25px;
     padding-bottom: 15px;
-    background-color: #11698E;
-    color: #444444;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 #notesClearNotesButton {
     width: 100px;
     height: 25px;
     padding-bottom: 15px;
-    background-color: #11698E;
-    color: #444444;
     display: none;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 #notesPostNoteButton {
@@ -87,19 +87,32 @@ body {
     padding-bottom: 15px;
     width: 100px;
     height: 25px;
-    background-color: #11698E;
-    color: #444444;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 #notesNotesList {
     display: none;
     height: 81%;
     width: 99%;
-    background-color: #444444;
-    color: #11698E;
+    background-color: #222831;
+    color: #f8f1f1;
     font-size: larger;
     overflow: scroll;
+}
+
+.notesButtons {
+    background-color: #11698E;
+    color: #f8f1f1;
+    border-color: #19456b;
+}
+.notesButtons:hover {
+    background-color: #16c79a;
+}
+
+.notesButtons:active {
+    background-color: #11698E;
+    transform: translateY(2px);
 }
 
 /******************** Weather section below **********************/ 
@@ -265,7 +278,7 @@ body {
     grid-area: 2 / 3 / 4 / 4;
     display: none;
     background-color: #11698E;
-    border: 2px solid black;
+    border:  2px solid #19456b;
     border-radius: 5px;
 }
 
@@ -291,7 +304,7 @@ body {
 
 #date {
     grid-area: 1 / 2 / 1 / 8;
-    color: #11698E;
+    color: #f8f1f1;
     font-size: 16px;
     font-weight: 500;
     align-self: center;
@@ -299,7 +312,7 @@ body {
 
 .clockDigits {
     font-size: 60px;
-    color: #11698E;
+    color: #f8f1f1;
     font-family: 'Orbitron', sans-serif;
     align-self: center;
 }
@@ -334,7 +347,7 @@ body {
     font-size: 20px;
     justify-self: center;
     align-self: end;
-    color: #11698E;
+    color: #f8f1f1;
     font-family: 'Orbitron', sans-serif;
 }
 
@@ -354,7 +367,7 @@ body {
     justify-self: center;
     font-size: 20px;
     align-self: start;
-    color: #11698E;
+    color: #f8f1f1;
     font-family: 'Orbitron', sans-serif;
 }
 #clockAP {
@@ -371,17 +384,17 @@ body {
 .clockIcons {
     background-color: #11698E;
     border-radius: 5px;
-    border: 2px solid black;
+    border: 2px solid #19456b;
     cursor: pointer;
     padding-top: 3px;
 }
 
 .clockIcons:hover {
-    background-color: yellow;
+    background-color: #16c79a;
 }
 
 .clockIcons:active {
-    background-color: #11698E;
+    background-color: #19456b;
     transform: translateY(2px);
 }
 
@@ -408,7 +421,8 @@ body {
     display: none;
     font-family: 'Orbitron', sans-serif;
     background-color: #11698E;
-    border: 2px solid black;
+    border:  2px solid #19456b;
+    color: #f8f1f1;
     border-radius: 5px;
     font-size: 12px;
     align-self: center;
@@ -427,14 +441,16 @@ body {
     grid-area: 7 / 4 / 7 / 6;
     height: 75%;
     width: 75%;
-    border: 2px solid black;
+    border:  2px solid #19456b;
     border-radius: 5px;
+    color: #f8f1f1;
 }
 
 #clockInputTime {
     font-size: 12px;
+    color: #f8f1f1;
     background-color: #11698E;
-    border: 2px solid black;
+    border:  2px solid #19456b;
     border-radius: 5px;
     width: 100%;
     height: 100%;
@@ -444,24 +460,24 @@ body {
 #clockAlarmSetButton {
     grid-area: 5 / 4 / 5 / 6;
     background-color: #11698E;
+    color: #f8f1f1;
     display: none;
     border-radius: 5px;
     width: 50%;
     height: 60%;
     font-size:  16px;
     font-family: 'Orbitron';
-    color: black;
-    border: 2px solid black;
+    border:  2px solid #19456b;
     margin-top: 10px;
     cursor: pointer;
 }
 
 #clockAlarmSetButton:hover {
-    background-color: yellow;
+    background-color: #16c79a;
 }
 
 #clockAlarmSetButton:active {
-    background-color: #11698E;
+    background-color: #19456b;
     transform: translateY(2px);
 }
 
@@ -471,7 +487,7 @@ body {
     margin-left: 30%;
     text-align: center;
     align-self: center;
-    color: #11698E;
+    color: #f8f1f1;
     font-weight: 900;
     font-size: 16px;
 }
@@ -488,15 +504,22 @@ body {
 }
 
 #clockEndAlarm:hover{
-    background-color: yellow;
+    background-color: #16c79a;
+}
+
+#clockEndAlarm:active{
+    background-color: #19456b;
+    transform: translateY(2px);
 }
 
 /* timer settings below */
 .timerSettings {
     font-family: 'Orbitron', sans-serif;
     background-color: #11698E;
-    border: 2px solid black;
+    border:  2px solid #19456b;
+    color: #f8f1f1;
     border-radius: 5px;
+    color: #f8f1f1;
     font-size: 11px;
     align-self: center;
     justify-self: center;
@@ -513,7 +536,7 @@ body {
     grid-area: 5 / 3 / 7 / 4;
     display: none;
     padding: 5px;
-    background-color: yellow;
+    background-color: #16c79a;
     cursor: pointer;
 }
 
@@ -523,7 +546,7 @@ body {
     text-align: center;
     font-size: 16px;
     align-self: center;
-    color: #11698E;
+    color: #f8f1f1;
     font-weight: 900;
 }
 
@@ -536,7 +559,12 @@ body {
 }
 
 #clockTimerStart:hover {
-    background-color: yellow;
+    background-color: #16c79a;
+}
+
+#clockTimerStart:active{
+    background-color: #19456b;
+    transform: translateY(2px);
 }
 
 #clockTimerReset {
@@ -548,7 +576,12 @@ body {
 }
 
 #clockTimerReset:hover {
-    background-color: yellow;
+    background-color: #16c79a;
+}
+
+#clockTimerReset:active{
+    background-color: #19456b;
+    transform: translateY(2px);
 }
 
 #clockTimerStop {
@@ -561,7 +594,12 @@ body {
 }
 
 #clockTimerStop:hover {
-    background-color: yellow;
+    background-color: #16c79a;
+}
+
+#clockTimerStop:active{
+    background-color: #19456b;
+    transform: translateY(2px);
 }
 
 #clockTimerEnd {
@@ -574,7 +612,12 @@ body {
 }
 
 #clockTimerEnd:hover {
-    background-color: yellow;
+    background-color: #16c79a;
+}
+
+#clockTimerEnd:active{
+    background-color: #19456b;
+    transform: translateY(2px);
 }
 
 /* may need to change pad top */
@@ -591,7 +634,7 @@ body {
 #clockTimerDownRecall {
     grid-area: 4 / 4 / 4 / 6;
     display: block;
-    color: #11698E;
+    color: #f8f1f1;
     text-align: center;
     font-size: 16px;
     font-weight: 900;
@@ -623,15 +666,14 @@ body {
 
 .pomoSettingsText {
     font-size: 120%;
-    color: #11698E;
+    color: #f8f1f1;
     text-align: center;
     align-self: center;
 }
 
 .pomoSettingsButtons {
     background-color: #11698E;
-    color: black;
-    border: 2px solid black;
+    border:  2px solid #19456b;
     border-radius: 5px;
     cursor: pointer;
     padding: 5px;
@@ -641,7 +683,12 @@ body {
 }
 
 .pomoSettingsButtons:hover{
-    background-color: yellow;
+    background-color: #16c79a;
+}
+
+.pomoSettingsButtons:active{
+    background-color: #19456b;
+    transform: translateY(2px);
 }
 
 #clockPomoHeader {
@@ -692,13 +739,13 @@ body {
 #pomoStartButton {
     grid-area: 7 / 4 / 7 / 6;
     display: none;
-    color: black;
+    color: #f8f1f1;
     width: 75%;
     padding: 5px;
     cursor: pointer;
     font-family: 'Orbitron', sans-serif;
     background-color: #11698E;
-    border: 2px solid black;
+    border:  2px solid #19456b;
     border-radius: 5px;
     font-size: 11px;
     align-self: center;
@@ -707,7 +754,12 @@ body {
 }
 
 #pomoStartButton:hover{
-    background-color: yellow;
+    background-color: #16c79a;
+}
+
+#pomoStartButton:active{
+    background-color: #19456b;
+    transform: translateY(2px);
 }
 
 #pomoRecall {
@@ -717,7 +769,7 @@ body {
     align-self: center;
     justify-self: center;
     cursor: pointer;
-    color: #11698E;
+    color: #f8f1f1;
     font-size: 16px;
     font-weight: 900;
 }
@@ -729,7 +781,8 @@ body {
     height: 75%;
     width: 75%;
     border-radius: 5px;
-    border: 2px solid black;
+    border:  2px solid #19456b;
+    color: #f8f1f1;
     cursor: pointer;
     background-color: #11698E;
     font-size: 12px;
@@ -740,7 +793,12 @@ body {
 }
 
 #pomoEndButton:hover{
-    background-color: yellow;
+    background-color: #16c79a;
+}
+
+#pomoEndButton:active{
+    background-color: #19456b;
+    transform: translateY(2px);
 }
 
 #pomoWorkIcon {
@@ -749,7 +807,7 @@ body {
     justify-self: center;
     background-color: #11698E;
     border-radius: 5px;
-    border: 2px solid black;
+    border:  2px solid #19456b;
 }
 
 #pomoBreakIcon {
@@ -758,7 +816,7 @@ body {
     justify-self: center;
     background-color: #11698E;
     border-radius: 5px;
-    border: 2px solid black;
+    border:  2px solid #19456b;
 }
 
 
@@ -780,7 +838,7 @@ body {
     background-color: #11698E;
     color: #f8f1f1;
     border: 2px solid;
-    border-color: #f8f1f1;
+    border-color: #19456b;
     font-size: x-large;
     border-radius: 5px;
     cursor: pointer;
@@ -789,6 +847,7 @@ body {
 
 .calcButtons:hover {
     background-color: #16c79a;
+    color: #19456b;
 }
 
 .calcButtons:active {
@@ -804,9 +863,9 @@ body {
     padding-top: 8%;
     padding-right: 5px;
     overflow: hidden;
-    border-top: 2px solid  #16c79a;
-    border-left: 2px solid #16c79a;
-    border-right: 2px solid #16c79a;
+    border-top: 2px solid  #19456b;
+    border-left: 2px solid #19456b;
+    border-right: 2px solid #19456b;
 }
 
 #remainder {
