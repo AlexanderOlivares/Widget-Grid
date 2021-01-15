@@ -10,20 +10,20 @@ function addBorder(tab){
         calculator.style.border = '';
         notes.style.border = '';
         weather.style.border = '';
-        clock.style.border = '2px solid cyan'
+        clock.style.border = '2px solid white'
     } else if (tab === calculator){
-        calculator.style.border = '2px solid cyan';
+        calculator.style.border = '2px solid white';
         notes.style.border = '';
         weather.style.border = '';
         clock.style.border = '';
         } else if (tab === weather){
             calculator.style.border = '';
             notes.style.border = '';
-            weather.style.border = '2px solid cyan';
+            weather.style.border = '2px solid white';
             clock.style.border = ''
             } else if (tab === notes){
                 calculator.style.border = '';
-                notes.style.border = '2px solid cyan';
+                notes.style.border = '2px solid white';
                 weather.style.border = '';
                 clock.style.border = ''
             }
@@ -167,12 +167,14 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
             weatherCurrentDescription.style.fontSize = '18px';
         }
 
+        
         const darkText = () => {
             weather.style.color = "#444444";
             weatherRefreshButton.style.color = "#444444";
             weatherTextBox.style.color = "#444444";
             weatherGoButton.style.color = "#444444";
         }
+        
 
         const lightText = () => {
             weather.style.color = "whitesmoke";
