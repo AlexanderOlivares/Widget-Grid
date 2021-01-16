@@ -10,20 +10,20 @@ function addBorder(tab){
         calculator.style.border = '';
         notes.style.border = '';
         weather.style.border = '';
-        clock.style.border = '2px solid #16c79a'
+        clock.style.border = '2px solid #19456b';
     } else if (tab === calculator){
-        calculator.style.border = '2px solid #16c79a';
+        calculator.style.border = '2px solid #19456b';
         notes.style.border = '';
         weather.style.border = '';
         clock.style.border = '';
         } else if (tab === weather){
             calculator.style.border = '';
             notes.style.border = '';
-            weather.style.border = '2px solid #16c79a';
+            weather.style.border = '2px solid #19456b';
             clock.style.border = ''
             } else if (tab === notes){
                 calculator.style.border = '';
-                notes.style.border = '2px solid #16c79a';
+                notes.style.border = '2px solid #19456b';
                 weather.style.border = '';
                 clock.style.border = ''
             }
@@ -167,7 +167,9 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
             weatherCurrentDescription.style.fontSize = '18px';
         }
 
-        
+       
+        /*
+
         const darkText = () => {
             weather.style.color = "#444444";
             weatherRefreshButton.style.color = "#444444";
@@ -206,7 +208,10 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
             weather.style.backgroundImage = "url('pics/fog_hud.jpeg')";
             darkText();
         }
-        
+       
+        */        
+
+
         weatherFeelsLike.innerHTML = `feels like ${Math.round(feelsLike)}\u00b0`;
         //weatherPrecip.innerHTML = `precipitation ${Math.round(precipitation)}%`;
         weatherWind.innerHTML = `wind ${Math.round(wind)}mph`;
@@ -448,7 +453,6 @@ const todaysDate = () => {
     date.innerHTML = `${dayOfWeek[day]},     ${monthOfYear[month]}      ${todaysDate},      ${year}`;
 }
 
-
 // you guessed it. displays the date at top
 todaysDate();
 
@@ -616,7 +620,6 @@ clockAlarmSetButton.addEventListener('click', ()=>{
 // stops / cancels alarm
 clockEndAlarm.addEventListener('click', ()=>{
     alarmActive = false;
-    clockAlarmIcon.style.pointerEvents = 'auto';
    
     clearInterval(setTheAlarm);
     stopAlarmFunc();
@@ -624,6 +627,7 @@ clockEndAlarm.addEventListener('click', ()=>{
     clockAlarmRecall.style.display = 'none';
     clockEndAlarm.style.display = 'none';
     clockAlarmIcon.style.backgroundColor = '#11698E'
+    clockAlarmIcon.style.pointerEvents = 'auto';
 })
 
 // refactored timer section below ******************************************************************

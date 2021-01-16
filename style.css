@@ -45,10 +45,10 @@ body {
     align-self: center;
     font-size: xx-large;
     font-weight: 900;
-    padding-bottom: 10px;
+    padding-bottom: 2%;
     padding-left: 5px;
     cursor: pointer;
-    color: #f8f1f1;
+    color: #16c79a;
 }
 
 /* changed height to vh */
@@ -66,29 +66,22 @@ body {
 }
 
 #notesViewNotesButton {
-    width: 100px;
-    height: 25px;
-    padding-bottom: 15px;
     cursor: pointer;
-    border-radius: 5px;
+    width: 25%;
+    height: 35px;
 }
 
 #notesClearNotesButton {
-    width: 100px;
-    height: 25px;
-    padding-bottom: 15px;
     display: none;
     cursor: pointer;
-    border-radius: 5px;
+    width: 25%;
+    height: 35px;
 }
 
 #notesPostNoteButton {
-    margin-left: 5px;
-    padding-bottom: 15px;
-    width: 100px;
-    height: 25px;
     cursor: pointer;
-    border-radius: 5px;
+    width: 25%;
+    height: 35px;
 }
 
 #notesNotesList {
@@ -105,9 +98,16 @@ body {
     background-color: #11698E;
     color: #f8f1f1;
     border-color: #19456b;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 7px;
 }
+
 .notesButtons:hover {
     background-color: #16c79a;
+    color: #19456b;
 }
 
 .notesButtons:active {
@@ -121,7 +121,7 @@ body {
     grid-template-columns: 1 fr;
     grid-template-rows: repeat(2 1fr);
     font-family: 'Courier New', Courier, monospace; 
-    color: #444444;
+    color: #f8f1f1;
 }
 
 
@@ -136,8 +136,8 @@ body {
     grid-area: 1 / 1 / 1 / 2;
     cursor: pointer;
     background: transparent;
-    color: #444444;
-    padding-top: 3px;
+    color: #16c79a;
+    padding-top: 5px;
 }
 
 #weatherCurrentCity {
@@ -148,7 +148,7 @@ body {
 
 #weatherEnterCity {
     grid-area: 1 / 4 / 1 / 5;
-    padding-top: 3px;
+    padding-top: 5px;
 }
 
 #weatherTextBox {
@@ -156,45 +156,50 @@ body {
     border-width: 2px;
     width: 95%;
     background: transparent;
-    color: #444444; 
+    color: #f8f1f1;
 }
 
 #weatherGoDiv {
     grid-area: 1 / 5 / 1 / 6;
     width: 75%;
     border: none;
-    padding-top: 3px;
+    padding-top: 5px;
 }
 
 #weatherGoButton {
     background: transparent;
     width: 100%;
-    color: #444444;
-    cursor: pointer;
     border: none;
+    color: #16c79a;
 }
 
 #weatherCurrentTemp {
-   grid-area: 3 / 3 / 3 / 4; 
+   grid-area: 4 / 3 / 4 / 4; 
    font-size: 40px;
-   align-self: center;
+   align-self: end;
+   padding-bottom: 5px;
 }
 
 #weatherCurrentIcon {
     grid-area: 2 / 3 / 2 / 4;
     align-self: center;
+    justify-self: center;
+    border-radius: 5px;
+    border: 2px solid #19456b;
+    margin-top: 80px;
+    margin-bottom: 30px;
+    background-color: #11698E;
 }
 
 #weatherCurrentDescription {
-    grid-area: 4 / 2 / 4 / 5;
+    grid-area: 5 / 2 / 7 / 5;
     font-size: 24px;
-    align-self: flex-start;
-    margin-top: -5px;
+    align-self: center;
 }
 
 #weatherFeelsLike {
-    grid-area: 6 / 3 / 6 / 4;
-    font-size: 12px;
+    grid-area: 7 / 3 / 7 / 4;
+    font-size: 14px;
     align-self: flex-end;
 }
 
@@ -205,13 +210,13 @@ body {
 }
 
 #weatherHumidity {
-    grid-area: 7 / 3 / 7 / 4;
+    grid-area: 8 / 3 / 8 / 4;
     font-size: 12px;
     align-self: flex-end;
 }
 
 #weatherWind {
-    grid-area: 8 / 3 / 8 / 4;
+    grid-area: 9 / 3 / 9 / 4;
     font-size: 12px;
     align-self: flex-end;
 } 
@@ -222,7 +227,7 @@ body {
     grid-template-rows: 10% 40% 15%;
     grid-template-columns: 20% 20% 20% 20% 20%;
     justify-items: center;
-    margin-top: -20px;
+    margin-top: -10px;
 }
 
 #weatherHourOne {
@@ -488,7 +493,7 @@ body {
     text-align: center;
     align-self: center;
     color: #f8f1f1;
-    font-weight: 900;
+    font-weight: 500;
     font-size: 16px;
 }
 
@@ -547,7 +552,7 @@ body {
     font-size: 16px;
     align-self: center;
     color: #f8f1f1;
-    font-weight: 900;
+    font-weight: 500;
 }
 
 #clockTimerStart {
@@ -637,7 +642,7 @@ body {
     color: #f8f1f1;
     text-align: center;
     font-size: 16px;
-    font-weight: 900;
+    font-weight: 500;
     width: 110%;
     align-self: center;
 }
@@ -771,7 +776,7 @@ body {
     cursor: pointer;
     color: #f8f1f1;
     font-size: 16px;
-    font-weight: 900;
+    font-weight: 500;
 }
 
 #pomoEndButton {
@@ -805,6 +810,7 @@ body {
     grid-area: 4 / 8 / 4 / 9;
     display: none;
     justify-self: center;
+    align-self: center;
     background-color: #11698E;
     border-radius: 5px;
     border:  2px solid #19456b;
@@ -814,6 +820,7 @@ body {
     grid-area: 4 / 8 / 4 / 9;
     display: none;
     justify-self: center;
+    align-self: center;
     background-color: #11698E;
     border-radius: 5px;
     border:  2px solid #19456b;
@@ -863,9 +870,10 @@ body {
     padding-top: 8%;
     padding-right: 5px;
     overflow: hidden;
-    border-top: 2px solid  #19456b;
-    border-left: 2px solid #19456b;
-    border-right: 2px solid #19456b;
+    border-top: 2px solid #16c79a; 
+    border-left: 2px solid #16c79a;
+    border-right: 2px solid #16c79a;
+
 }
 
 #remainder {
