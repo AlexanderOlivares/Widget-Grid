@@ -2,6 +2,7 @@ body {
     box-sizing: border-box;
     background-color: #222831;
     width: auto;
+    font-family: 'Montseratt', sans-serif;
 }
 
 .container {
@@ -37,14 +38,15 @@ body {
     gap: 3px;
     background-color: #11698E;
     height: 10%;
+    border-bottom: 3px solid #16c79a;
 }
 
 #notesAddNote {
     height: 25px;
     width: 25px;
     align-self: center;
-    font-size: xx-large;
-    font-weight: 900;
+    font-size: 32px;
+    font-weight: 600;
     padding-bottom: 2%;
     padding-left: 5px;
     cursor: pointer;
@@ -86,6 +88,7 @@ body {
 
 #notesNotesList {
     display: none;
+    font-family: monospace;
     height: 81%;
     width: 99%;
     background-color: #222831;
@@ -120,7 +123,7 @@ body {
     display: grid;
     grid-template-columns: 1 fr;
     grid-template-rows: repeat(2 1fr);
-    font-family: 'Courier New', Courier, monospace; 
+    font-family: 'Montserrat', sans-serif;
     color: #f8f1f1;
 }
 
@@ -227,7 +230,7 @@ body {
     grid-template-rows: 10% 40% 15%;
     grid-template-columns: 20% 20% 20% 20% 20%;
     justify-items: center;
-    margin-top: -10px;
+    margin-top: -20px;
 }
 
 #weatherHourOne {
@@ -285,12 +288,13 @@ body {
     background-color: #11698E;
     border:  2px solid #19456b;
     border-radius: 5px;
+    margin-bottom: 40px;
 }
 
 #weather404Text {
     grid-area: 5 / 2 / 5 / 5;
     display: none;
-    color: #11698E;
+    color: #f8f1f1; 
     font-weight: 500;
 }
 
@@ -304,7 +308,7 @@ body {
     grid-template-columns: 15% 15% 5% 15% 15% 5% 15% 15%;
     align-content: center;
     justify-items: center;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Montseratt', sans-serif;
 }
 
 #date {
@@ -316,9 +320,9 @@ body {
 }
 
 .clockDigits {
-    font-size: 60px;
+    font-size: 100px;
     color: #f8f1f1;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Montseratt', sans-serif;
     align-self: center;
 }
 
@@ -329,7 +333,7 @@ body {
 
 #clockDigit2 {
     grid-area: 2 / 2 / 4 / 3;
-    justify-self: end;
+    justify-self: center;
 }
 
 #clockDigitHyphon {
@@ -340,20 +344,20 @@ body {
 
 #clockDigit3 {
     grid-area: 2 / 4 / 4 / 5;
-    justify-self: end;
+    justify-self: center;
 }
 
 #clockDigit4 {
     grid-area: 2 / 5 / 4 / 6;
-    justify-self: end;
+    justify-self: center;
 }
 
 .clockDigitSecs {
-    font-size: 20px;
+    font-size: 25px;
     justify-self: center;
     align-self: end;
     color: #f8f1f1;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Montseratt', sans-serif;
 }
 
 #clockDigitSecs1 {
@@ -373,7 +377,7 @@ body {
     font-size: 20px;
     align-self: start;
     color: #f8f1f1;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Montseratt', sans-serif;
 }
 #clockAP {
     grid-area: 3 / 7 / 3 / 8;
@@ -383,7 +387,7 @@ body {
 #clockM {
     grid-area: 3 / 7 / 3 / 8;
     justify-self: start;
-    padding-left: 16px;
+    padding-left: 20px;
 }
 
 .clockIcons {
@@ -424,7 +428,7 @@ body {
 
 .alarmSettings {
     display: none;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Montseratt', sans-serif;
     background-color: #11698E;
     border:  2px solid #19456b;
     color: #f8f1f1;
@@ -471,7 +475,7 @@ body {
     width: 50%;
     height: 60%;
     font-size:  16px;
-    font-family: 'Orbitron';
+    font-family: 'Montseratt';
     border:  2px solid #19456b;
     margin-top: 10px;
     cursor: pointer;
@@ -519,7 +523,7 @@ body {
 
 /* timer settings below */
 .timerSettings {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Montseratt', sans-serif;
     background-color: #11698E;
     border:  2px solid #19456b;
     color: #f8f1f1;
@@ -748,7 +752,7 @@ body {
     width: 75%;
     padding: 5px;
     cursor: pointer;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Montseratt', sans-serif;
     background-color: #11698E;
     border:  2px solid #19456b;
     border-radius: 5px;
@@ -782,7 +786,7 @@ body {
 #pomoEndButton {
     grid-area: 6 / 7 / 6 / 8;
     display: none;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Montseratt', sans-serif;
     height: 75%;
     width: 75%;
     border-radius: 5px;
@@ -830,7 +834,6 @@ body {
 /* ***** calculator section below ******************** */
 
 #calculator {
-    font-family: 'orbitron';
     display: grid;
     grid-gap: 3px;
     grid-template-rows: repeat(7, 45px);

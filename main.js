@@ -139,6 +139,7 @@ let weatherTextBox = document.getElementById('weatherTextBox');
 let weatherError = false;
 const weatherDisplay404 = () => {
         weatherEnterCity.style.display = 'none';
+        weatherCurrentCity.style.display = 'none';
         document.getElementById('weather404Icon').style.display = 'block';
         document.getElementById('weather404Text').style.display = 'block';
 }
