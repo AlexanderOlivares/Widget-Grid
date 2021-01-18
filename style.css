@@ -16,19 +16,6 @@ body {
     width: auto;
 }
 
-.clock {
-}
-
-.calculator {
-}
-
-.weather {
-    background-size: cover;
-}
-
-.notes {
-}
-
 /* notes header and view notes divs below */
 
 #notesHeader {
@@ -188,7 +175,7 @@ body {
     align-self: center;
     justify-self: center;
     border-radius: 5px;
-    border: 2px solid #19456b;
+    border: 2px solid #16c79a;
     margin-top: 80px;
     margin-bottom: 30px;
     background-color: #11698E;
@@ -231,6 +218,8 @@ body {
     grid-template-columns: 20% 20% 20% 20% 20%;
     justify-items: center;
     margin-top: -20px;
+    position: relative;
+    z-index: 100;
 }
 
 #weatherHourOne {
@@ -276,6 +265,16 @@ body {
     grid-area: 3 / 4 / 3 / 5;
     font-size: 16px;
     padding-top: 5px;
+}
+
+#weatherHourlyBackground {
+    grid-area: 1 / 2 / 4 / 5;
+    background-color: #11698E; 
+    width: 100%;
+    z-index: -100;
+    border: 2px solid #16c79a;
+    margin: -10px;
+    padding: 3px;
 }
 
 .weather404 {
@@ -338,7 +337,6 @@ body {
 
 #clockDigitHyphon {
     grid-area: 2 / 3 / 4 / 4;
-    padding-left: 5px;
     padding-bottom: 3px;
 }
 
@@ -393,7 +391,7 @@ body {
 .clockIcons {
     background-color: #11698E;
     border-radius: 5px;
-    border: 2px solid #19456b;
+    border: 2px solid #16c79a; 
     cursor: pointer;
     padding-top: 3px;
 }
@@ -868,7 +866,7 @@ body {
 #calcMainInput {
     grid-area: 1 / 1 / 3 / 6;
     color: #f8f1f1;
-    font-size: 45px;
+    font-size: 40px;
     text-align: right;
     padding-top: 8%;
     padding-right: 5px;
@@ -879,81 +877,12 @@ body {
 
 }
 
-#remainder {
-    grid-area: ;    
-}
-
-#round {
-    grid-area: ;
-}
-
-#pi {
-    grid-area: ;    
-}
-
 #allClear{
    grid-area: 3 / 4 / 3 / 6; 
 }
 
-#seven{
-   grid-area: ; 
-}
-
-#eight{
-   grid-area: ; 
-}
-
-#nine{
-   grid-area: ; 
-}
-
 #sqrt{
-   grid-area: ; 
    padding-top: 10%;
-}
-
-#pow{
-   grid-area: ; 
-}
-
-#four{
-   grid-area: ; 
-}
-
-#five{
-   grid-area: ; 
-}
-
-#six{
-   grid-area: ; 
-}
-
-#divide{
-   grid-area: ; 
-}
-
-#minus{
-   grid-area: ; 
-}
-
-#one{
-   grid-area: ; 
-}
-
-#two{
-   grid-area: ; 
-}
-
-#three{
-   grid-area: ; 
-}
-
-#times{
-   grid-area: ; 
-}
-
-#plus{
-   grid-area: ; 
 }
 
 #zero{

@@ -1,5 +1,4 @@
 
-
 let clock = document.getElementById('clock');
 let calculator = document.getElementById('calculator');
 let weather = document.getElementById('weather');
@@ -150,14 +149,12 @@ const weatherGetCurrentsFunc = (lat = 30.382580, lon = -97.710243) => {
 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
     .then(response=> response.json())
     .then(data=> {
-        //console.log(data);
         let temp = data.current.temp;
         let icon = data.current.weather[0]['icon'];
         let description = data.current.weather[0]['description'];
         let feelsLike = data.current.feels_like;
         let wind = data.current.wind_speed;
         let humidity = data.current.humidity;
-        let precipitation = data.minutely[0]['precipitation'];
 
         weatherCurrentTemp.innerHTML = `${Math.round(temp)}\u00b0`;
         weatherCurrentIcon.innerHTML =  `<img src="http://openweathermap.org/img/wn/${icon}@2x.png">`
@@ -168,53 +165,7 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
             weatherCurrentDescription.style.fontSize = '18px';
         }
 
-       
-        /*
-
-        const darkText = () => {
-            weather.style.color = "#444444";
-            weatherRefreshButton.style.color = "#444444";
-            weatherTextBox.style.color = "#444444";
-            weatherGoButton.style.color = "#444444";
-        }
-        
-
-        const lightText = () => {
-            weather.style.color = "whitesmoke";
-            weatherRefreshButton.style.color = "whitesmoke";
-            weatherTextBox.style.color = "whitesmoke";
-            weatherGoButton.style.color = "whitesmoke";
-        }
-
-        // injects pictures and font color based on conditions
-        if (description.includes('clear')){
-            weather.style.backgroundImage = "url('pics/clearsky_hud.jpg')";
-            darkText();
-        } else if (description.includes('cloud')){
-            weather.style.backgroundImage= "url('pics/clouds_hud.jpg')";
-            lightText();
-        } else if (description.includes('rain') || description.includes('drizzle')){
-            weather.style.backgroundImage = "url('pics/rain_hud.jpg')";
-            lightText();
-        } else if (description.includes('storm')){
-            weather.style.backgroundImage = "url('pics/storm_hud.jpg')";
-            lightText();
-        } else if (description.includes('snow')){
-            weather.style.backgroundImage = "url('pics/snow_hud.jpg')";
-            lightText();
-        } else if (description.includes('mist')){
-            weather.style.backgroundImage = "url('pics/mist_hud.jpg')";
-            lightText();
-        } else if (description.includes('fog')){
-            weather.style.backgroundImage = "url('pics/fog_hud.jpeg')";
-            darkText();
-        }
-       
-        */        
-
-
         weatherFeelsLike.innerHTML = `feels like ${Math.round(feelsLike)}\u00b0`;
-        //weatherPrecip.innerHTML = `precipitation ${Math.round(precipitation)}%`;
         weatherWind.innerHTML = `wind ${Math.round(wind)}mph`;
         weatherHumididty.innerHTML = `humidity ${humidity}%`;
 
@@ -383,12 +334,12 @@ window.setInterval(()=> {
         getCitySearchCurrentsFunc();
         todaysDate();
     }
-    console.log([now, nextHour]);
 }, 60000)
 
 // runs on page load to get austin weather
 weatherGetCurrentsFunc();
 
+document.getElementById('weatherHourlyBackground').innerHTML = ' ';
 
 
 
@@ -475,7 +426,6 @@ window.setInterval(()=>{
     let minArr = ('' + min).split('');
     let secArr = ('' + sec).split('');
 
-    //console.log(hourArr) 
     if (hourArr.length === 1 && hour === 0){
         clockDigit1.innerHTML = '1';
         clockDigit2.innerHTML = '2';
@@ -646,10 +596,8 @@ clockTimerIcon.addEventListener('click', ()=> {
     pomoEndButton.style.display = 'none';
     if (timerUpReady){
         showTimerSettings();
-        console.log('t up ready')
     }
     if (timerDownReady){
-        console.log('t down ready')
         hideSettingsIconsFunc();
         clockTimerHeader.style.display = 'block';
         clockTimerUp.style.display = 'block';
@@ -774,7 +722,6 @@ clockTimerStart.addEventListener('click', ()=>{
 let downPauseAfterReset = false;
 clockTimerStop.addEventListener('click', ()=> {
     if (timerUpReady){
-        console.log('up code here');
         let a = timeElapsed.split(':')
         if (timerActive){
             timerActive = false;
@@ -799,7 +746,6 @@ clockTimerStop.addEventListener('click', ()=> {
             countDownFunc(+a[0], +a[1], +a[2] - 1);
             clockTimerStop.innerHTML = 'stop';
         } else if (!timerDownActive && timerDownWasReset){
-            console.log('n the right place');
             let hour = document.getElementById('timerDownHourReset');
             let min = document.getElementById('timerDownMinReset');
             let sec = document.getElementById('timerDownSecReset');
@@ -808,7 +754,6 @@ clockTimerStop.addEventListener('click', ()=> {
             clockTimerDownRecall.style.display = 'block';
             clockTimerStop.innerHTML = 'stop';
         } else if (timerDownActive && timerDownWasReset){
-            console.log('edge case here')
             timeRemaining = clockTimerDownRecall.innerHTML;
             clearInterval(startDownTimer);
             clockTimerDownRecall.innerHTML = timeRemaining;
@@ -823,7 +768,6 @@ clockTimerStop.addEventListener('click', ()=> {
             let a = timeRemaining.split(':');
             timerDownActive = true;
             countDownFunc(+a[0], +a[1], +a[2] - 1);
-            console.log('subtracting here?')
             clockTimerStop.innerHTML = 'stop';
         } else if (timerDownActive){
             timeRemaining = clockTimerDownRecall.innerHTML;
@@ -1106,7 +1050,6 @@ pomoStartButton.addEventListener('click', ()=> {
                 min--;
                 sec = 59;
             }
-            console.log(pomoActive);
             let a = [min, sec];
             if (('' + min).length === 1){
                 a[0] = `0${a[0]}`;
@@ -1167,7 +1110,6 @@ let lastClickEquals = false;
 calculator.addEventListener('click', (e)=>{
     if (e.target === equal){
         lastClickEquals = true;
-        console.log(lastClickEquals)
     } else {
         lastClickEquals = false;
     }
@@ -1282,7 +1224,6 @@ const assignInputChar = (char) => {
 let eq = calcMainInput.innerHTML;
 const compute = () => {
     eq = calcMainInput.innerHTML;
-    console.log(eq);
     if (eq.includes('x')){
         eq = eq.replaceAll('x', '*');
     }
@@ -1295,7 +1236,6 @@ const compute = () => {
     if (eq.includes('π')){
         eq = eq.replaceAll('π', 'Math.PI')
     }
-    console.log(eq);
     calcMainInput.innerHTML = eval(eq);
 }
 
