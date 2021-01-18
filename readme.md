@@ -13,5 +13,4 @@
 3. calculator 
 4. notepad
 ---
-the perfect tool to have on secondary monitor when doing coding challenges!
-**bulit with vanilla javascript** 
+the perfect tool to have open on your secondary monitor when doing coding challenges! **bulit with vanilla javascript** 
