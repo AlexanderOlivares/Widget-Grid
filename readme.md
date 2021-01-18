@@ -1,6 +1,7 @@
 # WidgetsQuad 
 ## a four-in-one widget app
 ---
+**the squad:**
 1. digital clock
 * pomodoro timer
 * set alarm
