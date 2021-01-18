@@ -87,7 +87,7 @@ body {
 .notesButtons {
     background-color: #11698E;
     color: #f8f1f1;
-    border-color: #19456b;
+    border-color: #16c79a; 
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
@@ -669,8 +669,6 @@ body {
 
 /* *********** pomo section below *************** */
 
-
-
 .pomoSettingsText {
     font-size: 120%;
     color: #f8f1f1;
@@ -829,7 +827,7 @@ body {
 }
 
 
-/* ***** calculator section below ******************** */
+/* ***** calculator section below ******************************* */
 
 #calculator {
     display: grid;
