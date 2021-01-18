@@ -14,4 +14,4 @@
 4. notepad
 ---
 the perfect tool to have on secondary monitor when doing coding challenges!
-** bulit with vanilla javascript ** 
+**bulit with vanilla javascript** 
