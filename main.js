@@ -115,10 +115,6 @@ notesClearNotesButton.addEventListener('click', ()=> {
 })
 
 
-
-
-
-
 // ****************** weather section below ************************
 import cities from './cityList.js'; 
 
@@ -339,9 +335,8 @@ window.setInterval(()=> {
 // runs on page load to get austin weather
 weatherGetCurrentsFunc();
 
+// populates the blue background for hourly wx 
 document.getElementById('weatherHourlyBackground').innerHTML = ' ';
-
-
 
 
 // ****************** clock section below *********************
@@ -519,7 +514,6 @@ clockAlarmSetButton.addEventListener('click', ()=> {
         clockAlarmRecall.innerHTML = `0${time.join(':')} ${m}`;
     }
    
-    //should work with the {1,2} investigate further
     let regValidateTime = /\d{1,2}:\d{2}\s[apAP]M/i;
     
     if (!clockAlarmRecall.innerHTML.match(regValidateTime)){
@@ -533,7 +527,6 @@ clockAlarmSetButton.addEventListener('click', ()=> {
     }
 })
 
-// POM CODE NEEDS TO BE ADDED HERE IF POMO ACTIVE AND ALARM SETTINGS COVER IT 
 // sets the alarm. setInterveral checks for alarm time to match real time.  
 let setTheAlarm;
 clockAlarmSetButton.addEventListener('click', ()=>{
@@ -581,7 +574,7 @@ clockEndAlarm.addEventListener('click', ()=>{
     clockAlarmIcon.style.pointerEvents = 'auto';
 })
 
-// refactored timer section below ******************************************************************
+//  timer section below ******************************************************************
 let timerDownHour = document.getElementById('timerDownHour');
 let timerDownMin = document.getElementById('timerDownMin');
 let timerDownSec = document.getElementById('timerDownSec');
@@ -718,7 +711,6 @@ clockTimerStart.addEventListener('click', ()=>{
     }
 })
 
-// still need to add reset condiions
 let downPauseAfterReset = false;
 clockTimerStop.addEventListener('click', ()=> {
     if (timerUpReady){
