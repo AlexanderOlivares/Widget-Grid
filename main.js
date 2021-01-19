@@ -941,6 +941,9 @@ clockPomoIcon.addEventListener('click', ()=> {
     showPomoSettings();
     if (timerActive || timerDownActive){
         hideTimerButtons();
+    } 
+    if (alarmActive){
+        clockEndAlarm.style.display = 'none';
     }
 })
 

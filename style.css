@@ -10,7 +10,7 @@ body {
     padding: 3px;
     grid-template-columns: repeat(2, 49vw);
     grid-template-rows:  repeat(2, 49vh);
-    grid-gap: 5px;
+    grid-gap: 3px;
     align-content: center;
     justify-content: center;
     width: auto;
@@ -56,21 +56,15 @@ body {
 
 #notesViewNotesButton {
     cursor: pointer;
-    width: 25%;
-    height: 35px;
 }
 
 #notesClearNotesButton {
     display: none;
     cursor: pointer;
-    width: 25%;
-    height: 35px;
 }
 
 #notesPostNoteButton {
     cursor: pointer;
-    width: 25%;
-    height: 35px;
 }
 
 #notesNotesList {
@@ -90,9 +84,11 @@ body {
     border-color: #16c79a; 
     cursor: pointer;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 12px;
     margin-left: 10px;
-    margin-top: 7px;
+    margin-top: 5px;
+    width: 25%;
+    height: 35px;
 }
 
 .notesButtons:hover {
@@ -838,6 +834,7 @@ body {
     align-content: center;
     justify-content: center;
     padding-bottom: 5%;
+    min-width: 260px;
 }
 
 .calcButtons {
@@ -896,8 +893,62 @@ body {
 }
 
 
+@media all and (max-width: 670px){
+    #date {
+        grid-area: 1 / 2 / 1 / 8;
+        color: #f8f1f1;
+        font-size: 12px;
+        font-weight: 500;
+        align-self: center;
+    }
+    
+    .clockDigits {
+        font-size: 65px;
+        color: #f8f1f1;
+        font-family: 'Montseratt', sans-serif;
+        align-self: center;
+    }
+}
 
+@media all and (max-width: 590px){
+    #clockEndAlarm {
+        font-size: 9px;
+    }
+    
+    #clockAlarmRecall {
+        font-size: 12px;
+    }
 
+    #clockTimerEnd{
+        font-size: 8px;
+    }
+
+    #clockTimerStop{
+        font-size: 8px;
+    }
+
+    #clockTimerReset{
+        font-size: 8px;
+    }
+
+    #clockTimerDownRecall{
+        font-size: 12px;
+    }
+
+    #clockTimerInputUp{
+        font-size: 12px;
+    }
+
+    #pomoRecall{
+        font-size: 12px;
+        padding-right: 5px;
+    }
+
+    #pomoEndButton{
+        font-size: 8px;
+    }
+
+}
 
 
 
