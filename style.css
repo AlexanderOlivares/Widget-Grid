@@ -950,9 +950,153 @@ body {
 
 }
 
+@media all and (max-height: 900px){
+    #notesTextBox {
+        height: 35vh;
+    }
+    .notesButtons {
+        background-color: #11698E;
+        color: #f8f1f1;
+        border-color: #16c79a; 
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 12px;
+        margin-left: 10px;
+        margin-top: 5px;
+        width: 20%;
+        height: 35px;
+    }
+    #weatherCurrentTemp {
+        grid-area: 4 / 3 / 4 / 4; 
+        font-size: 25px;
+        align-self: end;
+     }
+     
+     #weatherCurrentIcon {
+         grid-area: 2 / 3 / 2 / 4;
+         align-self: center;
+         justify-self: center;
+         border-radius: 5px;
+         border: 2px solid #16c79a;
+         margin-top: 45px;
+         margin-bottom: -15px;
+         background-color: #11698E;
+     }
+     
+     #weatherCurrentDescription {
+         grid-area: 5 / 2 / 7 / 5;
+         font-size: 18px;
+         align-self: center;
+     }
+     
+     #weatherFeelsLike {
+         grid-area: 7 / 3 / 7 / 4;
+         font-size: 12px;
+         align-self: flex-end;
+         padding: 3px;
+     }
+     
+     #weatherHumidity {
+         grid-area: 8 / 3 / 8 / 4;
+         font-size: 12px;
+         align-self: flex-end;
+         padding: 3px;
+     }
+     
+     #weatherWind {
+         grid-area: 9 / 3 / 9 / 4;
+         font-size: 12px;
+         align-self: flex-end;
+         padding: 3px;
+     } 
+}
 
+@media all and (max-height: 700px){
+    #calculator {
+        display: grid;
+        grid-gap: 3px;
+        grid-template-rows: repeat(7, 35px);
+        grid-template-columns: repeat(5, 35px);
+        text-align: center;
+        align-content: center;
+        justify-content: center;
+        padding-top: 5%;
+        min-width: 260px;
+    } 
 
+    .calcButtons{
+        font-size: large;
+        padding-top: 5px;
+    }
+     
+     #weatherCurrentIcon {
+         grid-area: 2 / 3 / 2 / 4;
+         align-self: center;
+         justify-self: center;
+         border-radius: 5px;
+         border: 2px solid #16c79a;
+         margin-top: 25px;
+         margin-bottom: -15px;
+         background-color: #11698E;
+     }
+     
+     #weatherHourOne {
+        grid-area: 1 / 2 / 1 / 3;
+        font-size: 12px;
+    }
+    
+    #weatherHourTwo {
+        grid-area: 1 / 3 / 1 / 4;
+        font-size: 12px;
+    }
+    
+    #weatherHourThree {
+        grid-area: 1 / 4 / 1 / 5;
+        font-size: 12px;
+    }
 
+    #weatherTempOne {
+        grid-area: 3 / 2 / 3 / 3;
+        font-size: 12px;
+        padding-top: 5px;
+    }
+    
+    #weatherTempTwo {
+        grid-area: 3 / 3 / 3 / 4;
+        font-size: 12px;
+        padding-top: 5px;
+    }
+    
+    #weatherTempThree {
+        grid-area: 3 / 4 / 3 / 5;
+        font-size: 12px;
+        padding-top: 5px;
+    }
+    
+    #weatherHourlyBackground {
+        grid-area: 1 / 2 / 4 / 5;
+        background-color: #11698E; 
+        width: 100%;
+        z-index: -100;
+        border: 2px solid #16c79a;
+        padding: 3px;
+    }
+}
 
+@media all and (max-height: 655px){
+    #weatherHourly {
+        display: none;
+    }
 
+    #notesTextBox {
+        position: relative;
+        height: 35vh;
+    }
+}
+
+@media all and (max-height: 500px){
+    #date{
+        display: none;
+    }
+}
 
