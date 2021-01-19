@@ -80,6 +80,7 @@ body {
 
 .notesButtons {
     background-color: #11698E;
+    font-family: 'Montseratt', sans-serif;
     color: #f8f1f1;
     border-color: #16c79a; 
     cursor: pointer;
@@ -911,6 +912,10 @@ body {
 }
 
 @media all and (max-width: 590px){
+    .notesButtons{
+        font-size: 9px;
+    }
+
     #clockEndAlarm {
         font-size: 9px;
     }
