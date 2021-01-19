@@ -912,9 +912,6 @@ body {
 }
 
 @media all and (max-width: 590px){
-    .notesButtons{
-        font-size: 9px;
-    }
 
     #clockEndAlarm {
         font-size: 9px;
@@ -1097,6 +1094,13 @@ body {
         position: relative;
         height: 35vh;
     }
+    
+    .notesButtons{
+        font-size: 9px;
+        height: 25px;
+        width: 15%;
+    }
+
 }
 
 @media all and (max-height: 500px){
