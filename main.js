@@ -116,9 +116,7 @@ notesClearNotesButton.addEventListener('click', ()=> {
 
 
 // ****************** weather section below ************************
-import apiKey from './apiKey.js';
 import cities from './cityList.js'; 
-const API_KEY = Object.values(apiKey)[0]
 
 let weatherRefreshButton = document.getElementById('weatherRefreshButton');
 let weatherCurrentCity = document.getElementById('weatherCurrentCity');
@@ -141,10 +139,9 @@ const weatherDisplay404 = () => {
         document.getElementById('weather404Text').style.display = 'block';
 }
 
-
 // uses the openweathermap 1call api with coordinates. defaults to austin coords
 const weatherGetCurrentsFunc = (lat = 30.382580, lon = -97.710243) => {
-fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`)
+fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
     .then(response=> response.json())
     .then(data=> {
         let temp = data.current.temp;
@@ -285,7 +282,7 @@ const getCitySearchCurrentsFunc = () => {
     if (status === ''){
         status = weatherCurrentCity.innerHTML;
     }
-    fetch(`https://api.openweathermap.org/data/2.5/weather?id=${nameMatchFunc(status)}&units=imperial&appid=${API_KEY}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?id=${nameMatchFunc(status)}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
         .then(response=> response.json())
         .then(data=> {
             let lat = data.coord['lat'];
