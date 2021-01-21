@@ -1198,9 +1198,16 @@ calculator.addEventListener('click', (e)=>{
 calculator.addEventListener('click', (e)=>{
     let input = calcMainInput.innerHTML;
     console.log(input[input.length - 1])
+    console.log(e.target);
     if (e.target === decimal && input[input.length - 1] === '.'){
         decimal.style.pointerEvents = 'none';
-    } 
+    } else if (e.target === calculator && input[input.length - 1] === '.') {
+        decimal.style.pointerEvents = 'none';
+        plus.style.pointerEvents = 'auto';
+        times.style.pointerEvents = 'auto';
+        minus.style.pointerEvents = 'auto';
+        divide.style.pointerEvents = 'auto';
+    }
 })
 
 const refreshOutput = () => calcMainInput.innerHTML === '0' ? calcMainInput.innerHTML = '' : calcMainInput; 
