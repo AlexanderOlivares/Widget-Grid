@@ -81,13 +81,13 @@ notesAddNote.addEventListener('click', ()=> {
     notesTextBox.value = '';
 })
 
-// function adds notes to notesNotesList div 
+// adds notes to notesNotesList div 
 const notesViewNotesFunc = () => {
     let a = Object.values(localStorage);
     return a.map(e=> e + '</br></br>').join(' ');
 }
 
-//shows you list of saved notes
+//shows  list of saved notes
 notesViewNotesButton.addEventListener('click', ()=> {
     notesClearNotesButton.style.display = 'inline';
     if (notesTextBox.style.display !== 'none'){
@@ -116,7 +116,9 @@ notesClearNotesButton.addEventListener('click', ()=> {
 
 
 // ****************** weather section below ************************
+import apiKey from './apiKey.js';
 import cities from './cityList.js'; 
+const API_KEY = Object.values(apiKey)[0]
 
 let weatherRefreshButton = document.getElementById('weatherRefreshButton');
 let weatherCurrentCity = document.getElementById('weatherCurrentCity');
@@ -124,7 +126,6 @@ let weatherGoButton = document.getElementById('weatherGoButton');
 let weatherCurrentTemp = document.getElementById('weatherCurrentTemp');
 let weatherCurrentIcon = document.getElementById('weatherCurrentIcon');
 let weatherCurrentDescription = document.getElementById('weatherCurrentDescription');
-let weatherPrecip = document.getElementById('weatherPrecip');
 let weatherFeelsLike = document.getElementById('weatherFeelsLike');
 let weatherWind = document.getElementById('weatherWind');
 let weatherHumididty = document.getElementById('weatherHumidity');
@@ -135,6 +136,7 @@ let weatherError = false;
 const weatherDisplay404 = () => {
         weatherEnterCity.style.display = 'none';
         weatherCurrentCity.style.display = 'none';
+        weatherHourlyBackground.style.display = 'none';
         document.getElementById('weather404Icon').style.display = 'block';
         document.getElementById('weather404Text').style.display = 'block';
 }
@@ -142,7 +144,7 @@ const weatherDisplay404 = () => {
 
 // uses the openweathermap 1call api with coordinates. defaults to austin coords
 const weatherGetCurrentsFunc = (lat = 30.382580, lon = -97.710243) => {
-fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
+fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`)
     .then(response=> response.json())
     .then(data=> {
         let temp = data.current.temp;
@@ -162,8 +164,8 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         }
 
         weatherFeelsLike.innerHTML = `feels like ${Math.round(feelsLike)}\u00b0`;
-        weatherWind.innerHTML = `wind ${Math.round(wind)}mph`;
         weatherHumididty.innerHTML = `humidity ${humidity}%`;
+        weatherWind.innerHTML = `wind ${Math.round(wind)}mph`;
 
         // below deals with assigning am/pm and hourly data
         let timestamp = data.hourly[0]['dt'];
@@ -221,25 +223,24 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&uni
         }
 
         let hour1Icon = data.hourly[0].weather[0]['icon'];
-        weatherIconOne.innerHTML = `<img src="http://openweathermap.org/img/wn/${hour1Icon}.png">`; 
+            weatherIconOne.innerHTML = `<img src="http://openweathermap.org/img/wn/${hour1Icon}.png">`; 
 
         let hour2Icon = data.hourly[1].weather[0]['icon'];
-        weatherIconTwo.innerHTML =  `<img src="http://openweathermap.org/img/wn/${hour2Icon}.png">`; 
+            weatherIconTwo.innerHTML =  `<img src="http://openweathermap.org/img/wn/${hour2Icon}.png">`; 
         
         let hour3Icon =  data.hourly[2].weather[0]['icon'];
-        weatherIconThree.innerHTML = `<img src="http://openweathermap.org/img/wn/${hour3Icon}.png">`; 
+            weatherIconThree.innerHTML = `<img src="http://openweathermap.org/img/wn/${hour3Icon}.png">`; 
 
         let hour1Temp = Math.round(data.hourly[0]['temp']);
-        weatherTempOne.innerHTML = `${hour1Temp}\u00b0`;
+            weatherTempOne.innerHTML = `${hour1Temp}\u00b0`;
 
         let hour2Temp = Math.round(data.hourly[1]['temp']);
-        weatherTempTwo.innerHTML = `${hour2Temp}\u00b0`;
+            weatherTempTwo.innerHTML = `${hour2Temp}\u00b0`;
        
         let hour3Temp = Math.round(data.hourly[2]['temp']);
-        weatherTempThree.innerHTML = `${hour3Temp}\u00b0`;
+            weatherTempThree.innerHTML = `${hour3Temp}\u00b0`;
     })
     .catch(errror=> {
-        //alert('could not load weather data');
         weatherDisplay404();
         console.error('the 1call api to via openweathermap failed. check coords or api key');
     })
@@ -267,8 +268,10 @@ const nameMatchFunc = (userInput) => {
 
     // Uses first match found in cityList. Can give problems with duplicate city names
     id = cityMatches[0];
+    
     // assigns the the userInput to the current city div 
     weatherCurrentCity.innerHTML = cityString;
+    
     return id;
 }
 
@@ -282,7 +285,7 @@ const getCitySearchCurrentsFunc = () => {
     if (status === ''){
         status = weatherCurrentCity.innerHTML;
     }
-    fetch(`https://api.openweathermap.org/data/2.5/weather?id=${nameMatchFunc(status)}&units=imperial&appid=89487f45423ccbfbdd6e1ea526f5177f`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?id=${nameMatchFunc(status)}&units=imperial&appid=${API_KEY}`)
         .then(response=> response.json())
         .then(data=> {
             let lat = data.coord['lat'];
@@ -347,11 +350,9 @@ const stopAlarmFunc = () => alarm.pause();
 
 let timerDownSound = new Audio('sounds/timerDownSound.mp3');
 const startTimerDownAudio = () => timerDownSound.play();
-const stopTimerDownAudio = () => timerDownSound.pause();
 
 let pomoSound = new Audio('sounds/pomoTimerSound.mp3');
 const startPomoAudio = () => pomoSound.play();
-const stopPomoAudio = () => pomoSound.pause();
 
 let clockDigit1 = document.getElementById('clockDigit1');
 let clockDigit2 = document.getElementById('clockDigit2');
@@ -365,7 +366,6 @@ let clockAlarmIcon = document.getElementById('clockAlarmIcon');
 let clockTimerIcon = document.getElementById('clockTimerIcon');
 let clockPomoIcon = document.getElementById('clockPomoIcon');
 
-//let clockAlarmSettings = document.getElementById('clockAlarmSettings');
 let clockInputTime = document.getElementById('clockInputTime');
 let clockAlarmSetButton = document.getElementById('clockAlarmSetButton');
 let clockAlarmRecall = document.getElementById('clockAlarmRecall');
@@ -399,10 +399,9 @@ const todaysDate = () => {
     let monthOfYear = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
     date.innerHTML = `${dayOfWeek[day]},     ${monthOfYear[month]}      ${todaysDate},      ${year}`;
 }
-
-// you guessed it. displays the date at top
 todaysDate();
 
+// calculates the current time
 window.setInterval(()=>{
     let date = new Date();
     let hour = date.getHours();
@@ -546,18 +545,17 @@ clockAlarmSetButton.addEventListener('click', ()=>{
     let count = 0;
    
     setTheAlarm = setInterval(() => {
-    let alarm = false;
+        let alarm = false;
 
-    if (count === 0 && a[0] === '0' && clockDigit1.innerHTML === '' && a[1] === clockDigit2.innerHTML && a[3] === clockDigit3.innerHTML && a[4] === clockDigit4.innerHTML && a[a.length-2] === clockAP.innerHTML){
-        alarm = true;
-    } else if (count === 0 && a[0] === clockDigit1.innerHTML && a[1] === clockDigit2.innerHTML && a[3] === clockDigit3.innerHTML && a[4] === clockDigit4.innerHTML && a[a.length-2] === clockAP.innerHTML){
-        alarm = true;
-    }
-    if (alarm === true && count === 0){
-       clockAlarmFunc();
-       count++;
-    }
-
+        if (count === 0 && a[0] === '0' && clockDigit1.innerHTML === '' && a[1] === clockDigit2.innerHTML && a[3] === clockDigit3.innerHTML && a[4] === clockDigit4.innerHTML && a[a.length-2] === clockAP.innerHTML){
+            alarm = true;
+        } else if (count === 0 && a[0] === clockDigit1.innerHTML && a[1] === clockDigit2.innerHTML && a[3] === clockDigit3.innerHTML && a[4] === clockDigit4.innerHTML && a[a.length-2] === clockAP.innerHTML){
+            alarm = true;
+        }
+        if (alarm === true && count === 0){
+        clockAlarmFunc();
+        count++;
+        }
     }, 1000);
 })
 
@@ -890,7 +888,6 @@ function countDownFunc(hour = +(timerDownHour.value), min = +(timerDownMin.value
 
 // *********** pomo settings below *****************************************************
 
-// need to reveal pomo settings all are display none currently 
 let clockPomoHeader = document.getElementById('clockPomoHeader');
 let pomoWorkLabel = document.getElementById('pomoWorkLabel');
 let pomoBreakLabel = document.getElementById('pomoBreakLabel');
@@ -1185,6 +1182,7 @@ calculator.addEventListener('click', (e)=>{
         lastClickOperand = false;
     }
     if (lastClickOperand) {
+        decimal.style.pointerEvents = 'auto';
         plus.style.pointerEvents = 'none';
         times.style.pointerEvents = 'none';
         minus.style.pointerEvents = 'none';
@@ -1198,11 +1196,11 @@ calculator.addEventListener('click', (e)=>{
 })
 
 calculator.addEventListener('click', (e)=>{
-    if (e.target === decimal || calcMainInput.innerHTML.includes('.')){
+    let input = calcMainInput.innerHTML;
+    console.log(input[input.length - 1])
+    if (e.target === decimal && input[input.length - 1] === '.'){
         decimal.style.pointerEvents = 'none';
-    } else {
-        decimal.style.pointerEvents = 'auto';
-    }
+    } 
 })
 
 const refreshOutput = () => calcMainInput.innerHTML === '0' ? calcMainInput.innerHTML = '' : calcMainInput; 
