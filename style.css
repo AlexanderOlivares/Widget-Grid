@@ -1,1111 +1,1135 @@
 body {
-    box-sizing: border-box;
-    background-color: #222831;
-    width: auto;
-    font-family: 'Montseratt', sans-serif;
+  box-sizing: border-box;
+  background-color: #222831;
+  width: auto;
+  font-family: "Montseratt", sans-serif;
 }
 
 .container {
-    display: grid;
+  display: grid;
+  grid-template-columns: repeat(2, 49vw);
+  grid-template-rows: repeat(2, 49vh);
+  grid-gap: 3px;
+  padding: 3px;
+  align-content: center;
+  justify-content: center;
+  width: auto;
+}
+
+/* Mobile view  */
+@media all and (max-width: 480px) {
+  .container {
+    display: flex;
+    flex-direction: column;
     padding: 3px;
-    grid-template-columns: repeat(2, 49vw);
-    grid-template-rows:  repeat(2, 49vh);
-    grid-gap: 3px;
     align-content: center;
     justify-content: center;
     width: auto;
+  }
+  .clockIcons {
+    display: none;
+  }
+  #date {
+    display: none;
+    margin-top: 15px;
+  }
 }
 
 /* notes header and view notes divs below */
 
 #notesHeader {
-    display: flex;
-    padding-left: 10px;
-    justify-content: left;
-    gap: 3px;
-    background-color: #11698E;
-    height: 10%;
-    border-bottom: 3px solid #16c79a;
+  display: flex;
+  padding-left: 10px;
+  justify-content: left;
+  gap: 3px;
+  background-color: #11698e;
+  height: 10%;
+  border-bottom: 3px solid #16c79a;
 }
 
 #notesAddNote {
-    height: 25px;
-    width: 25px;
-    align-self: center;
-    font-size: 32px;
-    font-weight: 600;
-    padding-bottom: 2%;
-    padding-left: 5px;
-    cursor: pointer;
-    color: #16c79a;
+  height: 25px;
+  width: 25px;
+  align-self: center;
+  font-size: 32px;
+  font-weight: 600;
+  padding-bottom: 2%;
+  padding-left: 5px;
+  cursor: pointer;
+  color: #16c79a;
 }
 
 /* changed height to vh */
 #notesTextBox {
-    resize: none;
-    height: 38vh;
-    width: 99%;
-    background-color: #222831;
-    color: #f8f1f1;
-    font-weight: 500;
-    font-size: larger;
-    overflow: hidden;
-    display: visible;
-    border: none;
+  font-family: "Montseratt", sans-serif;
+  resize: none;
+  height: 38vh;
+  width: 99%;
+  background-color: #222831;
+  color: #f8f1f1;
+  font-weight: 500;
+  font-size: larger;
+  overflow: hidden;
+  display: visible;
+  border: none;
 }
 
 #notesViewNotesButton {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #notesClearNotesButton {
-    display: none;
-    cursor: pointer;
+  display: none;
+  cursor: pointer;
 }
 
 #notesPostNoteButton {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #notesNotesList {
-    display: none;
-    font-family: monospace;
-    height: 81%;
-    width: 99%;
-    background-color: #222831;
-    color: #f8f1f1;
-    font-size: larger;
-    overflow: scroll;
+  display: none;
+  font-family: "Montseratt", sans-serif;
+  height: 81%;
+  width: 99%;
+  background-color: #222831;
+  color: #f8f1f1;
+  font-size: larger;
+  overflow: scroll;
 }
 
 .notesButtons {
-    background-color: #11698E;
-    font-family: 'Montseratt', sans-serif;
-    color: #f8f1f1;
-    border-color: #16c79a; 
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 12px;
-    margin-left: 10px;
-    margin-top: 5px;
-    width: 25%;
-    height: 35px;
+  background-color: #11698e;
+  font-family: "Montseratt", sans-serif;
+  color: #f8f1f1;
+  border-color: #16c79a;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-left: 10px;
+  /* width: 25%;
+  height: 25px; */
+  width: 20%;
+  height: 20px;
 }
 
 .notesButtons:hover {
-    background-color: #16c79a;
-    color: #19456b;
+  background-color: #16c79a;
+  color: #19456b;
 }
 
 .notesButtons:active {
-    background-color: #11698E;
-    transform: translateY(2px);
+  background-color: #11698e;
+  transform: translateY(2px);
 }
 
-/******************** Weather section below **********************/ 
+/******************** Weather section below **********************/
 #weather {
-    display: grid;
-    grid-template-columns: 1 fr;
-    grid-template-rows: repeat(2 1fr);
-    font-family: 'Montserrat', sans-serif;
-    color: #f8f1f1;
+  display: grid;
+  grid-template-columns: 1 fr;
+  grid-template-rows: repeat(2 1fr);
+  font-family: "Montserrat", sans-serif;
+  color: #f8f1f1;
 }
-
 
 #weatherMain {
-    display: grid;
-    grid-template-rows: 10% 25% 20% 10% 5% 5% 5% 5% 5% 10%;
-    grid-template-columns: 10% 20% 40% 20% 10%;
-    justify-items: center;
+  display: grid;
+  grid-template-rows: 10% 25% 20% 10% 5% 5% 5% 5% 5% 10%;
+  grid-template-columns: 10% 20% 40% 20% 10%;
+  justify-items: center;
 }
 
 #weatherRefreshButton {
-    grid-area: 1 / 1 / 1 / 2;
-    cursor: pointer;
-    background: transparent;
-    color: #16c79a;
-    padding-top: 5px;
+  grid-area: 1 / 1 / 1 / 2;
+  cursor: pointer;
+  background: transparent;
+  color: #16c79a;
+  padding-top: 5px;
 }
 
 #weatherCurrentCity {
-    grid-area: 1 / 3 / 1 / 4;
-    font-size: 16px;
-    padding-top: 5px;
+  grid-area: 1 / 3 / 1 / 4;
+  font-size: 16px;
+  padding-top: 5px;
 }
 
 #weatherEnterCity {
-    grid-area: 1 / 4 / 1 / 5;
-    padding-top: 5px;
+  grid-area: 1 / 4 / 1 / 5;
+  padding-top: 5px;
 }
 
 #weatherTextBox {
-    border-radius: 5px;
-    border-width: 2px;
-    width: 95%;
-    background: transparent;
-    color: #f8f1f1;
+  border-radius: 5px;
+  border-width: 2px;
+  width: 95%;
+  background: transparent;
+  color: #f8f1f1;
 }
 
 #weatherGoDiv {
-    grid-area: 1 / 5 / 1 / 6;
-    width: 75%;
-    border: none;
-    padding-top: 5px;
+  grid-area: 1 / 5 / 1 / 6;
+  width: 75%;
+  border: none;
+  padding-top: 5px;
 }
 
 #weatherGoButton {
-    background: transparent;
-    width: 100%;
-    border: none;
-    color: #16c79a;
+  background: transparent;
+  width: 100%;
+  border: none;
+  color: #16c79a;
 }
 
 #weatherCurrentTemp {
-   grid-area: 4 / 3 / 4 / 4; 
-   font-size: 40px;
-   align-self: end;
-   padding-bottom: 5px;
+  grid-area: 4 / 3 / 4 / 4;
+  font-size: 40px;
+  align-self: end;
+  padding-bottom: 5px;
 }
 
 #weatherCurrentIcon {
-    grid-area: 2 / 3 / 2 / 4;
-    align-self: center;
-    justify-self: center;
-    border-radius: 5px;
-    border: 2px solid #16c79a;
-    margin-top: 80px;
-    margin-bottom: 30px;
-    background-color: #11698E;
+  grid-area: 2 / 3 / 2 / 4;
+  align-self: center;
+  justify-self: center;
+  border-radius: 5px;
+  border: 2px solid #16c79a;
+  margin-top: 80px;
+  margin-bottom: 30px;
+  background-color: #11698e;
 }
 
 #weatherCurrentDescription {
-    grid-area: 5 / 2 / 7 / 5;
-    font-size: 24px;
-    align-self: center;
+  grid-area: 5 / 2 / 7 / 5;
+  font-size: 24px;
+  align-self: center;
 }
 
 #weatherFeelsLike {
-    grid-area: 7 / 3 / 7 / 4;
-    font-size: 14px;
-    align-self: flex-end;
+  grid-area: 7 / 3 / 7 / 4;
+  font-size: 14px;
+  align-self: flex-end;
 }
 
 #weatherPrecip {
-    grid-area: 6 /  3 / 6 / 4;
-    font-size: 12px;
-    align-self: flex-end;
+  grid-area: 6 / 3 / 6 / 4;
+  font-size: 12px;
+  align-self: flex-end;
 }
 
 #weatherHumidity {
-    grid-area: 8 / 3 / 8 / 4;
-    font-size: 12px;
-    align-self: flex-end;
+  grid-area: 8 / 3 / 8 / 4;
+  font-size: 12px;
+  align-self: flex-end;
 }
 
 #weatherWind {
-    grid-area: 9 / 3 / 9 / 4;
-    font-size: 12px;
-    align-self: flex-end;
-} 
+  grid-area: 9 / 3 / 9 / 4;
+  font-size: 12px;
+  align-self: flex-end;
+}
 
 /* hourly section below */
 #weatherHourly {
-    display: grid;
-    grid-template-rows: 10% 40% 15%;
-    grid-template-columns: 20% 20% 20% 20% 20%;
-    justify-items: center;
-    margin-top: -20px;
-    position: relative;
-    z-index: 100;
+  display: grid;
+  grid-template-rows: 10% 40% 15%;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  justify-items: center;
+  margin-top: -20px;
+  position: relative;
+  z-index: 100;
 }
 
 #weatherHourOne {
-    grid-area: 1 / 2 / 1 / 3;
-    font-size: 16px;
+  grid-area: 1 / 2 / 1 / 3;
+  font-size: 16px;
 }
 
 #weatherHourTwo {
-    grid-area: 1 / 3 / 1 / 4;
-    font-size: 16px;
+  grid-area: 1 / 3 / 1 / 4;
+  font-size: 16px;
 }
 
 #weatherHourThree {
-    grid-area: 1 / 4 / 1 / 5;
-    font-size: 16px;
+  grid-area: 1 / 4 / 1 / 5;
+  font-size: 16px;
 }
 
 #weatherIconOne {
-    grid-area: 2 / 2 / 2 / 3;
+  grid-area: 2 / 2 / 2 / 3;
 }
 
 #weatherIconTwo {
-    grid-area: 2 / 3 / 2 / 4;
+  grid-area: 2 / 3 / 2 / 4;
 }
 
 #weatherIconThree {
-    grid-area: 2 / 4 / 2 / 5;
+  grid-area: 2 / 4 / 2 / 5;
 }
 
 #weatherTempOne {
-    grid-area: 3 / 2 / 3 / 3;
-    font-size: 16px;
-    padding-top: 5px;
+  grid-area: 3 / 2 / 3 / 3;
+  font-size: 16px;
+  padding-top: 5px;
 }
 
 #weatherTempTwo {
-    grid-area: 3 / 3 / 3 / 4;
-    font-size: 16px;
-    padding-top: 5px;
+  grid-area: 3 / 3 / 3 / 4;
+  font-size: 16px;
+  padding-top: 5px;
 }
 
 #weatherTempThree {
-    grid-area: 3 / 4 / 3 / 5;
-    font-size: 16px;
-    padding-top: 5px;
+  grid-area: 3 / 4 / 3 / 5;
+  font-size: 16px;
+  padding-top: 5px;
 }
 
 #weatherHourlyBackground {
-    grid-area: 1 / 2 / 4 / 5;
-    background-color: #11698E; 
-    width: 100%;
-    z-index: -100;
-    border: 2px solid #16c79a;
-    margin: -10px;
-    padding: 3px;
+  grid-area: 1 / 2 / 4 / 5;
+  background-color: #11698e;
+  width: 100%;
+  z-index: -100;
+  border: 2px solid #16c79a;
+  margin: -10px;
+  padding: 3px;
 }
 
 .weather404 {
-    font-size: 18px
+  font-size: 18px;
 }
 
 #weather404Icon {
-    grid-area: 2 / 3 / 4 / 4;
-    display: none;
-    background-color: #11698E;
-    border:  2px solid #19456b;
-    border-radius: 5px;
-    margin-bottom: 40px;
+  grid-area: 2 / 3 / 4 / 4;
+  display: none;
+  background-color: #11698e;
+  border: 2px solid #19456b;
+  border-radius: 5px;
+  margin-bottom: 40px;
 }
 
 #weather404Text {
-    grid-area: 5 / 2 / 5 / 5;
-    display: none;
-    color: #f8f1f1; 
-    font-weight: 500;
+  grid-area: 5 / 2 / 5 / 5;
+  display: none;
+  color: #f8f1f1;
+  font-weight: 500;
 }
 
-
-
-/******************** Clock section below **********************/ 
+/******************** Clock section below **********************/
 
 #clock {
-    display: grid;
-    grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
-    grid-template-columns: 15% 15% 5% 15% 15% 5% 15% 15%;
-    align-content: center;
-    justify-items: center;
-    font-family: 'Montseratt', sans-serif;
+  display: grid;
+  grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+  grid-template-columns: 15% 15% 5% 15% 15% 5% 15% 15%;
+  align-content: center;
+  justify-items: center;
+  font-family: "Montseratt", sans-serif;
 }
 
 #date {
-    grid-area: 1 / 2 / 1 / 8;
-    color: #f8f1f1;
-    font-size: 16px;
-    font-weight: 500;
-    align-self: center;
+  grid-area: 1 / 2 / 1 / 8;
+  color: #f8f1f1;
+  font-size: 16px;
+  font-weight: 500;
+  align-self: center;
 }
 
 .clockDigits {
-    font-size: 100px;
-    color: #f8f1f1;
-    font-family: 'Montseratt', sans-serif;
-    align-self: center;
+  font-size: 100px;
+  color: #f8f1f1;
+  font-family: "Montseratt", sans-serif;
+  align-self: center;
 }
 
 #clockDigit1 {
-    grid-area: 2 / 1 / 4 / 2;
-    justify-self: end;
+  grid-area: 2 / 1 / 4 / 2;
+  justify-self: end;
 }
 
 #clockDigit2 {
-    grid-area: 2 / 2 / 4 / 3;
-    justify-self: center;
+  grid-area: 2 / 2 / 4 / 3;
+  justify-self: center;
 }
 
 #clockDigitHyphon {
-    grid-area: 2 / 3 / 4 / 4;
-    padding-bottom: 3px;
+  grid-area: 2 / 3 / 4 / 4;
+  padding-bottom: 3px;
 }
 
 #clockDigit3 {
-    grid-area: 2 / 4 / 4 / 5;
-    justify-self: center;
+  grid-area: 2 / 4 / 4 / 5;
+  justify-self: center;
 }
 
 #clockDigit4 {
-    grid-area: 2 / 5 / 4 / 6;
-    justify-self: center;
+  grid-area: 2 / 5 / 4 / 6;
+  justify-self: center;
 }
 
 .clockDigitSecs {
-    font-size: 25px;
-    justify-self: center;
-    align-self: end;
-    color: #f8f1f1;
-    font-family: 'Montseratt', sans-serif;
+  font-size: 25px;
+  justify-self: center;
+  align-self: end;
+  color: #f8f1f1;
+  font-family: "Montseratt", sans-serif;
 }
 
 #clockDigitSecs1 {
-    grid-area: 2 / 7 / 2 / 8;
-    justify-self: start;
+  grid-area: 2 / 7 / 2 / 8;
+  justify-self: start;
 }
 
 #clockDigitSecs2 {
-    grid-area: 2 / 7 / 2 / 8;
-    justify-self: start;
-    margin-left: 10px;
-    padding-left: 10%;
+  grid-area: 2 / 7 / 2 / 8;
+  justify-self: start;
+  margin-left: 10px;
+  padding-left: 10%;
 }
 
 .clockAmPm {
-    justify-self: center;
-    font-size: 20px;
-    align-self: start;
-    color: #f8f1f1;
-    font-family: 'Montseratt', sans-serif;
+  justify-self: center;
+  font-size: 20px;
+  align-self: start;
+  color: #f8f1f1;
+  font-family: "Montseratt", sans-serif;
 }
 #clockAP {
-    grid-area: 3 / 7 / 3 / 8;
-    justify-self: start;
+  grid-area: 3 / 7 / 3 / 8;
+  justify-self: start;
 }
 
 #clockM {
-    grid-area: 3 / 7 / 3 / 8;
-    justify-self: start;
-    padding-left: 20px;
+  grid-area: 3 / 7 / 3 / 8;
+  justify-self: start;
+  padding-left: 20px;
 }
 
 .clockIcons {
-    background-color: #11698E;
-    border-radius: 5px;
-    border: 2px solid #16c79a; 
-    cursor: pointer;
-    padding-top: 3px;
+  background-color: #11698e;
+  border-radius: 5px;
+  border: 2px solid #16c79a;
+  cursor: pointer;
+  padding-top: 3px;
 }
 
 .clockIcons:hover {
-    background-color: #16c79a;
+  background-color: #16c79a;
 }
 
 .clockIcons:active {
-    background-color: #19456b;
-    transform: translateY(2px);
+  background-color: #19456b;
+  transform: translateY(2px);
 }
-
 
 #clockAlarmIcon {
-    grid-area: 5 / 2 / 5 / 3;
-    align-self: center;
+  grid-area: 5 / 2 / 5 / 3;
+  align-self: center;
 }
 
-#clockTimerIcon { 
-    grid-area: 5 / 4 / 5 / 5;
-    margin-left: 100%;
-    align-self: center;
+#clockTimerIcon {
+  grid-area: 5 / 4 / 5 / 5;
+  margin-left: 100%;
+  align-self: center;
 }
 
-#clockPomoIcon { 
-    grid-area: 5 / 7 / 5 / 8;
-    align-self: center;
+#clockPomoIcon {
+  grid-area: 5 / 7 / 5 / 8;
+  align-self: center;
 }
 
 /* hidden settings divs below */
 
 .alarmSettings {
-    display: none;
-    font-family: 'Montseratt', sans-serif;
-    background-color: #11698E;
-    border:  2px solid #19456b;
-    color: #f8f1f1;
-    border-radius: 5px;
-    font-size: 12px;
-    align-self: center;
-    justify-self: center;
+  display: none;
+  font-family: "Montseratt", sans-serif;
+  background-color: #11698e;
+  border: 2px solid #19456b;
+  color: #f8f1f1;
+  border-radius: 5px;
+  font-size: 12px;
+  align-self: center;
+  justify-self: center;
 }
 
 #clockAlarmHeader {
-    grid-area: 6 / 4 / 6 / 6;
-    margin-top: -5px;
-    background-color: transparent;
-    border: none;
-    padding-top: 10px;
+  grid-area: 6 / 4 / 6 / 6;
+  margin-top: -5px;
+  background-color: transparent;
+  border: none;
+  padding-top: 10px;
 }
 
 #clockSetTime {
-    grid-area: 7 / 4 / 7 / 6;
-    height: 75%;
-    width: 75%;
-    border:  2px solid #19456b;
-    border-radius: 5px;
-    color: #f8f1f1;
+  grid-area: 7 / 4 / 7 / 6;
+  height: 75%;
+  width: 75%;
+  border: 2px solid #19456b;
+  border-radius: 5px;
+  color: #f8f1f1;
 }
 
 #clockInputTime {
-    font-size: 12px;
-    color: #f8f1f1;
-    background-color: #11698E;
-    border:  2px solid #19456b;
-    border-radius: 5px;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
+  font-size: 12px;
+  color: #f8f1f1;
+  background-color: #11698e;
+  border: 2px solid #19456b;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 #clockAlarmSetButton {
-    grid-area: 5 / 4 / 5 / 6;
-    background-color: #11698E;
-    color: #f8f1f1;
-    display: none;
-    border-radius: 5px;
-    width: 50%;
-    height: 60%;
-    font-size:  16px;
-    font-family: 'Montseratt';
-    border:  2px solid #19456b;
-    margin-top: 10px;
-    cursor: pointer;
+  grid-area: 5 / 4 / 5 / 6;
+  background-color: #11698e;
+  color: #f8f1f1;
+  display: none;
+  border-radius: 5px;
+  width: 50%;
+  height: 60%;
+  font-size: 16px;
+  font-family: "Montseratt";
+  border: 2px solid #19456b;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 #clockAlarmSetButton:hover {
-    background-color: #16c79a;
+  background-color: #16c79a;
 }
 
 #clockAlarmSetButton:active {
-    background-color: #19456b;
-    transform: translateY(2px);
+  background-color: #19456b;
+  transform: translateY(2px);
 }
 
 #clockAlarmRecall {
-    grid-area: 4 / 1 / 4 / 4;
-    display: none;
-    margin-left: 30%;
-    text-align: center;
-    align-self: center;
-    color: #f8f1f1;
-    font-weight: 500;
-    font-size: 16px;
+  grid-area: 4 / 1 / 4 / 4;
+  display: none;
+  margin-left: 30%;
+  text-align: center;
+  align-self: center;
+  color: #f8f1f1;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 #clockEndAlarm {
-    grid-area: 6 / 2 / 6 / 3;
-    display: none;
-    height: 75%;
-    width: 75%;
-    border-radius: 5px;
-    align-self: center;
-    cursor: pointer;
-    margin-top: 10px;
+  grid-area: 6 / 2 / 6 / 3;
+  display: none;
+  height: 75%;
+  width: 75%;
+  border-radius: 5px;
+  align-self: center;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
-#clockEndAlarm:hover{
-    background-color: #16c79a;
+#clockEndAlarm:hover {
+  background-color: #16c79a;
 }
 
-#clockEndAlarm:active{
-    background-color: #19456b;
-    transform: translateY(2px);
+#clockEndAlarm:active {
+  background-color: #19456b;
+  transform: translateY(2px);
 }
 
 /* timer settings below */
 .timerSettings {
-    font-family: 'Montseratt', sans-serif;
-    background-color: #11698E;
-    border:  2px solid #19456b;
-    color: #f8f1f1;
-    border-radius: 5px;
-    color: #f8f1f1;
-    font-size: 11px;
-    align-self: center;
-    justify-self: center;
+  font-family: "Montseratt", sans-serif;
+  background-color: #11698e;
+  border: 2px solid #19456b;
+  color: #f8f1f1;
+  border-radius: 5px;
+  color: #f8f1f1;
+  font-size: 11px;
+  align-self: center;
+  justify-self: center;
 }
 
 #clockTimerHeader {
-    display: none;
-    border: none;
-    background-color: transparent;
-    grid-area: 5 / 4 / 7 / 6;
+  display: none;
+  border: none;
+  background-color: transparent;
+  grid-area: 5 / 4 / 7 / 6;
 }
 
 #clockTimerUp {
-    grid-area: 5 / 3 / 7 / 4;
-    display: none;
-    padding: 5px;
-    background-color: #16c79a;
-    cursor: pointer;
+  grid-area: 5 / 3 / 7 / 4;
+  display: none;
+  padding: 5px;
+  background-color: #16c79a;
+  cursor: pointer;
 }
 
 #clockTimerInputUp {
-    grid-area: 4 / 4 / 4 / 6;
-    display: none;
-    text-align: center;
-    font-size: 16px;
-    align-self: center;
-    color: #f8f1f1;
-    font-weight: 500;
+  grid-area: 4 / 4 / 4 / 6;
+  display: none;
+  text-align: center;
+  font-size: 16px;
+  align-self: center;
+  color: #f8f1f1;
+  font-weight: 500;
 }
 
 #clockTimerStart {
-    display: none;
-    grid-area: 7 / 4 / 7 / 6;
-    width: 75%;
-    padding: 5px;
-    cursor: pointer;
+  display: none;
+  grid-area: 7 / 4 / 7 / 6;
+  width: 75%;
+  padding: 5px;
+  cursor: pointer;
 }
 
 #clockTimerStart:hover {
-    background-color: #16c79a;
+  background-color: #16c79a;
 }
 
-#clockTimerStart:active{
-    background-color: #19456b;
-    transform: translateY(2px);
+#clockTimerStart:active {
+  background-color: #19456b;
+  transform: translateY(2px);
 }
 
 #clockTimerReset {
-    grid-area: 7 / 4 / 7 / 6;
-    display: none;
-    height: 75%;
-    width: 40%;
-    cursor: pointer;
+  grid-area: 7 / 4 / 7 / 6;
+  display: none;
+  height: 75%;
+  width: 40%;
+  cursor: pointer;
 }
 
 #clockTimerReset:hover {
-    background-color: #16c79a;
+  background-color: #16c79a;
 }
 
-#clockTimerReset:active{
-    background-color: #19456b;
-    transform: translateY(2px);
+#clockTimerReset:active {
+  background-color: #19456b;
+  transform: translateY(2px);
 }
 
 #clockTimerStop {
-    grid-area: 6 / 5 / 6 / 6;
-    display: none;
-    height: 75%;
-    width: 75%;
-    cursor: pointer;
-    margin-top: 10px;
+  grid-area: 6 / 5 / 6 / 6;
+  display: none;
+  height: 75%;
+  width: 75%;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 #clockTimerStop:hover {
-    background-color: #16c79a;
+  background-color: #16c79a;
 }
 
-#clockTimerStop:active{
-    background-color: #19456b;
-    transform: translateY(2px);
+#clockTimerStop:active {
+  background-color: #19456b;
+  transform: translateY(2px);
 }
 
 #clockTimerEnd {
-    grid-area: 6 / 4 / 6 / 5;
-    display: none;
-    height: 75%;
-    width: 75%;
-    cursor: pointer;
-    margin-top: 10px;
+  grid-area: 6 / 4 / 6 / 5;
+  display: none;
+  height: 75%;
+  width: 75%;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 #clockTimerEnd:hover {
-    background-color: #16c79a;
+  background-color: #16c79a;
 }
 
-#clockTimerEnd:active{
-    background-color: #19456b;
-    transform: translateY(2px);
+#clockTimerEnd:active {
+  background-color: #19456b;
+  transform: translateY(2px);
 }
 
 /* may need to change pad top */
 #clockTimerInputDown {
-    grid-area: 4 / 4 / 4 / 6;
-    display: none;
-    text-align: center;
-    align-content: center;
-    width: 110%;
-    padding-left: 15%;
-    padding-top: 8%;
+  grid-area: 4 / 4 / 4 / 6;
+  display: none;
+  text-align: center;
+  align-content: center;
+  width: 110%;
+  padding-left: 15%;
+  padding-top: 8%;
 }
 
 #clockTimerDownRecall {
-    grid-area: 4 / 4 / 4 / 6;
-    display: block;
-    color: #f8f1f1;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-    width: 110%;
-    align-self: center;
+  grid-area: 4 / 4 / 4 / 6;
+  display: block;
+  color: #f8f1f1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  width: 110%;
+  align-self: center;
 }
 
 #clockTimerDown {
-    grid-area: 5 / 6 / 7 / 7;
-    display: none;
-    padding: 5px;
-    background-color: #11698E;
-    cursor: pointer;
+  grid-area: 5 / 6 / 7 / 7;
+  display: none;
+  padding: 5px;
+  background-color: #11698e;
+  cursor: pointer;
 }
 
 .timerDownSettings {
-    width: 25%;
-    background: none;
-    padding-top: 5px;
-    color: #11698E;
-    border: none;
-    font-size: 18px;
+  width: 25%;
+  background: none;
+  padding-top: 5px;
+  color: #11698e;
+  border: none;
+  font-size: 18px;
 }
-
 
 /* *********** pomo section below *************** */
 
 .pomoSettingsText {
-    font-size: 120%;
-    color: #f8f1f1;
-    text-align: center;
-    align-self: center;
+  font-size: 120%;
+  color: #f8f1f1;
+  text-align: center;
+  align-self: center;
 }
 
 .pomoSettingsButtons {
-    background-color: #11698E;
-    border:  2px solid #19456b;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 5px;
-    padding-bottom: -20px;
-    align-self: center;
-    justify-content: center;
+  background-color: #11698e;
+  border: 2px solid #19456b;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px;
+  padding-bottom: -20px;
+  align-self: center;
+  justify-content: center;
 }
 
-.pomoSettingsButtons:hover{
-    background-color: #16c79a;
+.pomoSettingsButtons:hover {
+  background-color: #16c79a;
 }
 
-.pomoSettingsButtons:active{
-    background-color: #19456b;
-    transform: translateY(2px);
+.pomoSettingsButtons:active {
+  background-color: #19456b;
+  transform: translateY(2px);
 }
 
 #clockPomoHeader {
-    grid-area: 6 / 4 / 6 / 6;
-    display: none;
+  grid-area: 6 / 4 / 6 / 6;
+  display: none;
 }
 
 #pomoWorkLabel {
-    grid-area: 5 / 2 / 5 / 3;
-    display: none;
+  grid-area: 5 / 2 / 5 / 3;
+  display: none;
 }
 
 #pomoBreakLabel {
-    grid-area: 5 / 7 / 5 / 8;
-    display: none;
+  grid-area: 5 / 7 / 5 / 8;
+  display: none;
 }
 
 #pomoWorkInput {
-    grid-area: 7 / 2 / 7 / 3;
-    display: none;
+  grid-area: 7 / 2 / 7 / 3;
+  display: none;
 }
 
 #pomoBreakInput {
-    grid-area: 7 / 7 / 7 / 8;
-    display: none;
+  grid-area: 7 / 7 / 7 / 8;
+  display: none;
 }
 
 #pomoWorkInc {
-    grid-area: 6 / 2 / 6 / 3;
-    display: none;
+  grid-area: 6 / 2 / 6 / 3;
+  display: none;
 }
 
 #pomoBreakInc {
-    grid-area: 6 / 7 / 6 / 8;
-    display: none;
+  grid-area: 6 / 7 / 6 / 8;
+  display: none;
 }
 
 #pomoWorkDec {
-    grid-area: 8 / 2 / 8 / 3;
-    display: none;
+  grid-area: 8 / 2 / 8 / 3;
+  display: none;
 }
 
 #pomoBreakDec {
-    grid-area: 8 / 7 / 8 / 8;
-    display: none;
+  grid-area: 8 / 7 / 8 / 8;
+  display: none;
 }
 
 #pomoStartButton {
-    grid-area: 7 / 4 / 7 / 6;
-    display: none;
-    color: #f8f1f1;
-    width: 75%;
-    padding: 5px;
-    cursor: pointer;
-    font-family: 'Montseratt', sans-serif;
-    background-color: #11698E;
-    border:  2px solid #19456b;
-    border-radius: 5px;
-    font-size: 11px;
-    align-self: center;
-    justify-self: center;
-    text-align: center;
+  grid-area: 7 / 4 / 7 / 6;
+  display: none;
+  color: #f8f1f1;
+  width: 75%;
+  padding: 5px;
+  cursor: pointer;
+  font-family: "Montseratt", sans-serif;
+  background-color: #11698e;
+  border: 2px solid #19456b;
+  border-radius: 5px;
+  font-size: 11px;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
 }
 
-#pomoStartButton:hover{
-    background-color: #16c79a;
+#pomoStartButton:hover {
+  background-color: #16c79a;
 }
 
-#pomoStartButton:active{
-    background-color: #19456b;
-    transform: translateY(2px);
+#pomoStartButton:active {
+  background-color: #19456b;
+  transform: translateY(2px);
 }
 
 #pomoRecall {
-    grid-area: 4 / 7 / 4 / 8;
-    display: none;
-    text-align: center;
-    align-self: center;
-    justify-self: center;
-    cursor: pointer;
-    color: #f8f1f1;
-    font-size: 16px;
-    font-weight: 500;
+  grid-area: 4 / 7 / 4 / 8;
+  display: none;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
+  cursor: pointer;
+  color: #f8f1f1;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 #pomoEndButton {
-    grid-area: 6 / 7 / 6 / 8;
-    display: none;
-    font-family: 'Montseratt', sans-serif;
-    height: 75%;
-    width: 75%;
-    border-radius: 5px;
-    border:  2px solid #19456b;
-    color: #f8f1f1;
-    cursor: pointer;
-    background-color: #11698E;
-    font-size: 12px;
-    align-self: center;
-    justify-self: center;
-    text-align: center;
-    margin-top: 10px;
+  grid-area: 6 / 7 / 6 / 8;
+  display: none;
+  font-family: "Montseratt", sans-serif;
+  height: 75%;
+  width: 75%;
+  border-radius: 5px;
+  border: 2px solid #19456b;
+  color: #f8f1f1;
+  cursor: pointer;
+  background-color: #11698e;
+  font-size: 12px;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  margin-top: 10px;
 }
 
-#pomoEndButton:hover{
-    background-color: #16c79a;
+#pomoEndButton:hover {
+  background-color: #16c79a;
 }
 
-#pomoEndButton:active{
-    background-color: #19456b;
-    transform: translateY(2px);
+#pomoEndButton:active {
+  background-color: #19456b;
+  transform: translateY(2px);
 }
 
 #pomoWorkIcon {
-    grid-area: 4 / 8 / 4 / 9;
-    display: none;
-    justify-self: center;
-    align-self: center;
-    background-color: #11698E;
-    border-radius: 5px;
-    border:  2px solid #19456b;
+  grid-area: 4 / 8 / 4 / 9;
+  display: none;
+  justify-self: center;
+  align-self: center;
+  background-color: #11698e;
+  border-radius: 5px;
+  border: 2px solid #19456b;
 }
 
 #pomoBreakIcon {
-    grid-area: 4 / 8 / 4 / 9;
-    display: none;
-    justify-self: center;
-    align-self: center;
-    background-color: #11698E;
-    border-radius: 5px;
-    border:  2px solid #19456b;
+  grid-area: 4 / 8 / 4 / 9;
+  display: none;
+  justify-self: center;
+  align-self: center;
+  background-color: #11698e;
+  border-radius: 5px;
+  border: 2px solid #19456b;
 }
-
 
 /* ***** calculator section below ******************************* */
 
 #calculator {
-    display: grid;
-    grid-gap: 3px;
-    grid-template-rows: repeat(7, 45px);
-    grid-template-columns: repeat(5, 45px);
-    text-align: center;
-    align-content: center;
-    justify-content: center;
-    padding-bottom: 5%;
-    min-width: 260px;
+  display: grid;
+  grid-gap: 3px;
+  grid-template-rows: repeat(7, 45px);
+  grid-template-columns: repeat(5, 45px);
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  padding-bottom: 5%;
+  min-width: 260px;
 }
 
 .calcButtons {
-    background-color: #11698E;
-    color: #f8f1f1;
-    border: 2px solid;
-    border-color: #19456b;
-    font-size: x-large;
-    border-radius: 5px;
-    cursor: pointer;
-    padding-top: 5px;
+  background-color: #11698e;
+  color: #f8f1f1;
+  border: 2px solid;
+  border-color: #19456b;
+  font-size: x-large;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-top: 5px;
 }
 
 .calcButtons:hover {
-    background-color: #16c79a;
-    color: #19456b;
+  background-color: #16c79a;
+  color: #19456b;
 }
 
 .calcButtons:active {
-    background-color: #11698E;
-    transform: translateY(2px);
+  background-color: #11698e;
+  transform: translateY(2px);
 }
 
 #calcMainInput {
-    grid-area: 1 / 1 / 3 / 6;
+  grid-area: 1 / 1 / 3 / 6;
+  color: #f8f1f1;
+  font-size: 40px;
+  text-align: right;
+  padding-top: 8%;
+  padding-right: 5px;
+  overflow: hidden;
+  border-top: 2px solid #16c79a;
+  border-left: 2px solid #16c79a;
+  border-right: 2px solid #16c79a;
+}
+
+#allClear {
+  grid-area: 3 / 4 / 3 / 6;
+}
+
+#sqrt {
+  padding-top: 10%;
+}
+
+#zero {
+  grid-area: 7 / 1 / 7 / 3;
+}
+
+#decimal {
+  grid-area: 7 / 3 / 7 / 4;
+}
+
+#equal {
+  grid-area: 7 / 4 / 7 / 6;
+}
+
+@media all and (max-width: 670px) {
+  #date {
+    grid-area: 1 / 2 / 1 / 8;
     color: #f8f1f1;
-    font-size: 40px;
-    text-align: right;
-    padding-top: 8%;
+    font-size: 12px;
+    font-weight: 500;
+    align-self: center;
+  }
+
+  .clockDigits {
+    font-size: 65px;
+    color: #f8f1f1;
+    font-family: "Montseratt", sans-serif;
+    align-self: center;
+  }
+}
+
+@media all and (max-width: 590px) {
+  #clockEndAlarm {
+    font-size: 9px;
+  }
+
+  #clockAlarmRecall {
+    font-size: 12px;
+  }
+
+  #clockTimerEnd {
+    font-size: 8px;
+  }
+
+  #clockTimerStop {
+    font-size: 8px;
+  }
+
+  #clockTimerReset {
+    font-size: 8px;
+  }
+
+  #clockTimerDownRecall {
+    font-size: 12px;
+  }
+
+  #clockTimerInputUp {
+    font-size: 12px;
+  }
+
+  #pomoRecall {
+    font-size: 12px;
     padding-right: 5px;
-    overflow: hidden;
-    border-top: 2px solid #16c79a; 
-    border-left: 2px solid #16c79a;
-    border-right: 2px solid #16c79a;
+  }
 
+  #pomoEndButton {
+    font-size: 8px;
+  }
 }
 
-#allClear{
-   grid-area: 3 / 4 / 3 / 6; 
+@media all and (max-height: 900px) {
+  #notesTextBox {
+    height: 35vh;
+  }
+  .notesButtons {
+    background-color: #11698e;
+    color: #f8f1f1;
+    border-color: #16c79a;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 20%;
+    height: 35px;
+  }
+  #weatherCurrentTemp {
+    grid-area: 4 / 3 / 4 / 4;
+    font-size: 25px;
+    align-self: end;
+  }
+
+  #weatherCurrentIcon {
+    grid-area: 2 / 3 / 2 / 4;
+    align-self: center;
+    justify-self: center;
+    border-radius: 5px;
+    border: 2px solid #16c79a;
+    margin-top: 45px;
+    margin-bottom: -15px;
+    background-color: #11698e;
+  }
+
+  #weatherCurrentDescription {
+    grid-area: 5 / 2 / 7 / 5;
+    font-size: 18px;
+    align-self: center;
+  }
+
+  #weatherFeelsLike {
+    grid-area: 7 / 3 / 7 / 4;
+    font-size: 12px;
+    align-self: flex-end;
+    padding: 3px;
+  }
+
+  #weatherHumidity {
+    grid-area: 8 / 3 / 8 / 4;
+    font-size: 12px;
+    align-self: flex-end;
+    padding: 3px;
+  }
+
+  #weatherWind {
+    grid-area: 9 / 3 / 9 / 4;
+    font-size: 12px;
+    align-self: flex-end;
+    padding: 3px;
+  }
 }
 
-#sqrt{
-   padding-top: 10%;
+@media all and (max-height: 700px) {
+  #calculator {
+    display: grid;
+    grid-gap: 3px;
+    grid-template-rows: repeat(7, 35px);
+    grid-template-columns: repeat(5, 35px);
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    padding-top: 5%;
+    min-width: 260px;
+  }
+
+  .calcButtons {
+    font-size: large;
+    padding-top: 5px;
+  }
+
+  #weatherCurrentIcon {
+    grid-area: 2 / 3 / 2 / 4;
+    align-self: center;
+    justify-self: center;
+    border-radius: 5px;
+    border: 2px solid #16c79a;
+    margin-top: 25px;
+    margin-bottom: -15px;
+    background-color: #11698e;
+  }
+
+  #weatherHourOne {
+    grid-area: 1 / 2 / 1 / 3;
+    font-size: 12px;
+  }
+
+  #weatherHourTwo {
+    grid-area: 1 / 3 / 1 / 4;
+    font-size: 12px;
+  }
+
+  #weatherHourThree {
+    grid-area: 1 / 4 / 1 / 5;
+    font-size: 12px;
+  }
+
+  #weatherTempOne {
+    grid-area: 3 / 2 / 3 / 3;
+    font-size: 12px;
+    padding-top: 5px;
+  }
+
+  #weatherTempTwo {
+    grid-area: 3 / 3 / 3 / 4;
+    font-size: 12px;
+    padding-top: 5px;
+  }
+
+  #weatherTempThree {
+    grid-area: 3 / 4 / 3 / 5;
+    font-size: 12px;
+    padding-top: 5px;
+  }
+
+  #weatherHourlyBackground {
+    grid-area: 1 / 2 / 4 / 5;
+    background-color: #11698e;
+    width: 100%;
+    z-index: -100;
+    border: 2px solid #16c79a;
+    padding: 3px;
+  }
 }
 
-#zero{
-   grid-area: 7 / 1 / 7 / 3; 
+@media all and (max-height: 655px) {
+  #weatherHourly {
+    display: none;
+  }
+
+  #notesTextBox {
+    position: relative;
+    height: 35vh;
+  }
+
+  .notesButtons {
+    font-size: 9px;
+    height: 25px;
+    width: 15%;
+  }
 }
 
-#decimal{
-   grid-area: 7 / 3 / 7 / 4; 
+@media all and (max-height: 500px) {
+  #date {
+    display: none;
+  }
 }
 
-#equal{
-   grid-area: 7 / 4 / 7 / 6; 
+@media all and (max-width: 850px) {
+  .notesButtons {
+    background-color: #11698e;
+    font-family: "Montseratt", sans-serif;
+    color: #f8f1f1;
+    border-color: #16c79a;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 9px;
+    margin-left: 10px;
+    width: 15%;
+    height: 25px;
+  }
 }
-
-
-@media all and (max-width: 670px){
-    #date {
-        grid-area: 1 / 2 / 1 / 8;
-        color: #f8f1f1;
-        font-size: 12px;
-        font-weight: 500;
-        align-self: center;
-    }
-    
-    .clockDigits {
-        font-size: 65px;
-        color: #f8f1f1;
-        font-family: 'Montseratt', sans-serif;
-        align-self: center;
-    }
-}
-
-@media all and (max-width: 590px){
-
-    #clockEndAlarm {
-        font-size: 9px;
-    }
-    
-    #clockAlarmRecall {
-        font-size: 12px;
-    }
-
-    #clockTimerEnd{
-        font-size: 8px;
-    }
-
-    #clockTimerStop{
-        font-size: 8px;
-    }
-
-    #clockTimerReset{
-        font-size: 8px;
-    }
-
-    #clockTimerDownRecall{
-        font-size: 12px;
-    }
-
-    #clockTimerInputUp{
-        font-size: 12px;
-    }
-
-    #pomoRecall{
-        font-size: 12px;
-        padding-right: 5px;
-    }
-
-    #pomoEndButton{
-        font-size: 8px;
-    }
-
-}
-
-@media all and (max-height: 900px){
-    #notesTextBox {
-        height: 35vh;
-    }
-    .notesButtons {
-        background-color: #11698E;
-        color: #f8f1f1;
-        border-color: #16c79a; 
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 12px;
-        margin-left: 10px;
-        margin-top: 5px;
-        width: 20%;
-        height: 35px;
-    }
-    #weatherCurrentTemp {
-        grid-area: 4 / 3 / 4 / 4; 
-        font-size: 25px;
-        align-self: end;
-     }
-     
-     #weatherCurrentIcon {
-         grid-area: 2 / 3 / 2 / 4;
-         align-self: center;
-         justify-self: center;
-         border-radius: 5px;
-         border: 2px solid #16c79a;
-         margin-top: 45px;
-         margin-bottom: -15px;
-         background-color: #11698E;
-     }
-     
-     #weatherCurrentDescription {
-         grid-area: 5 / 2 / 7 / 5;
-         font-size: 18px;
-         align-self: center;
-     }
-     
-     #weatherFeelsLike {
-         grid-area: 7 / 3 / 7 / 4;
-         font-size: 12px;
-         align-self: flex-end;
-         padding: 3px;
-     }
-     
-     #weatherHumidity {
-         grid-area: 8 / 3 / 8 / 4;
-         font-size: 12px;
-         align-self: flex-end;
-         padding: 3px;
-     }
-     
-     #weatherWind {
-         grid-area: 9 / 3 / 9 / 4;
-         font-size: 12px;
-         align-self: flex-end;
-         padding: 3px;
-     } 
-}
-
-@media all and (max-height: 700px){
-    #calculator {
-        display: grid;
-        grid-gap: 3px;
-        grid-template-rows: repeat(7, 35px);
-        grid-template-columns: repeat(5, 35px);
-        text-align: center;
-        align-content: center;
-        justify-content: center;
-        padding-top: 5%;
-        min-width: 260px;
-    } 
-
-    .calcButtons{
-        font-size: large;
-        padding-top: 5px;
-    }
-     
-     #weatherCurrentIcon {
-         grid-area: 2 / 3 / 2 / 4;
-         align-self: center;
-         justify-self: center;
-         border-radius: 5px;
-         border: 2px solid #16c79a;
-         margin-top: 25px;
-         margin-bottom: -15px;
-         background-color: #11698E;
-     }
-     
-     #weatherHourOne {
-        grid-area: 1 / 2 / 1 / 3;
-        font-size: 12px;
-    }
-    
-    #weatherHourTwo {
-        grid-area: 1 / 3 / 1 / 4;
-        font-size: 12px;
-    }
-    
-    #weatherHourThree {
-        grid-area: 1 / 4 / 1 / 5;
-        font-size: 12px;
-    }
-
-    #weatherTempOne {
-        grid-area: 3 / 2 / 3 / 3;
-        font-size: 12px;
-        padding-top: 5px;
-    }
-    
-    #weatherTempTwo {
-        grid-area: 3 / 3 / 3 / 4;
-        font-size: 12px;
-        padding-top: 5px;
-    }
-    
-    #weatherTempThree {
-        grid-area: 3 / 4 / 3 / 5;
-        font-size: 12px;
-        padding-top: 5px;
-    }
-    
-    #weatherHourlyBackground {
-        grid-area: 1 / 2 / 4 / 5;
-        background-color: #11698E; 
-        width: 100%;
-        z-index: -100;
-        border: 2px solid #16c79a;
-        padding: 3px;
-    }
-}
-
-@media all and (max-height: 655px){
-    #weatherHourly {
-        display: none;
-    }
-
-    #notesTextBox {
-        position: relative;
-        height: 35vh;
-    }
-    
-    .notesButtons{
-        font-size: 9px;
-        height: 25px;
-        width: 15%;
-    }
-
-}
-
-@media all and (max-height: 500px){
-    #date{
-        display: none;
-    }
-}
-
